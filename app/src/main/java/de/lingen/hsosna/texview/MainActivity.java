@@ -105,36 +105,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         displayToast((String) view.getContentDescription());
         RegalfrontFragment.fachID = view.getContentDescription();
 
-        if(view.getContentDescription().toString().equals("Regal Fach 01")){
-        View bottomSheet = findViewById(R.id.slideUpPaneFach01);
-        mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet);
-        mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);}
-        else if(view.getContentDescription().toString().equals("Regal Fach 02")){
+        if (view.getContentDescription().toString().equals("Regal Fach 01")) {
+            View bottomSheet = findViewById(R.id.slideUpPaneFach01);
+            mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet);
+            mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
+        } else if (view.getContentDescription().toString().equals("Regal Fach 02")) {
             View bottomSheet2 = findViewById(R.id.slideUpPaneFach02);
             mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet2);
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
-        }
-        else if(view.getContentDescription().toString().equals("Regal Fach 03")){
+        } else if (view.getContentDescription().toString().equals("Regal Fach 03")) {
             View bottomSheet2 = findViewById(R.id.slideUpPaneFach03);
             mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet2);
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
-        }
-        else if(view.getContentDescription().toString().equals("Regal Fach 04")){
+        } else if (view.getContentDescription().toString().equals("Regal Fach 04")) {
             View bottomSheet2 = findViewById(R.id.slideUpPaneFach04);
             mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet2);
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
-        }
-        else if(view.getContentDescription().toString().equals("Regal Fach 05")){
+        } else if (view.getContentDescription().toString().equals("Regal Fach 05")) {
             View bottomSheet2 = findViewById(R.id.slideUpPaneFach05);
             mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet2);
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
-        }
-        else if(view.getContentDescription().toString().equals("Regal Fach 06")){
+        } else if (view.getContentDescription().toString().equals("Regal Fach 06")) {
             View bottomSheet2 = findViewById(R.id.slideUpPaneFach06);
             mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet2);
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
-        }
-        else if(view.getContentDescription().toString().equals("Regal Fach 07")){
+        } else if (view.getContentDescription().toString().equals("Regal Fach 07")) {
             View bottomSheet2 = findViewById(R.id.slideUpPaneFach07);
             mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet2);
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
@@ -155,18 +150,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if(hasFocus){
+        if (hasFocus) {
             decorView.setSystemUiVisibility(hideSystemBars());
         }
     }
 
-    private int hideSystemBars(){
-        return      View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                |   View.SYSTEM_UI_FLAG_FULLSCREEN
-                |   View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                |   View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                |   View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                |   View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+    private int hideSystemBars() {
+        return View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
     }
 
     @Override
