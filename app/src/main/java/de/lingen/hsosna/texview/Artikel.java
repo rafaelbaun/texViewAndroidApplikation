@@ -1,11 +1,7 @@
 package de.lingen.hsosna.texview;
 
 public class Artikel {
-    /*private int mImageResource;
-    private String mText1;
-    private String mText2;*/
-
-    //Artikelkombinationen
+     //Artikelkombinationen
         //ArtikelID
     private String artikelID;
     private String artikel_Bezeichnung;

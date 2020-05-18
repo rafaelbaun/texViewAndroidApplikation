@@ -65,40 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
-
-
-
-       /* mTextViewState = findViewById(R.id.RegalID);                //irgendein textview
-
-        mBottomSheetBehaviour.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                switch(newState){
-                    case BottomSheetBehavior.STATE_COLLAPSED:
-                        mTextViewState.setText("Collapsed");
-                        break;
-                    case BottomSheetBehavior.STATE_DRAGGING:
-                        mTextViewState.setText("Dragging .. .");
-                        break;
-                    case BottomSheetBehavior.STATE_EXPANDED:
-                        mTextViewState.setText("Exoanded");
-                        break;
-                    case BottomSheetBehavior.STATE_HIDDEN:
-                        mTextViewState.setText("Hidden");
-                        break;
-                    case BottomSheetBehavior.STATE_SETTLING:
-                        mTextViewState.setText("Settling");
-                        break;
-                }
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-
-            }
-        });*/
-
-
     }
 
     public void getClickedRegalFach(View view) {
@@ -134,10 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet2);
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
         }
-
-
     }
-
 
     public void getClickedRegal(View view) {
         //String message = getResources().getResourceEntryName(view.getId());                 // id als string
@@ -168,16 +131,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new HomeFragment()).commit();
                 break;
             case R.id.nav_filter:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FilterFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new FilterFragment()).commit();
                 break;
             case R.id.nav_dbcon:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DatabaseFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new DatabaseFragment()).commit();
                 break;
             case R.id.nav_search:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SearchFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new SearchFragment()).commit();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
@@ -205,7 +172,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.searchButton:
                 Toast.makeText(this, "Suche ausgewählt", Toast.LENGTH_SHORT).show();
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SearchFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new SearchFragment()).commit();
                 NavigationView navigationView = findViewById(R.id.nav_view);
                 navigationView.setCheckedItem(R.id.nav_search);
                 return true;
