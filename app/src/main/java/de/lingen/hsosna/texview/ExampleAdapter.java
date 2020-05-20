@@ -11,10 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+/**
+ * Um den Recyclerview zu füllen, wird der Adapter mit den TextView's des Layouts gefüllt und diesen
+ * die zugehörigen Daten zugeordnet.
+ */
 public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> {
     private ArrayList<Artikel> mExampleList;
 
-    public static class ExampleViewHolder extends RecyclerView.ViewHolder{
+    /**
+     * In der ViewHolder Klasse werden die TextView's als Attribute gesetzt und mittels des Konstruktors
+     * werden die TextViews aus dem Layout den Attributen zugeordnet.
+     */
+    public static class ExampleViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextArtikelNr;
         public TextView mTextArtikelBez;
         public TextView mTextFarbeID;
@@ -24,7 +32,12 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         public TextView mTextMenge;
         public TextView mTextMengenEinheit;
 
-        public ExampleViewHolder(@NonNull View itemView) {
+        /**
+         * Die Klassenparameter werden mit den TextViews des Layouts initialisiert.
+         *
+         * @param itemView Layout eines einzelnen Artikels, das mittels des RecyclerView wiederverwendet wird.
+         */
+        public ExampleViewHolder (@NonNull View itemView) {
             super(itemView);
             mTextArtikelNr = itemView.findViewById(R.id.text_artikelNr);
             mTextArtikelBez = itemView.findViewById(R.id.text_artikelBez);
@@ -37,21 +50,21 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         }
     }
 
-    public ExampleAdapter (ArrayList<Artikel> exampleList){
+    public ExampleAdapter (ArrayList<Artikel> exampleList) {
         mExampleList = exampleList;
     }
 
     @Override
-    public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_item, parent, false);
+    public ExampleViewHolder onCreateViewHolder (@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_item, parent,
+                false);
         ExampleViewHolder evh = new ExampleViewHolder(v);
         return evh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ExampleViewHolder holder, int position) {
+    public void onBindViewHolder (@NonNull ExampleViewHolder holder, int position) {
         Artikel currentItem = mExampleList.get(position);
-
         holder.mTextArtikelNr.setText(currentItem.getArtikelID());
         holder.mTextArtikelBez.setText(currentItem.getArtikel_Bezeichnung());
         holder.mTextFarbeID.setText(currentItem.getFarbe_ID());
@@ -63,7 +76,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount () {
         return mExampleList.size();
     }
 }

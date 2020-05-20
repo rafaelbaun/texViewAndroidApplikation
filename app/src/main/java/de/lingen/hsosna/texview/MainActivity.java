@@ -20,57 +20,61 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SearchFragment.SearchFragmentListener {
+/**
+ * Die MainActivity ist die gesamte Zeit der Applikationslaufzeit aktiv, da sie über Fragmente und
+ * Fragmentswitcher Ihren Inhalt wechselt.
+ */
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener,
+        SearchFragment.SearchFragmentListener {
     private DrawerLayout drawer;
-
     private SearchFragment searchFragment;
-
     private View decorView;
-
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
-
     private BottomSheetBehavior mBottomSheetBehaviour;
     private TextView mTextViewState;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         decorView = getWindow().getDecorView();
-        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
-            @Override
-            public void onSystemUiVisibilityChange(int visibility) {
-                if (visibility == 0)
-                    decorView.setSystemUiVisibility(hideSystemBars());
-            }
-        });
-
+        decorView.setOnSystemUiVisibilityChangeListener(
+                new View.OnSystemUiVisibilityChangeListener() {
+                    @Override
+                    public void onSystemUiVisibilityChange (int visibility) {
+                        if (visibility == 0) {
+                            decorView.setSystemUiVisibility(hideSystemBars());
+                        }
+                    }
+                });
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         drawer = findViewById(R.id.drawer_layout);
-
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
     }
 
-    public void getClickedRegalFach(View view) {
+    /**
+     * Die Methode wird aufgerufen, nachdem eines der Regalfächer in der Übersicht angeklickt wurde.
+     * Es wird das entsprechende BottomSheet expandiert.
+     *
+     * @param view Das geklickte Regalfach wird als Parameter der Klasse "View" übergeben.
+     */
+    public void getClickedRegalFach (View view) {
         displayToast((String) view.getContentDescription());
         RegalfrontFragment.fachID = view.getContentDescription();
-
         if (view.getContentDescription().toString().equals("Regal Fach 01")) {
             View bottomSheet = findViewById(R.id.slideUpPaneFach01);
             mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet);
@@ -102,33 +106,61 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void getClickedRegal(View view) {
-        //String message = getResources().getResourceEntryName(view.getId());                 // id als string
-
+    /**
+     * Die Methode wird aufgerufen, nachdem eines der Regale in der Übersicht angeklickt wurde.
+     * Daraufhin wird die Regalansicht aufgerufen und entsprechende Daten des angewählten Regales
+     * übermittelt.
+     *
+     * @param view Das geklickte Regal wird als Parameter der Klasse "View" übergeben.
+     */
+    public void getClickedRegal (View view) {
         displayToast((String) view.getContentDescription());
-        RegalfrontFragment fragment = RegalfrontFragment.newInstance(view.getContentDescription(), "00");             // neues fragmen mit values
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();                        // fragment wird gesetzt
+        // neues fragment mit values
+        RegalfrontFragment fragment = RegalfrontFragment.newInstance(view.getContentDescription(),
+                "00");
+        //fragment wird gesetzt
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment)
+                .commit();
     }
 
+    /**
+     * Methode um den Fullscreen Modus beizubehalten, wenn die App minimiert oder das Gerät gedreht wird.
+     *
+     * @param hasFocus Booleanvariable ob die Applikation im Fokus ist
+     */
     @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
+    public void onWindowFocusChanged (boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             decorView.setSystemUiVisibility(hideSystemBars());
         }
     }
 
-    private int hideSystemBars() {
+    /**
+     * Methode um die Applikation in den Fullscreen zu versetzen und die Navigationsbar zu verstecken.
+     *
+     * @return Mittels des inklusiven OR's werden verschiedene Operationen auf dem View getätigt, um
+     * den Rückgabewert für den Methodenaufruf von setSystemUiVisibility(); zu verwenden.
+     */
+    private int hideSystemBars () {
         return View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+               | View.SYSTEM_UI_FLAG_FULLSCREEN
+               | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+               | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+               | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+               | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
     }
 
+    /**
+     * Das angeklickte Menüitem in dem Navigationsdrawer wird unterschieden und das jeweilige
+     * Fragment aufgerufen.
+     * Der Navigationsdrawer wird nach der Auswahl geschlossen.
+     *
+     * @param item Das angeklickte Item im Navigationsmenu
+     * @return Es wird true returned um das ausgewählte Item als angewähltes Item zu markieren.
+     */
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected (@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -151,8 +183,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    /**
+     * Wenn der Zurück-Knopf gedrückt wird, soll der Navigationsdrawer einfahren, wenn er offen ist.
+     * Ansonsten soll die Standardfunktion gewährleistet sein.
+     */
     @Override
-    public void onBackPressed() {
+    public void onBackPressed () {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -161,14 +197,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu (Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.example_menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected (@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.searchButton:
                 Toast.makeText(this, "Suche ausgewählt", Toast.LENGTH_SHORT).show();
@@ -182,32 +218,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void displayToast(String message) {
+    /**
+     * Eine Nachricht wird als Toast dargestellt.
+     *
+     * @param message Nachricht die dargestellt werden soll
+     */
+    public void displayToast (String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    public void displayToastLong(String message) {
+    public void displayToastLong (String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Daten des Suchformulares werden verarbeitet
+     *
+     * @param input Daten die übergeben wurden aus den Eingabefeldern des Fragmentes.
+     */
     @Override
-    public void onSearchInputSent(CharSequence input) {
+    public void onSearchInputSent (CharSequence input) {
         displayToast(input.toString());
     }
-
-    /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (id == R.id.action_search) {
-            Toast.makeText(getApplicationContext(), "skdjfgh sdfkgjh", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 }

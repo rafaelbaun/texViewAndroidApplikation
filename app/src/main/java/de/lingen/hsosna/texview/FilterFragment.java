@@ -17,7 +17,10 @@ public class FilterFragment extends Fragment {
 
     private FilterFragmentListener listener;
 
-
+    /**
+     * Um Daten an die MainActivty zu senden wird ein Interface implementiert, was auch in der
+     * MainActivity implemnentiert werden muss.
+     */
     public interface FilterFragmentListener {
         void onFilterInputSent(CharSequence input);
     }

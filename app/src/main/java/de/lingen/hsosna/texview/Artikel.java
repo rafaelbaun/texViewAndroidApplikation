@@ -1,29 +1,31 @@
 package de.lingen.hsosna.texview;
 
+/**
+ * Ein einzelner Artikel wird dargestellt und erhält Daten aus Artikelkombinationen
+ */
 public class Artikel {
-     //Artikelkombinationen
-        //ArtikelID
     private String artikelID;
     private String artikel_Bezeichnung;
-        //Farbe
     private String farbe_ID;
     private String farbe_Bezeichnung;
-        //Groesse
     private String groessen_ID;
-        //Fertigungszustand
     private String fertigungszustand;
-        //Menge
     private String menge;
     private String mengenEinheit;
 
-
-    //Lagerbestand
-    private int Lagerplatz;
-    private int Menge;
-    private int Mengeneinheit;
-
-
-    public Artikel(String artikelID, String artikel_Bezeichnung, String farbe_ID, String farbe_Bezeichnung, String groessen_ID, String fertigungszustand, String menge, String mengenEinheit) {
+    /**
+     * @param artikelID           Artikel ID des Artikels
+     * @param artikel_Bezeichnung Artikelkurzbezeichnung des Artikels
+     * @param farbe_ID            Farb ID des Artikels
+     * @param farbe_Bezeichnung   Farbbezeichnung des Artikels
+     * @param groessen_ID         Größen ID des Artikels
+     * @param fertigungszustand   Fertigungszustand des Artikels
+     * @param menge               Menge des Artikels
+     * @param mengenEinheit       zugehörige Einheit zu der Menge
+     */
+    public Artikel (String artikelID, String artikel_Bezeichnung, String farbe_ID,
+                    String farbe_Bezeichnung, String groessen_ID, String fertigungszustand,
+                    String menge, String mengenEinheit) {
         this.artikelID = artikelID;
         this.artikel_Bezeichnung = artikel_Bezeichnung;
         this.farbe_ID = farbe_ID;
@@ -34,35 +36,59 @@ public class Artikel {
         this.mengenEinheit = mengenEinheit;
     }
 
-    public String getArtikelID() {
+    /**
+     * @return Artikel ID des Artikels
+     */
+    public String getArtikelID () {
         return artikelID;
     }
 
-    public String getArtikel_Bezeichnung() {
+    /**
+     * @return Artikelkurzbezeichnung (kann leer sein)
+     */
+    public String getArtikel_Bezeichnung () {
         return artikel_Bezeichnung;
     }
 
-    public String getFarbe_ID() {
+    /**
+     * @return Farben ID des Artikels
+     */
+    public String getFarbe_ID () {
         return farbe_ID;
     }
 
-    public String getFarbe_Bezeichnung() {
+    /**
+     * @return Farbbezeichnung des Artikels
+     */
+    public String getFarbe_Bezeichnung () {
         return farbe_Bezeichnung;
     }
 
-    public String getGroessen_ID() {
+    /**
+     * @return Größen ID des Artikels
+     */
+    public String getGroessen_ID () {
         return groessen_ID;
     }
 
-    public String getFertigungszustand() {
+    /**
+     * @return Fertigungszustand des Artikels
+     */
+    public String getFertigungszustand () {
         return fertigungszustand;
     }
 
-    public String getMenge() {
+    /**
+     * @return Menge des Artikels
+     */
+    public String getMenge () {
         return menge;
     }
 
-    public String getMengenEinheit() {
+    /**
+     * @return Einheit der Menge
+     */
+    public String getMengenEinheit () {
         return mengenEinheit;
     }
 }
