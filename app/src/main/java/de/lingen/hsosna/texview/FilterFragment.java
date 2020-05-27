@@ -14,24 +14,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class FilterFragment extends Fragment {
-
     private FilterFragmentListener listener;
 
     /**
-     * Um Daten an die MainActivty zu senden wird ein Interface implementiert, was auch in der
+     * Um Daten an die MainActivity zu senden wird ein Interface implementiert, was auch in der
      * MainActivity implemnentiert werden muss.
      */
     public interface FilterFragmentListener {
-        void onFilterInputSent(CharSequence input);
+        void onFilterInputSent (CharSequence input);
     }
-
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView (@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_filter, container, false);
         return v;
     }
-
-
 }

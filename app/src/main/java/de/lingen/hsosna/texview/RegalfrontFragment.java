@@ -24,9 +24,12 @@ public class RegalfrontFragment extends Fragment {
     public static CharSequence fachID;
 
     /**
+     * Um verarbeiten zu können, welche Parameter übergeben wurden, muss ein Bundle erstellt werden,
+     * dass die übergebenen Parameter als Argumente setzt und somit die Daten in dieser Klasse verfügbar macht.
+     *
      * @param regalNummer Regalnummer des darzustellenden Regales
      * @param fachNummer
-     * @return
+     * @return Ein RegalfrontFragment wird zurückgegeben mit den übergebenen Werten als Argumente gesetzt.
      */
     public static RegalfrontFragment newInstance (CharSequence regalNummer,
                                                   CharSequence fachNummer) {

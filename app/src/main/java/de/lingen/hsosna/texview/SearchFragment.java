@@ -39,7 +39,7 @@ public class SearchFragment extends Fragment {
                 CharSequence input = editText.getText();
                 CharSequence input2 = editText2.getText();
                 listener.onSearchInputSent(input);
-                listener.onSearchInputSent(input2);
+                //listener.onSearchInputSent(input2);
             }
         });
         return v;
