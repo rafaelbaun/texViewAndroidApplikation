@@ -1,4 +1,4 @@
-package de.lingen.hsosna.texview;
+package de.lingen.hsosna.texview.database;
 
 import android.provider.BaseColumns;
 

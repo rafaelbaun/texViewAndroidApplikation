@@ -1,11 +1,14 @@
 package de.lingen.hsosna.texview;
 
-import android.accessibilityservice.AccessibilityService;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import de.lingen.hsosna.texview.database.TableArtikelkombination;
+import de.lingen.hsosna.texview.database.TableLagerbestand;
+import de.lingen.hsosna.texview.database.TableLagerplaetze;
 
 public class GroceryDBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "grocerylist.db";

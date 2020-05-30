@@ -76,12 +76,12 @@ public class SearchFragmentTest {
 
     @Test
     public void fill_search_form(){
-        onView(withId(R.id.editText3)).perform(replaceText("79987")); //Artikel Nr
-        onView(withId(R.id.editText4)).perform(replaceText("Sheldon")); //Kurzbez
-        onView(withId(R.id.editText6)).perform(replaceText("100935")); //FarbID
-        onView(withId(R.id.editText5)).perform(replaceText("Punkte, 2,5cm, erika, rose")); //Farbbez
-        onView(withId(R.id.editText7)).perform(replaceText("140")); //Groeße
-        onView(withId(R.id.editText8)).perform(replaceText("FW")); //Fertzustand
+        onView(withId(R.id.editTextArtikelNr)).perform(replaceText("79987")); //Artikel Nr
+        onView(withId(R.id.editTextArtikelkurzbez)).perform(replaceText("Sheldon")); //Kurzbez
+        onView(withId(R.id.editTextFarbID)).perform(replaceText("100935")); //FarbID
+        onView(withId(R.id.editTextFarbbezeichnung)).perform(replaceText("Punkte, 2,5cm, erika, rose")); //Farbbez
+        onView(withId(R.id.editTextGroesse)).perform(replaceText("140")); //Groeße
+        onView(withId(R.id.editTextFertigungszustand)).perform(replaceText("FW")); //Fertzustand
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
