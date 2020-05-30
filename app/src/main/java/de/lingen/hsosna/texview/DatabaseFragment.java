@@ -40,7 +40,6 @@ public class DatabaseFragment extends Fragment {
     private EditText mEditTextName;
     private TextView mTextViewAmount;
     private int mAmount = 0;
-    //private Resources mResources = getActivity().getResources();
 
     @Nullable
     @Override

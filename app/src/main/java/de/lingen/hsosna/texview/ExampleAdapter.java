@@ -65,11 +65,11 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     @Override
     public void onBindViewHolder (@NonNull ExampleViewHolder holder, int position) {
         Artikel currentItem = mExampleList.get(position);
-        holder.mTextArtikelNr.setText(currentItem.getArtikelID());
+        holder.mTextArtikelNr.setText(String.valueOf(currentItem.getArtikelID()));
         holder.mTextArtikelBez.setText(currentItem.getArtikel_Bezeichnung());
-        holder.mTextFarbeID.setText(currentItem.getFarbe_ID());
+        holder.mTextFarbeID.setText(String.valueOf(currentItem.getFarbe_ID()));
         holder.mTextFarbeBez.setText(currentItem.getFarbe_Bezeichnung());
-        holder.mTextGroessenID.setText(currentItem.getGroessen_ID());
+        holder.mTextGroessenID.setText(String.valueOf(currentItem.getGroessen_ID()));
         holder.mTextFertZust.setText(currentItem.getFertigungszustand());
         holder.mTextMenge.setText(currentItem.getMenge());
         holder.mTextMengenEinheit.setText(currentItem.getMengenEinheit());

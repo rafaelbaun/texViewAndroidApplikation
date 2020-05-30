@@ -4,11 +4,11 @@ package de.lingen.hsosna.texview;
  * Ein einzelner Artikel wird dargestellt und erhält Daten aus Artikelkombinationen
  */
 public class Artikel {
-    private String artikelID;
+    private int artikelID;
     private String artikel_Bezeichnung;
-    private String farbe_ID;
+    private int farbe_ID;
     private String farbe_Bezeichnung;
-    private String groessen_ID;
+    private int groessen_ID;
     private String fertigungszustand;
     private String menge;
     private String mengenEinheit;
@@ -23,8 +23,8 @@ public class Artikel {
      * @param menge               Menge des Artikels
      * @param mengenEinheit       zugehörige Einheit zu der Menge
      */
-    public Artikel (String artikelID, String artikel_Bezeichnung, String farbe_ID,
-                    String farbe_Bezeichnung, String groessen_ID, String fertigungszustand,
+    public Artikel (int artikelID, String artikel_Bezeichnung, int farbe_ID,
+                    String farbe_Bezeichnung, int groessen_ID, String fertigungszustand,
                     String menge, String mengenEinheit) {
         this.artikelID = artikelID;
         this.artikel_Bezeichnung = artikel_Bezeichnung;
@@ -39,7 +39,7 @@ public class Artikel {
     /**
      * @return Artikel ID des Artikels
      */
-    public String getArtikelID () {
+    public int getArtikelID () {
         return artikelID;
     }
 
@@ -53,7 +53,7 @@ public class Artikel {
     /**
      * @return Farben ID des Artikels
      */
-    public String getFarbe_ID () {
+    public int getFarbe_ID () {
         return farbe_ID;
     }
 
@@ -67,7 +67,7 @@ public class Artikel {
     /**
      * @return Größen ID des Artikels
      */
-    public String getGroessen_ID () {
+    public int getGroessen_ID () {
         return groessen_ID;
     }
 
