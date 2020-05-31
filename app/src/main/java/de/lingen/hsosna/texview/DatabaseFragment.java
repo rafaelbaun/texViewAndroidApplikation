@@ -26,6 +26,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 import de.lingen.hsosna.texview.database.TableArtikelkombination;
 import de.lingen.hsosna.texview.database.TableLagerbestand;
@@ -300,7 +301,7 @@ public class DatabaseFragment extends Fragment {
             String jsonDataString = null;
             inputStream = is;
             BufferedReader bufferedReader = new BufferedReader(
-                    new InputStreamReader(inputStream, "UTF-8"));
+                    new InputStreamReader(inputStream, StandardCharsets.ISO_8859_1));
             while ((jsonDataString = bufferedReader.readLine()) != null) {
                 builder.append(jsonDataString);
             }
