@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
@@ -33,27 +31,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
-        android:ems="10"
-        android:hint="favourite number"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Name (Bob)"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/submitButton"
@@ -208,7 +185,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Kurzbezeichnung"
-        android:inputType="textPersonName"
+        android:inputType="text"
         app:layout_constraintBaseline_toBaselineOf="@id/textViewArtikelbez"
         app:layout_constraintEnd_toEndOf="@+id/divider"
         app:layout_constraintStart_toStartOf="@+id/editTextArtikelNr" />
@@ -219,7 +196,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Farbbezeichnung"
-        android:inputType="textPersonName"
+        android:inputType="text"
         app:layout_constraintBaseline_toBaselineOf="@id/textViewFarbbez"
         app:layout_constraintEnd_toEndOf="@+id/divider"
         app:layout_constraintStart_toStartOf="@+id/editTextFertigungszustand" />
@@ -262,7 +239,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Fertigungszustand"
-        android:inputType="textPersonName"
+        android:inputType="text"
         app:layout_constraintBaseline_toBaselineOf="@id/textViewFertzstd"
         app:layout_constraintEnd_toEndOf="@+id/divider2"
         app:layout_constraintStart_toEndOf="@+id/textViewFertzstd" />

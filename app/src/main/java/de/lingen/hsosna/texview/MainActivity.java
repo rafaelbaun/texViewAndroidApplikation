@@ -238,6 +238,6 @@ public class MainActivity extends AppCompatActivity
      */
     @Override
     public void onSearchInputSent (CharSequence input) {
-        displayToast(input.toString());
+        displayToastLong(input.toString());
     }
 }

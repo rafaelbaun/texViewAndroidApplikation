@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,6 +46,7 @@ public class SearchFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private BottomSheetBehavior mBottomSheetBehaviour;
 
+    private TextView mSuchergebnisse;
 
     /**
      * Interface um Daten an die MainActivity zu senden.
@@ -91,19 +93,32 @@ public class SearchFragment extends Fragment {
         mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet);
         mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_HIDDEN);
 
+
+        mSuchergebnisse = v.findViewById(R.id.textViewSuchergebnisse);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                CharSequence input = editText.getText();
-                CharSequence input2 = editText2.getText();
-                listener.onSearchInputSent(input);
+                String SqlWhereQuery = getSqlWhereQuery();
+                if(SqlWhereQuery.length() != 0) {
+                    ArrayList<Artikel> suchErgebnisse = getListWithSearchResults(SqlWhereQuery);
+
+
+                    String suchAnzeige = " Suchergebnisse";
+                    mSuchergebnisse.setText((String.valueOf(suchErgebnisse.size())).concat(suchAnzeige));
+
+
+                    mAdapter = new ExampleAdapter(suchErgebnisse);// LIST WITH CONTENTS
+                    mRecyclerView.setAdapter(mAdapter);
 
 
 
-                mAdapter = new ExampleAdapter(getListWithSearchResults());// LIST WITH CONTENTS
-                mRecyclerView.setAdapter(mAdapter);
 
-                mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
+                    mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
+                } else {
+                    CharSequence errorMessage = "Bitte füllen Sie mindestens ein Feld aus";
+                    listener.onSearchInputSent(errorMessage);
+                }
 
                 //listener.onSearchInputSent(input2);
             }
@@ -133,7 +148,7 @@ public class SearchFragment extends Fragment {
 
 
 
-    public ArrayList<Artikel> getListWithSearchResults () {
+    public ArrayList<Artikel> getListWithSearchResults (String SqlWhereQuery) {
         ArrayList<Artikel> artikelListe = new ArrayList<Artikel>();
 
 
@@ -161,7 +176,7 @@ public class SearchFragment extends Fragment {
                 + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSE_ID
                 + " AND " + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID + " = "
                 + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_ID
-                + getSqlWhereQuery()
+                + SqlWhereQuery + " LIMIT 200 "
                 , null);
         try {
             while (cursor.moveToNext()) {
@@ -211,7 +226,7 @@ public class SearchFragment extends Fragment {
             if(hasQuery){
                 SqlQuery.append(" AND ");
             }
-            String artikelBez = editArtikelBez.getText().toString();
+            String artikelBez = editArtikelBez.getText().toString().trim();
             SqlQuery.append(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG)
                     .append(" LIKE '%")
                     .append(artikelBez)
@@ -235,7 +250,7 @@ public class SearchFragment extends Fragment {
             if(hasQuery){
                 SqlQuery.append(" AND ");
             }
-            String farbBez = editFarbBez.getText().toString();
+            String farbBez = editFarbBez.getText().toString().trim();
             SqlQuery.append(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_BEZEICHNUNGEN)
                     .append(" LIKE '%")
                     .append(farbBez)
@@ -259,7 +274,7 @@ public class SearchFragment extends Fragment {
             if(hasQuery){
                 SqlQuery.append(" AND ");
             }
-            String fertZstd = editFertigungszustand.getText().toString();
+            String fertZstd = editFertigungszustand.getText().toString().trim();
             SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND)
                     .append(" LIKE '")
                     .append(fertZstd)

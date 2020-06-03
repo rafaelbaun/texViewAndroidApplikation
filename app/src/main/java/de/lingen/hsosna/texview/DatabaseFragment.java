@@ -301,7 +301,7 @@ public class DatabaseFragment extends Fragment {
             String jsonDataString = null;
             inputStream = is;
             BufferedReader bufferedReader = new BufferedReader(
-                    new InputStreamReader(inputStream, StandardCharsets.ISO_8859_1));
+                    new InputStreamReader(inputStream, StandardCharsets.UTF_8));
             while ((jsonDataString = bufferedReader.readLine()) != null) {
                 builder.append(jsonDataString);
             }
