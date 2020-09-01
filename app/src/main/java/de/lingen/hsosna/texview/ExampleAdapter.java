@@ -17,7 +17,16 @@ import java.util.ArrayList;
  */
 public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> {
     private ArrayList<Artikel> mExampleList;
+    private OnItemClickListener mListener;
 
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+        void onDeleteClick (int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
     /**
      * In der ViewHolder Klasse werden die TextView's als Attribute gesetzt und mittels des Konstruktors
      * werden die TextViews aus dem Layout den Attributen zugeordnet.
@@ -31,13 +40,14 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         public TextView mTextFertZust;
         public TextView mTextMenge;
         public TextView mTextMengenEinheit;
+        public ImageView mLocationMarkerImage;
 
         /**
          * Die Klassenparameter werden mit den TextViews des Layouts initialisiert.
          *
          * @param itemView Layout eines einzelnen Artikels, das mittels des RecyclerView wiederverwendet wird.
          */
-        public ExampleViewHolder (@NonNull View itemView) {
+        public ExampleViewHolder (@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             mTextArtikelNr = itemView.findViewById(R.id.text_artikelNr);
             mTextArtikelBez = itemView.findViewById(R.id.text_artikelBez);
@@ -47,6 +57,32 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
             mTextFertZust = itemView.findViewById(R.id.text_fertigungszustand);
             mTextMenge = itemView.findViewById(R.id.text_menge);
             mTextMengenEinheit = itemView.findViewById(R.id.text_mengenEinheit);
+            mLocationMarkerImage = itemView.findViewById(R.id.icon_locationMarker);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick (View v) {
+                    if (listener != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
+
+            mLocationMarkerImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick (View v) {
+                    if (listener != null){
+                        int position = getAdapterPosition();
+                        //int test = mExampleList.get(position).getArtikelID();
+                        if (position != RecyclerView.NO_POSITION){
+                            listener.onDeleteClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -56,9 +92,9 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
 
     @Override
     public ExampleViewHolder onCreateViewHolder (@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_item, parent,
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_article, parent,
                 false);
-        ExampleViewHolder evh = new ExampleViewHolder(v);
+        ExampleViewHolder evh = new ExampleViewHolder(v, mListener);
         return evh;
     }
 
@@ -79,4 +115,5 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     public int getItemCount () {
         return mExampleList.size();
     }
+
 }

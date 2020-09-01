@@ -7,11 +7,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,8 +21,10 @@ import java.util.ArrayList;
 import de.lingen.hsosna.texview.database.TableArtikelkombination;
 import de.lingen.hsosna.texview.database.TableLagerbestand;
 
+import static de.lingen.hsosna.texview.MainActivity.colorSwitchState;
+
 public class RegalfrontFragment extends Fragment {
-    private static final String ARG_REGALNUMMER = "argRegalNummer";
+    public static final String ARG_REGALNUMMER = "argRegalNummer";
     public static final String ARG_FACHNUMMER = "argFachNummer";
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -30,7 +32,7 @@ public class RegalfrontFragment extends Fragment {
     private GroceryDBHelper dbHelper;
     private SQLiteDatabase mDatabase;
     private CharSequence regalID;
-    public static CharSequence fachID;
+    private ArrayList<CharSequence> faecherToMark = new ArrayList<>();
 
     /**
      * Um verarbeiten zu können, welche Parameter übergeben wurden, muss ein Bundle erstellt werden,
@@ -41,11 +43,11 @@ public class RegalfrontFragment extends Fragment {
      * @return Ein RegalfrontFragment wird zurückgegeben mit den übergebenen Werten als Argumente gesetzt.
      */
     public static RegalfrontFragment newInstance (CharSequence regalNummer,
-                                                  CharSequence fachNummer) {
+                                                  ArrayList<CharSequence> fachNummer) {
         RegalfrontFragment fragment = new RegalfrontFragment();
         Bundle args = new Bundle();
         args.putCharSequence(ARG_REGALNUMMER, regalNummer);
-        args.putCharSequence(ARG_FACHNUMMER, fachNummer);
+        args.putCharSequenceArrayList(ARG_FACHNUMMER, fachNummer);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,8 +64,17 @@ public class RegalfrontFragment extends Fragment {
         TextView textView = v.findViewById(R.id.textviewRegalfachbezeichnung);
         if (getArguments() != null) {
             regalID = getArguments().getCharSequence(ARG_REGALNUMMER);
-            fachID = getArguments().getCharSequence(ARG_FACHNUMMER);
+            faecherToMark = getArguments().getCharSequenceArrayList(ARG_FACHNUMMER);
         }
+
+        if(colorSwitchState){
+            ImageView abcdef = v.findViewById(R.id.fach07);
+            abcdef.setImageResource(R.drawable.ic_regal_free);
+        }
+
+
+        markFaecher(v);
+
         String regalPrefix = "RegalNr: ";
         textView.setText(regalPrefix.concat((String) regalID));
         fillRecyclerView(v);
@@ -132,7 +143,7 @@ public class RegalfrontFragment extends Fragment {
      * @param regalFachNummer Die Regalfachnummer wird als Integer übergeben
      * @return Eine ArrayListe mit Objekten der Klasse "Artikel" wird zurückgegeben
      */
-    public ArrayList<Artikel> fillArrayWithData (int regalFachNummer) {
+    /*public ArrayList<Artikel> fillArrayWithData (int regalFachNummer) {
         ArrayList<Artikel> artikelListe = new ArrayList<Artikel>();
         switch (regalFachNummer) {
             case 1:
@@ -211,7 +222,7 @@ public class RegalfrontFragment extends Fragment {
                 break;
         }
         return artikelListe;
-    }
+    }*/
 
     public ArrayList<Artikel> getListWithContents (int regalFachNummer) {
         ArrayList<Artikel> artikelListe = new ArrayList<Artikel>();
@@ -259,12 +270,27 @@ public class RegalfrontFragment extends Fragment {
                 String farbBez = cursor.getString(cursor.getColumnIndex(
                         TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_BEZEICHNUNGEN));
                 Artikel artikel = new Artikel(artikelId, artikelBez, farbId, farbBez, groessenId,
-                        fertigungszustand, menge, mengeneinheit);
+                        fertigungszustand, menge, mengeneinheit, lagerplatz);
                 artikelListe.add(artikel);
             }
         } finally {
             cursor.close();
         }
         return artikelListe;
+    }
+
+    public void markFaecher(View v){
+        if(faecherToMark != null && faecherToMark.size() != 0){
+            ArrayList<View> imageViewsOfShelvesToMark = new ArrayList<>();
+            for (CharSequence fach : faecherToMark){
+                v.findViewsWithText(imageViewsOfShelvesToMark, fach, View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+                for (View singleShelf : imageViewsOfShelvesToMark){
+                    ImageView oneShelf = (ImageView) singleShelf;
+                    oneShelf.setImageResource(R.drawable.ic_regal_marked);
+                }
+            }
+
+        }
+
     }
 }

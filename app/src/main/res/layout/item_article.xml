@@ -245,6 +245,7 @@
             android:id="@+id/icon_locationMarker"
             android:layout_width="75dp"
             android:layout_height="75dp"
+            android:onClick="testenLocation"
             android:padding="2dp"
             app:layout_constraintBottom_toTopOf="@+id/divider_farbe_misc"
             app:layout_constraintEnd_toEndOf="parent"

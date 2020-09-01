@@ -8,52 +8,38 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.ArrayList;
 
 import de.lingen.hsosna.texview.database.TableArtikelkombination;
 import de.lingen.hsosna.texview.database.TableLagerbestand;
 
-public class SearchFragment extends Fragment {
-    private SearchFragmentListener listener;
-    private EditText editText;
-    private EditText editText2;
+public class SearchFragmentTestClass extends Fragment {
+    private String editArtikelNr;
+    private String editArtikelBez;
+    private String editFardId;
+    private String editFarbBez;
+    private String editGroesse;
+    private String editFertigungszustand;
+
+
     private Button button;
-
-    private EditText editArtikelNr;
-    private EditText editArtikelBez;
-    private EditText editFardId;
-    private EditText editFarbBez;
-    private EditText editGroesse;
-    private EditText editFertigungszustand;
-
-
     private GroceryDBHelper dbHelper;
     private SQLiteDatabase mDatabase;
 
-    private RecyclerView mRecyclerView;
-    private ExampleAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private BottomSheetBehavior mBottomSheetBehaviour;
-
-    private TextView mSuchergebnisse;
-
-    /**
-     * Interface um Daten an die MainActivity zu senden.
-     */
-    public interface SearchFragmentListener {
-        void onSearchInputSent (CharSequence input, CharSequence input2);
-        void onSearchInputSent2 (Lagerplatz input);
+    public SearchFragmentTestClass (String editArtikelNr, String editArtikelBez,
+                                    String editFardId, String editFarbBez, String editGroesse,
+                                    String editFertigungszustand) {
+        this.editArtikelNr = editArtikelNr;
+        this.editArtikelBez = editArtikelBez;
+        this.editFardId = editFardId;
+        this.editFarbBez = editFarbBez;
+        this.editGroesse = editGroesse;
+        this.editFertigungszustand = editFertigungszustand;
     }
 
     @Nullable
@@ -62,119 +48,26 @@ public class SearchFragment extends Fragment {
                               @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_search, container, false);
 
-
-        //TEST
-        editText = v.findViewById(R.id.editText);
-        editText2 = v.findViewById(R.id.editText2);
-        button = v.findViewById(R.id.submitButton);
-
-        //Belegung der Attribute
-        editArtikelNr = v.findViewById(R.id.editTextArtikelNr);
-        editArtikelBez = v.findViewById(R.id.editTextArtikelkurzbez);
-        editFardId = v.findViewById(R.id.editTextFarbID);
-        editFarbBez = v.findViewById(R.id.editTextFarbbezeichnung);
-        editGroesse = v.findViewById(R.id.editTextGroesse);
-        editFertigungszustand = v.findViewById(R.id.editTextFertigungszustand);
-
-
         //DB CON
         Context context = getActivity();
         dbHelper = new GroceryDBHelper(context);
         mDatabase = dbHelper.getReadableDatabase();
-
-
-        //SUCHERGEBN
-        mRecyclerView = v.findViewById(R.id.recyclerVgvhgview_fach01);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        //slide up pane
-        View bottomSheet = v.findViewById(R.id.slideUpjmvgmjhPaneFach01);
-        mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet);
-        mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_HIDDEN);
-
-
-        mSuchergebnisse = v.findViewById(R.id.textViewSuchergebnisse);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
                 String SqlWhereQuery = getSqlWhereQuery();
                 if(SqlWhereQuery.length() != 0) {
-                    final ArrayList<Artikel> suchErgebnisse = getListWithSearchResults(SqlWhereQuery);
+                    ArrayList<Artikel> suchErgebnisse = getListWithSearchResults(SqlWhereQuery);
 
 
-                    String suchAnzeige = " Suchergebnisse";
-                    mSuchergebnisse.setText((String.valueOf(suchErgebnisse.size())).concat(suchAnzeige));
-
-
-                    mAdapter = new ExampleAdapter(suchErgebnisse);// LIST WITH CONTENTS
-
-
-
-
-                    mAdapter.setOnItemClickListener(new ExampleAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick (int position) {
-                        }
-
-                        @Override
-                        public void onDeleteClick (int position) {
-                            Lagerplatz lp = new Lagerplatz(60, suchErgebnisse.get(position).getLagerplatz(), suchErgebnisse.get(position).getRegalfach());
-                            CharSequence lagerplatz = "60" + String.valueOf(suchErgebnisse.get(position).getLagerplatz());
-                            CharSequence lagerfach = String.valueOf(suchErgebnisse.get(position).getRegalfach());
-                            //listener.onSearchInputSent(suchErgebnisse.get(position).getLagerplatz());
-                            listener.onSearchInputSent2(lp);
-                            //listener.onSearchInputSent(lagerplatz, lagerfach);
-                        }
-                    });
-
-
-
-
-
-
-
-
-
-                    mRecyclerView.setAdapter(mAdapter);
-
-
-                    mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
                 } else {
-                    //TODO ERROR MESSAGE DISPLAY
                     CharSequence errorMessage = "Bitte füllen Sie mindestens ein Feld aus";
-                    //listener.onSearchInputSent(errorMessage);
                 }
-
-                //listener.onSearchInputSent(input2);
-            }
+           }
         });
-
-
-
-        //mAdapter.
         return v;
     }
-
-    @Override
-    public void onAttach (@NonNull Context context) {
-        super.onAttach(context);
-        if (context instanceof SearchFragmentListener) {
-            listener = (SearchFragmentListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                                       + " must implement FragmentAListener");
-        }
-    }
-
-    @Override
-    public void onDetach () {
-        super.onDetach();
-        listener = null;
-    }
-
 
 
 
@@ -185,8 +78,7 @@ public class SearchFragment extends Fragment {
 //        int zeile = Integer.parseInt(regalID.subSequence(4, 6).toString());
 
         Cursor cursor = mDatabase.rawQuery(
-                "SELECT " + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ + ", "
-                + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID + ", "
+                "SELECT " + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSE_ID + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND + ", "
@@ -223,9 +115,8 @@ public class SearchFragment extends Fragment {
                         TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG));
                 String farbBez = cursor.getString(cursor.getColumnIndex(
                         TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_BEZEICHNUNGEN));
-                int lagerplatz = cursor.getInt(cursor.getColumnIndex(TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ));
                 Artikel artikel = new Artikel(artikelId, artikelBez, farbId, farbBez, groessenId,
-                        fertigungszustand, menge, mengeneinheit, lagerplatz);
+                        fertigungszustand, menge, mengeneinheit);
                 artikelListe.add(artikel);
             }
         } finally {
@@ -234,15 +125,16 @@ public class SearchFragment extends Fragment {
         return artikelListe;
     }
 
-
-    //TODO prevent sql injection
     public String getSqlWhereQuery(){
         boolean hasQuery = false;
         StringBuilder SqlQuery = new StringBuilder();
         SqlQuery.append(" WHERE ");
+
+        // mEditTextName.trim().length() == 0 || mAmount == 0
+
         //-------ARTIKEL NR
-        if(editArtikelNr.getText().toString().trim().length() != 0 && editArtikelNr.getText().toString().trim().matches("[0-9]+")){
-            int artikelNr = Integer.parseInt(editArtikelNr.getText().toString().trim());
+        if(editArtikelNr.trim().length() != 0 && editArtikelNr.trim().matches("[0-9]+")){
+            int artikelNr = Integer.parseInt(editArtikelNr.trim());
             SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID)
                     .append(" LIKE '")
                     .append(artikelNr)
@@ -250,11 +142,11 @@ public class SearchFragment extends Fragment {
             hasQuery = true;
         }
         //-------ARTIKEL BEZ
-        if(editArtikelBez.getText().toString().trim().length() != 0){
+        if(editArtikelBez.trim().length() != 0){
             if(hasQuery){
                 SqlQuery.append(" AND ");
             }
-            String artikelBez = editArtikelBez.getText().toString().trim();
+            String artikelBez = editArtikelBez.trim();
             SqlQuery.append(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG)
                     .append(" LIKE '%")
                     .append(artikelBez)
@@ -262,11 +154,11 @@ public class SearchFragment extends Fragment {
             hasQuery = true;
         }
         //-------FARB ID
-        if(editFardId.getText().toString().trim().length() != 0 && editFardId.getText().toString().trim().matches("[0-9]+")) {
+        if(editFardId.trim().length() != 0 && editFardId.trim().matches("[0-9]+")) {
             if (hasQuery) {
                 SqlQuery.append(" AND ");
             }
-            int farbId = Integer.parseInt(editFardId.getText().toString().trim());
+            int farbId = Integer.parseInt(editFardId.trim());
             SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID)
                     .append(" LIKE '")
                     .append(farbId)
@@ -274,11 +166,11 @@ public class SearchFragment extends Fragment {
             hasQuery = true;
         }
         //-------FARB BEZ
-        if(editFarbBez.getText().toString().trim().length() != 0){
+        if(editFarbBez.trim().length() != 0){
             if(hasQuery){
                 SqlQuery.append(" AND ");
             }
-            String farbBez = editFarbBez.getText().toString().trim();
+            String farbBez = editFarbBez.trim();
             SqlQuery.append(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_BEZEICHNUNGEN)
                     .append(" LIKE '%")
                     .append(farbBez)
@@ -286,11 +178,11 @@ public class SearchFragment extends Fragment {
             hasQuery = true;
         }
         //-------GROESSE ID
-        if(editGroesse.getText().toString().trim().length() != 0 && editGroesse.getText().toString().trim().matches("[0-9]+")) {
+        if(editGroesse.trim().length() != 0 && editGroesse.trim().matches("[0-9]+")) {
             if (hasQuery) {
                 SqlQuery.append(" AND ");
             }
-            int groesse = Integer.parseInt(editGroesse.getText().toString().trim());
+            int groesse = Integer.parseInt(editGroesse.trim());
             SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_GROESSE_ID)
                     .append(" LIKE '")
                     .append(groesse)
@@ -298,11 +190,11 @@ public class SearchFragment extends Fragment {
             hasQuery = true;
         }
         //-------FERTIGUNGSZUSTAND
-        if(editFertigungszustand.getText().toString().trim().length() != 0 && editFertigungszustand.getText().toString().matches("[a-zA-Z]+")){
+        if(editFertigungszustand.trim().length() != 0){
             if(hasQuery){
                 SqlQuery.append(" AND ");
             }
-            String fertZstd = editFertigungszustand.getText().toString().trim();
+            String fertZstd = editFertigungszustand.trim();
             SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND)
                     .append(" LIKE '")
                     .append(fertZstd)

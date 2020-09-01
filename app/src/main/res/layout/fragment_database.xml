@@ -73,4 +73,20 @@
         android:layout_toStartOf="@+id/buttonDeleteDB"
         android:text="Fill Database" />
 
+    <Button
+        android:id="@+id/buttonFetchServerDB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/buttonFillDB"
+        android:text="Fetch Server DB" />
+    <Button
+        android:id="@+id/buttonConnectDB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/buttonFetchServerDB"
+        android:text="Connect to DB" />
+
+
 </RelativeLayout>

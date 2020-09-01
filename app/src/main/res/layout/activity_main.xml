@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar_test"
+        <include layout="@layout/toolbar_title"
             android:id="@+id/toolbar"/>
 
         <FrameLayout
@@ -31,8 +31,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:id="@+id/nav_view"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/menu_main"
+        app:headerLayout="@layout/menu_sidenav_header"
+        app:menu="@menu/menu_sidenav"
         />
 
     <!--<com.google.android.material.appbar.AppBarLayout

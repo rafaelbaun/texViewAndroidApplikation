@@ -8,6 +8,8 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    <string name="app_description">Lagervisualisierung</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -170,17 +172,19 @@
     <string name="regal0123">602101</string>
     <string name="regal0124">602102</string>
 
+    <string name="regalTemp">606200</string>
 
 
-    <string name="regalFach01">Regal Fach 01</string>
-    <string name="regalFach02">Regal Fach 02</string>
-    <string name="regalFach03">Regal Fach 03</string>
-    <string name="regalFach04">Regal Fach 04</string>
-    <string name="regalFach05">Regal Fach 05</string>
-    <string name="regalFach06">Regal Fach 06</string>
-    <string name="regalFach07">Regal Fach 07</string>
 
-    <string name="testFall">Daniel</string>
+    <string name="regalFach01">1</string>
+    <string name="regalFach02">2</string>
+    <string name="regalFach03">3</string>
+    <string name="regalFach04">4</string>
+    <string name="regalFach05">5</string>
+    <string name="regalFach06">6</string>
+    <string name="regalFach07">7</string>
+
+    <string name="testFall">Bitte füllen Sie mindestens ein Feld aus</string>
     <string name="suchergebnisse"> Suchergebnisse</string>
 
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/switchColor"
+        android:title="Switch Color"
+        app:actionLayout="@layout/switch_color"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/switchText"
+        android:title="Switch Text"
+        app:actionLayout="@layout/switch_text"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/searchButton"
+        android:icon="@drawable/ic_search"
+        android:title="Search Button"
+        app:showAsAction="ifRoom" />
+</menu>

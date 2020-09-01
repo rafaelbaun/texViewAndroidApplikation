@@ -13,6 +13,10 @@ public class Artikel {
     private String menge;
     private String mengenEinheit;
 
+    private int lagerort;
+    private int lagerplatz;
+    private int regalfach;
+
     /**
      * @param artikelID           Artikel ID des Artikels
      * @param artikel_Bezeichnung Artikelkurzbezeichnung des Artikels
@@ -25,7 +29,7 @@ public class Artikel {
      */
     public Artikel (int artikelID, String artikel_Bezeichnung, int farbe_ID,
                     String farbe_Bezeichnung, int groessen_ID, String fertigungszustand,
-                    String menge, String mengenEinheit) {
+                    String menge, String mengenEinheit, int lagerplatz) {
         this.artikelID = artikelID;
         this.artikel_Bezeichnung = artikel_Bezeichnung;
         this.farbe_ID = farbe_ID;
@@ -34,7 +38,14 @@ public class Artikel {
         this.fertigungszustand = fertigungszustand;
         this.menge = menge;
         this.mengenEinheit = mengenEinheit;
+        this.regalfach = getRegalfachFromLagerplatz(lagerplatz);
+        this.lagerplatz = formatLagerplatz(lagerplatz);
+        this.lagerort = 60;
+
+        // TODO LAGERORT
     }
+
+
 
     /**
      * @return Artikel ID des Artikels
@@ -90,5 +101,32 @@ public class Artikel {
      */
     public String getMengenEinheit () {
         return mengenEinheit;
+    }
+
+    public void setLagerplatz(int lagerplatz){
+        this.lagerplatz = lagerplatz;
+    }
+
+    public int getLagerplatz(){
+        return lagerplatz;
+    }
+
+    public int getRegalfach() { return regalfach;}
+
+    public int getLagerort () {
+        return lagerort;
+    }
+
+    private int formatLagerplatz(int lagerplatz){
+        String lagerplatzString = String.valueOf(lagerplatz);
+        String finalString = lagerplatzString.substring(0,2) + "0" + lagerplatzString.charAt(2);
+
+        return Integer.parseInt(finalString);
+    }
+
+    private int getRegalfachFromLagerplatz (int lagerplatz) {
+        String lagerplatzString = String.valueOf(lagerplatz);
+        String finalString = "" + lagerplatzString.charAt(3);
+        return Integer.parseInt(finalString);
     }
 }

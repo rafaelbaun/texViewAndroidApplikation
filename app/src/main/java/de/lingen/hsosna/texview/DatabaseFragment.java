@@ -1,8 +1,10 @@
 package de.lingen.hsosna.texview;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +33,9 @@ import java.nio.charset.StandardCharsets;
 import de.lingen.hsosna.texview.database.TableArtikelkombination;
 import de.lingen.hsosna.texview.database.TableLagerbestand;
 import de.lingen.hsosna.texview.database.TableLagerplaetze;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Eine SQLite Datenbank wird erstellt und mittels der DBHelper Klasse werden drei Tabellen in ihr erstellt.
@@ -51,17 +56,25 @@ public class DatabaseFragment extends Fragment {
         mDatabase = dbHelper.getWritableDatabase();
         Button buttonDeleteDb = v.findViewById(R.id.buttonDeleteDB);
         Button buttonFillDb = v.findViewById(R.id.buttonFillDB);
+        Button buttonFetchServerDB = v.findViewById(R.id.buttonFetchServerDB);
+        Button buttonConnectToServer = v.findViewById(R.id.buttonConnectDB);
+
+
+        ////////////////////////////////////// BUTTON DELETE DB
         buttonDeleteDb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
                 deleteDatabaseContents(mDatabase);
             }
         });
+
+
+        ///////////////////////////////////// BUTTON FILL DB FROM MEMORY
         buttonFillDb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
                 try {
-                    readDataToDbArtikelkombinationen(mDatabase);
+                    readDataToDbArtikelkombinationen(mDatabase, null);
                     Toast.makeText(getActivity().getApplicationContext(),"Artikelkombinationen hinzugefügt", Toast.LENGTH_SHORT).show();
                     readDataToDbLagerbestand(mDatabase);
                     Toast.makeText(getActivity().getApplicationContext(),"Lagerbestand hinzugefügt", Toast.LENGTH_SHORT).show();
@@ -72,6 +85,28 @@ public class DatabaseFragment extends Fragment {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+
+        ////////////////////////// BUTTON FETCH SERVER DB
+        buttonFetchServerDB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                getJsonFromServer();
+                Toast.makeText(getActivity().getApplicationContext(),"daten gezogen", Toast.LENGTH_SHORT).show();
+                ///ACTIOPN HERE
+            }
+        });
+
+
+
+
+
+        ///////////////////////////////////// BUTTON CONNECT TO SERVER
+        buttonConnectToServer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
             }
         });
         ///////////////
@@ -162,17 +197,22 @@ public class DatabaseFragment extends Fragment {
         );
     }
 
-    private void readDataToDbArtikelkombinationen (SQLiteDatabase db)
+    private void readDataToDbArtikelkombinationen (SQLiteDatabase db, JSONArray array)
             throws IOException, JSONException {
         final String MNU_ARTIKEL_ID = "artikel_id_artikelkombinationen";
         final String MNU_ARTIKEL_BEZ = "artikel_bezeichnung_artikelkombinationen";
-        final String MNU_GROESSE_ID = "groeße_id_artikelkombinationen"; // evtl groeße
+        final String MNU_GROESSE_ID = "groesse_id_artikelkombinationen"; // evtl groeße
         final String MNU_FARBE_ID = "farbe_id_artikelkombinationen";
         final String MNU_FARBE_BEZ = "farbe_bezeichnung_artikelkombinationen";
         try {
-            String jsonDataString = readJsonDataFromFile(
-                    getActivity().getResources().openRawResource(R.raw.artikelkombinationen));
-            JSONArray artikelkombinationenJsonArray = new JSONArray(jsonDataString);
+            JSONArray artikelkombinationenJsonArray;
+            if(array == null){
+                String jsonDataString = readJsonDataFromFile(
+                    getActivity().getResources().openRawResource(R.raw.artikelkombinationen)); // json datei kommt hier hin
+                artikelkombinationenJsonArray = new JSONArray(jsonDataString);}
+            else{
+                artikelkombinationenJsonArray = array;
+            }
             for (int i = 0; i < artikelkombinationenJsonArray.length(); ++ i) {
                 int artikelId;
                 String artikelBezeichnung;
@@ -214,7 +254,7 @@ public class DatabaseFragment extends Fragment {
         //names of columns in json file
         final String MNU_LAGERPLATZ = "lagerplatz_lagerbestand";
         final String MNU_ARTIKEL_IDL = "artikel_id_lagerbestand";
-        final String MNU_GROESSE_IDL = "groeße_id_lagerbestand";
+        final String MNU_GROESSE_IDL = "groesse_id_lagerbestand";
         final String MNU_FARBE_IDL = "farbe_id_lagerbestand";
         final String MNU_FERTIGUNGSZUSTAND = "fertigungszustand_lagerbestand";
         final String MNU_MENGE = "menge_lagerbestand";
@@ -262,7 +302,7 @@ public class DatabaseFragment extends Fragment {
         final String MNU_LAGERPLATZ = "lagerplatz_lagerplaetze";
         final String MNU_REGALNR = "regal_nr_lagerplaetze";
         final String MNU_ZEILE = "zeile_lagerplaetze";
-        final String MNU_SPALTE = "spalte_lagerplatze"; // FEHLER IN MAIN DB #PLATZE ANSTATT PLAETZE#
+        final String MNU_SPALTE = "spalte_lagerplaetze"; // FEHLER IN MAIN DB #PLATZE ANSTATT PLAETZE#
         try {
             String jsonDataString = readJsonDataFromFile(
                     getActivity().getResources().openRawResource(R.raw.lagerplaetze));
@@ -311,5 +351,30 @@ public class DatabaseFragment extends Fragment {
             }
         }
         return new String(builder);
+    }
+
+    public void getJsonFromServer() {
+        @SuppressLint ("StaticFieldLeak") AsyncTask<Integer, Void, Void> asyncTask = new AsyncTask<Integer,Void,Void>() {
+            @Override
+            protected Void doInBackground (Integer... integers) {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder().url("http://131.173.65.147/artikelkombinationen.php").build();
+
+                try {
+                    Response response = client.newCall(request).execute();
+
+                    JSONArray array = new JSONArray(response.body().string());
+
+
+                    readDataToDbArtikelkombinationen(mDatabase, array);
+
+
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        };
+        asyncTask.execute();
     }
 }
