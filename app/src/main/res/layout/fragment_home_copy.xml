@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0502"
@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0503"
         app:layout_constraintStart_toEndOf="@+id/regal_0501"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0503"
@@ -51,7 +51,7 @@
         app:layout_constraintStart_toEndOf="@+id/regal_0502"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0504"
@@ -65,7 +65,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0505"
         app:layout_constraintStart_toEndOf="@+id/regal_0503"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0505"
@@ -79,7 +79,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0506"
         app:layout_constraintStart_toEndOf="@+id/regal_0504"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0506"
@@ -93,7 +93,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0507"
         app:layout_constraintStart_toEndOf="@+id/regal_0505"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0507"
@@ -107,7 +107,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0508"
         app:layout_constraintStart_toEndOf="@+id/regal_0506"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0508"
@@ -121,7 +121,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_05_SPACE"
         app:layout_constraintStart_toEndOf="@+id/regal_0507"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_05_SPACE"
@@ -134,7 +134,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0509"
         app:layout_constraintStart_toEndOf="@+id/regal_0508"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0509"
@@ -148,7 +148,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0510"
         app:layout_constraintStart_toEndOf="@+id/regal_05_SPACE"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0510"
@@ -162,7 +162,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0511"
         app:layout_constraintStart_toEndOf="@+id/regal_0509"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0511"
@@ -176,7 +176,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0512"
         app:layout_constraintStart_toEndOf="@+id/regal_0510"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0512"
@@ -190,7 +190,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0513"
         app:layout_constraintStart_toEndOf="@+id/regal_0511"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0513"
@@ -203,7 +203,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0514"
         app:layout_constraintStart_toEndOf="@+id/regal_0512"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
 
     <!-- REIHE 04 -->
@@ -220,7 +220,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/regal_0513"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0428"
@@ -234,7 +234,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regal_0501"
         app:layout_constraintVertical_chainStyle="spread"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0427"
@@ -246,7 +246,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0426"
         app:layout_constraintStart_toEndOf="@+id/regal_0428"
         app:layout_constraintTop_toBottomOf="@+id/regal_0502"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0426"
@@ -258,7 +258,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0425"
         app:layout_constraintStart_toEndOf="@+id/regal_0427"
         app:layout_constraintTop_toBottomOf="@+id/regal_0503"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0425"
@@ -270,7 +270,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0424"
         app:layout_constraintStart_toEndOf="@+id/regal_0426"
         app:layout_constraintTop_toBottomOf="@+id/regal_0504"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0424"
@@ -282,7 +282,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0423"
         app:layout_constraintStart_toEndOf="@+id/regal_0425"
         app:layout_constraintTop_toBottomOf="@+id/regal_0505"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0423"
@@ -294,7 +294,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0422"
         app:layout_constraintStart_toEndOf="@+id/regal_0424"
         app:layout_constraintTop_toBottomOf="@+id/regal_0506"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0422"
@@ -306,7 +306,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0421"
         app:layout_constraintStart_toEndOf="@+id/regal_0423"
         app:layout_constraintTop_toBottomOf="@+id/regal_0507"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0421"
@@ -318,7 +318,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_04_SPACE_TOP"
         app:layout_constraintStart_toEndOf="@+id/regal_0422"
         app:layout_constraintTop_toBottomOf="@+id/regal_0508"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_04_SPACE_TOP"
@@ -330,7 +330,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0420"
         app:layout_constraintStart_toEndOf="@+id/regal_0421"
         app:layout_constraintTop_toBottomOf="@+id/regal_05_SPACE"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0420"
@@ -342,7 +342,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0419"
         app:layout_constraintStart_toEndOf="@+id/regal_04_SPACE_TOP"
         app:layout_constraintTop_toBottomOf="@+id/regal_0509"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0419"
@@ -354,7 +354,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0418"
         app:layout_constraintStart_toEndOf="@+id/regal_0420"
         app:layout_constraintTop_toBottomOf="@+id/regal_0510"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0418"
@@ -366,7 +366,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0417"
         app:layout_constraintStart_toEndOf="@+id/regal_0419"
         app:layout_constraintTop_toBottomOf="@+id/regal_0511"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0417"
@@ -378,7 +378,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0416"
         app:layout_constraintStart_toEndOf="@+id/regal_0418"
         app:layout_constraintTop_toBottomOf="@+id/regal_0512"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0416"
@@ -390,7 +390,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0415"
         app:layout_constraintStart_toEndOf="@+id/regal_0417"
         app:layout_constraintTop_toBottomOf="@+id/regal_0513"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0415"
@@ -403,7 +403,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/regal_0416"
         app:layout_constraintTop_toBottomOf="@+id/regal_0514"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0401"
@@ -417,7 +417,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regal_0428"
         app:layout_constraintVertical_chainStyle="spread"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0402"
@@ -429,7 +429,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0403"
         app:layout_constraintStart_toEndOf="@+id/regal_0401"
         app:layout_constraintTop_toBottomOf="@+id/regal_0427"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0403"
@@ -441,7 +441,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0404"
         app:layout_constraintStart_toEndOf="@+id/regal_0402"
         app:layout_constraintTop_toBottomOf="@+id/regal_0426"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0404"
@@ -453,7 +453,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0405"
         app:layout_constraintStart_toEndOf="@+id/regal_0403"
         app:layout_constraintTop_toBottomOf="@+id/regal_0425"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0405"
@@ -465,7 +465,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0406"
         app:layout_constraintStart_toEndOf="@+id/regal_0404"
         app:layout_constraintTop_toBottomOf="@+id/regal_0424"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0406"
@@ -477,7 +477,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0407"
         app:layout_constraintStart_toEndOf="@+id/regal_0405"
         app:layout_constraintTop_toBottomOf="@+id/regal_0423"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0407"
@@ -489,7 +489,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0408"
         app:layout_constraintStart_toEndOf="@+id/regal_0406"
         app:layout_constraintTop_toBottomOf="@+id/regal_0422"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0408"
@@ -501,7 +501,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_04_SPACE_BOT"
         app:layout_constraintStart_toEndOf="@+id/regal_0407"
         app:layout_constraintTop_toBottomOf="@+id/regal_0421"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_04_SPACE_BOT"
@@ -513,7 +513,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0409"
         app:layout_constraintStart_toEndOf="@+id/regal_0408"
         app:layout_constraintTop_toBottomOf="@+id/regal_04_SPACE_TOP"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0409"
@@ -525,7 +525,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0410"
         app:layout_constraintStart_toEndOf="@+id/regal_04_SPACE_BOT"
         app:layout_constraintTop_toBottomOf="@+id/regal_0420"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0410"
@@ -537,7 +537,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0411"
         app:layout_constraintStart_toEndOf="@+id/regal_0409"
         app:layout_constraintTop_toBottomOf="@+id/regal_0419"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0411"
@@ -549,7 +549,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0412"
         app:layout_constraintStart_toEndOf="@+id/regal_0410"
         app:layout_constraintTop_toBottomOf="@+id/regal_0418"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0412"
@@ -561,7 +561,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0413"
         app:layout_constraintStart_toEndOf="@+id/regal_0411"
         app:layout_constraintTop_toBottomOf="@+id/regal_0417"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0413"
@@ -573,7 +573,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0414"
         app:layout_constraintStart_toEndOf="@+id/regal_0412"
         app:layout_constraintTop_toBottomOf="@+id/regal_0416"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0414"
@@ -586,7 +586,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/regal_0413"
         app:layout_constraintTop_toBottomOf="@+id/regal_0415"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <!-- REIHE 03-->
 
@@ -602,7 +602,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regal_0401"
         app:layout_constraintVertical_chainStyle="spread"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0327"
@@ -614,7 +614,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0326"
         app:layout_constraintStart_toEndOf="@+id/regal_0328"
         app:layout_constraintTop_toBottomOf="@+id/regal_0402"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0326"
@@ -626,7 +626,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0325"
         app:layout_constraintStart_toEndOf="@+id/regal_0327"
         app:layout_constraintTop_toBottomOf="@+id/regal_0403"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0325"
@@ -638,7 +638,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0324"
         app:layout_constraintStart_toEndOf="@+id/regal_0326"
         app:layout_constraintTop_toBottomOf="@+id/regal_0404"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0324"
@@ -650,7 +650,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0323"
         app:layout_constraintStart_toEndOf="@+id/regal_0325"
         app:layout_constraintTop_toBottomOf="@+id/regal_0405"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0323"
@@ -662,7 +662,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0322"
         app:layout_constraintStart_toEndOf="@+id/regal_0324"
         app:layout_constraintTop_toBottomOf="@+id/regal_0406"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0322"
@@ -674,7 +674,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0321"
         app:layout_constraintStart_toEndOf="@+id/regal_0323"
         app:layout_constraintTop_toBottomOf="@+id/regal_0407"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0321"
@@ -686,7 +686,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_03_SPACE_TOP"
         app:layout_constraintStart_toEndOf="@+id/regal_0322"
         app:layout_constraintTop_toBottomOf="@+id/regal_0408"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_03_SPACE_TOP"
@@ -698,7 +698,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0320"
         app:layout_constraintStart_toEndOf="@+id/regal_0321"
         app:layout_constraintTop_toBottomOf="@+id/regal_04_SPACE_BOT"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0320"
@@ -710,7 +710,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0319"
         app:layout_constraintStart_toEndOf="@+id/regal_03_SPACE_TOP"
         app:layout_constraintTop_toBottomOf="@+id/regal_0409"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0319"
@@ -722,7 +722,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0318"
         app:layout_constraintStart_toEndOf="@+id/regal_0320"
         app:layout_constraintTop_toBottomOf="@+id/regal_0410"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0318"
@@ -734,7 +734,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0317"
         app:layout_constraintStart_toEndOf="@+id/regal_0319"
         app:layout_constraintTop_toBottomOf="@+id/regal_0411"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0317"
@@ -746,7 +746,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0316"
         app:layout_constraintStart_toEndOf="@+id/regal_0318"
         app:layout_constraintTop_toBottomOf="@+id/regal_0412"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0316"
@@ -758,7 +758,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0315"
         app:layout_constraintStart_toEndOf="@+id/regal_0317"
         app:layout_constraintTop_toBottomOf="@+id/regal_0413"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0315"
@@ -771,7 +771,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/regal_0316"
         app:layout_constraintTop_toBottomOf="@+id/regal_0414"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0301"
@@ -785,7 +785,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regal_0328"
         app:layout_constraintVertical_chainStyle="spread"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0302"
@@ -797,7 +797,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0303"
         app:layout_constraintStart_toEndOf="@+id/regal_0301"
         app:layout_constraintTop_toBottomOf="@+id/regal_0327"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0303"
@@ -809,7 +809,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0304"
         app:layout_constraintStart_toEndOf="@+id/regal_0302"
         app:layout_constraintTop_toBottomOf="@+id/regal_0326"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0304"
@@ -821,7 +821,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0305"
         app:layout_constraintStart_toEndOf="@+id/regal_0303"
         app:layout_constraintTop_toBottomOf="@+id/regal_0325"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0305"
@@ -833,7 +833,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0306"
         app:layout_constraintStart_toEndOf="@+id/regal_0304"
         app:layout_constraintTop_toBottomOf="@+id/regal_0324"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0306"
@@ -845,7 +845,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0307"
         app:layout_constraintStart_toEndOf="@+id/regal_0305"
         app:layout_constraintTop_toBottomOf="@+id/regal_0323"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0307"
@@ -857,7 +857,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0308"
         app:layout_constraintStart_toEndOf="@+id/regal_0306"
         app:layout_constraintTop_toBottomOf="@+id/regal_0322"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0308"
@@ -869,7 +869,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_03_SPACE_BOT"
         app:layout_constraintStart_toEndOf="@+id/regal_0307"
         app:layout_constraintTop_toBottomOf="@+id/regal_0321"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_03_SPACE_BOT"
@@ -881,7 +881,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0309"
         app:layout_constraintStart_toEndOf="@+id/regal_0308"
         app:layout_constraintTop_toBottomOf="@+id/regal_03_SPACE_TOP"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0309"
@@ -893,7 +893,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0310"
         app:layout_constraintStart_toEndOf="@+id/regal_03_SPACE_BOT"
         app:layout_constraintTop_toBottomOf="@+id/regal_0320"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0310"
@@ -905,7 +905,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0311"
         app:layout_constraintStart_toEndOf="@+id/regal_0309"
         app:layout_constraintTop_toBottomOf="@+id/regal_0319"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0311"
@@ -917,7 +917,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0312"
         app:layout_constraintStart_toEndOf="@+id/regal_0310"
         app:layout_constraintTop_toBottomOf="@+id/regal_0318"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0312"
@@ -929,7 +929,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0313"
         app:layout_constraintStart_toEndOf="@+id/regal_0311"
         app:layout_constraintTop_toBottomOf="@+id/regal_0317"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0313"
@@ -941,7 +941,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0314"
         app:layout_constraintStart_toEndOf="@+id/regal_0312"
         app:layout_constraintTop_toBottomOf="@+id/regal_0316"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0314"
@@ -954,7 +954,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/regal_0313"
         app:layout_constraintTop_toBottomOf="@+id/regal_0315"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <!-- REIHE 02 -->
 
@@ -971,7 +971,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regal_0301"
         app:layout_constraintVertical_chainStyle="spread"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_02x2"
@@ -983,7 +983,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0224"
         app:layout_constraintStart_toEndOf="@+id/regal_02x1"
         app:layout_constraintTop_toBottomOf="@+id/regal_0302"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0224"
@@ -995,7 +995,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0223"
         app:layout_constraintStart_toEndOf="@+id/regal_02x2"
         app:layout_constraintTop_toBottomOf="@+id/regal_0303"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0223"
@@ -1007,7 +1007,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0222"
         app:layout_constraintStart_toEndOf="@+id/regal_0224"
         app:layout_constraintTop_toBottomOf="@+id/regal_0304"
-        app:srcCompat="@drawable/ic_regal2"
+        app:srcCompat="@drawable/ic_shelf_normal"
         tools:ignore="TooManyViews" />
 
     <ImageView
@@ -1020,7 +1020,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0221"
         app:layout_constraintStart_toEndOf="@+id/regal_0223"
         app:layout_constraintTop_toBottomOf="@+id/regal_0305"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0221"
@@ -1032,7 +1032,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0220"
         app:layout_constraintStart_toEndOf="@+id/regal_0222"
         app:layout_constraintTop_toBottomOf="@+id/regal_0306"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0220"
@@ -1044,7 +1044,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0219"
         app:layout_constraintStart_toEndOf="@+id/regal_0221"
         app:layout_constraintTop_toBottomOf="@+id/regal_0307"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0219"
@@ -1056,7 +1056,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_02_SPACE_TOP"
         app:layout_constraintStart_toEndOf="@+id/regal_0220"
         app:layout_constraintTop_toBottomOf="@+id/regal_0308"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_02_SPACE_TOP"
@@ -1068,7 +1068,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0218"
         app:layout_constraintStart_toEndOf="@+id/regal_0219"
         app:layout_constraintTop_toBottomOf="@+id/regal_03_SPACE_BOT"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0218"
@@ -1080,7 +1080,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0217"
         app:layout_constraintStart_toEndOf="@+id/regal_02_SPACE_TOP"
         app:layout_constraintTop_toBottomOf="@+id/regal_0309"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0217"
@@ -1092,7 +1092,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0216"
         app:layout_constraintStart_toEndOf="@+id/regal_0218"
         app:layout_constraintTop_toBottomOf="@+id/regal_0310"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0216"
@@ -1104,7 +1104,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0215"
         app:layout_constraintStart_toEndOf="@+id/regal_0217"
         app:layout_constraintTop_toBottomOf="@+id/regal_0311"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0215"
@@ -1116,7 +1116,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0214"
         app:layout_constraintStart_toEndOf="@+id/regal_0216"
         app:layout_constraintTop_toBottomOf="@+id/regal_0312"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0214"
@@ -1128,7 +1128,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0213"
         app:layout_constraintStart_toEndOf="@+id/regal_0215"
         app:layout_constraintTop_toBottomOf="@+id/regal_0313"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0213"
@@ -1141,7 +1141,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/regal_0214"
         app:layout_constraintTop_toBottomOf="@+id/regal_0314"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_02x3"
@@ -1155,7 +1155,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regal_02x1"
         app:layout_constraintVertical_chainStyle="spread"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_02x4"
@@ -1167,7 +1167,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0201"
         app:layout_constraintStart_toEndOf="@+id/regal_02x3"
         app:layout_constraintTop_toBottomOf="@+id/regal_02x2"
-        app:srcCompat="@drawable/ic_regal2"
+        app:srcCompat="@drawable/ic_shelf_normal"
         tools:visibility="invisible" />
 
     <ImageView
@@ -1180,7 +1180,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0202"
         app:layout_constraintStart_toEndOf="@+id/regal_02x4"
         app:layout_constraintTop_toBottomOf="@+id/regal_0224"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0202"
@@ -1192,7 +1192,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0203"
         app:layout_constraintStart_toEndOf="@+id/regal_0201"
         app:layout_constraintTop_toBottomOf="@+id/regal_0223"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0203"
@@ -1204,7 +1204,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0204"
         app:layout_constraintStart_toEndOf="@+id/regal_0202"
         app:layout_constraintTop_toBottomOf="@+id/regal_0222"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0204"
@@ -1216,7 +1216,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0205"
         app:layout_constraintStart_toEndOf="@+id/regal_0203"
         app:layout_constraintTop_toBottomOf="@+id/regal_0221"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0205"
@@ -1228,7 +1228,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0206"
         app:layout_constraintStart_toEndOf="@+id/regal_0204"
         app:layout_constraintTop_toBottomOf="@+id/regal_0220"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0206"
@@ -1240,7 +1240,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_02_SPACE_BOT"
         app:layout_constraintStart_toEndOf="@+id/regal_0205"
         app:layout_constraintTop_toBottomOf="@+id/regal_0219"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_02_SPACE_BOT"
@@ -1252,7 +1252,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0207"
         app:layout_constraintStart_toEndOf="@+id/regal_0206"
         app:layout_constraintTop_toBottomOf="@+id/regal_02_SPACE_TOP"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0207"
@@ -1264,7 +1264,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0208"
         app:layout_constraintStart_toEndOf="@+id/regal_02_SPACE_BOT"
         app:layout_constraintTop_toBottomOf="@+id/regal_0218"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0208"
@@ -1276,7 +1276,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0209"
         app:layout_constraintStart_toEndOf="@+id/regal_0207"
         app:layout_constraintTop_toBottomOf="@+id/regal_0217"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0209"
@@ -1288,7 +1288,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0210"
         app:layout_constraintStart_toEndOf="@+id/regal_0208"
         app:layout_constraintTop_toBottomOf="@+id/regal_0216"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0210"
@@ -1300,7 +1300,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0211"
         app:layout_constraintStart_toEndOf="@+id/regal_0209"
         app:layout_constraintTop_toBottomOf="@+id/regal_0215"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0211"
@@ -1312,7 +1312,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0212"
         app:layout_constraintStart_toEndOf="@+id/regal_0210"
         app:layout_constraintTop_toBottomOf="@+id/regal_0214"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0212"
@@ -1325,7 +1325,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/regal_0211"
         app:layout_constraintTop_toBottomOf="@+id/regal_0213"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <!-- Reihe 01 -->
 
@@ -1342,7 +1342,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regal_02x3"
         app:layout_constraintVertical_chainStyle="spread"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_01x2"
@@ -1354,7 +1354,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0124"
         app:layout_constraintStart_toEndOf="@+id/regal_01x1"
         app:layout_constraintTop_toBottomOf="@+id/regal_02x4"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0124"
@@ -1366,7 +1366,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0123"
         app:layout_constraintStart_toEndOf="@+id/regal_01x2"
         app:layout_constraintTop_toBottomOf="@+id/regal_0201"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0123"
@@ -1378,7 +1378,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0122"
         app:layout_constraintStart_toEndOf="@+id/regal_0124"
         app:layout_constraintTop_toBottomOf="@+id/regal_0202"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0122"
@@ -1390,7 +1390,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0121"
         app:layout_constraintStart_toEndOf="@+id/regal_0123"
         app:layout_constraintTop_toBottomOf="@+id/regal_0203"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0121"
@@ -1402,7 +1402,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0120"
         app:layout_constraintStart_toEndOf="@+id/regal_0122"
         app:layout_constraintTop_toBottomOf="@+id/regal_0204"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0120"
@@ -1414,7 +1414,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0119"
         app:layout_constraintStart_toEndOf="@+id/regal_0121"
         app:layout_constraintTop_toBottomOf="@+id/regal_0205"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0119"
@@ -1426,7 +1426,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_01_SPACE_TOP"
         app:layout_constraintStart_toEndOf="@+id/regal_0120"
         app:layout_constraintTop_toBottomOf="@+id/regal_0206"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_01_SPACE_TOP"
@@ -1438,7 +1438,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0118"
         app:layout_constraintStart_toEndOf="@+id/regal_0119"
         app:layout_constraintTop_toBottomOf="@+id/regal_02_SPACE_BOT"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0118"
@@ -1450,7 +1450,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0117"
         app:layout_constraintStart_toEndOf="@+id/regal_01_SPACE_TOP"
         app:layout_constraintTop_toBottomOf="@+id/regal_0207"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0117"
@@ -1462,7 +1462,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0116"
         app:layout_constraintStart_toEndOf="@+id/regal_0118"
         app:layout_constraintTop_toBottomOf="@+id/regal_0208"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0116"
@@ -1474,7 +1474,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0115"
         app:layout_constraintStart_toEndOf="@+id/regal_0117"
         app:layout_constraintTop_toBottomOf="@+id/regal_0209"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0115"
@@ -1486,7 +1486,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0114"
         app:layout_constraintStart_toEndOf="@+id/regal_0116"
         app:layout_constraintTop_toBottomOf="@+id/regal_0210"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0114"
@@ -1498,7 +1498,7 @@
         app:layout_constraintEnd_toStartOf="@+id/regal_0113"
         app:layout_constraintStart_toEndOf="@+id/regal_0115"
         app:layout_constraintTop_toBottomOf="@+id/regal_0211"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0113"
@@ -1511,7 +1511,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/regal_0114"
         app:layout_constraintTop_toBottomOf="@+id/regal_0212"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_01x3"
@@ -1528,7 +1528,7 @@
         app:layout_constraintTop_toBottomOf="@+id/regal_01x1"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintVertical_chainStyle="spread"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_01x4"
@@ -1542,7 +1542,7 @@
         app:layout_constraintStart_toEndOf="@+id/regal_01x3"
         app:layout_constraintTop_toBottomOf="@+id/regal_01x2"
         app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_regal2"
+        app:srcCompat="@drawable/ic_shelf_normal"
         tools:visibility="invisible" />
 
     <ImageView
@@ -1557,7 +1557,7 @@
         app:layout_constraintStart_toEndOf="@+id/regal_01x4"
         app:layout_constraintTop_toBottomOf="@+id/regal_0124"
         app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0102"
@@ -1571,7 +1571,7 @@
         app:layout_constraintStart_toEndOf="@+id/regal_0101"
         app:layout_constraintTop_toBottomOf="@+id/regal_0123"
         app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0103"
@@ -1585,7 +1585,7 @@
         app:layout_constraintStart_toEndOf="@+id/regal_0102"
         app:layout_constraintTop_toBottomOf="@+id/regal_0122"
         app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0104"
@@ -1600,7 +1600,7 @@
         app:layout_constraintStart_toEndOf="@+id/regal_0103"
         app:layout_constraintTop_toBottomOf="@+id/regal_0121"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0105"
@@ -1614,7 +1614,7 @@
         app:layout_constraintStart_toEndOf="@+id/regal_0104"
         app:layout_constraintTop_toBottomOf="@+id/regal_0120"
         app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0106"
@@ -1628,7 +1628,7 @@
         app:layout_constraintStart_toEndOf="@+id/regal_0105"
         app:layout_constraintTop_toBottomOf="@+id/regal_0119"
         app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_01_SPACE_BOT"
@@ -1642,7 +1642,7 @@
         app:layout_constraintStart_toEndOf="@+id/regal_0106"
         app:layout_constraintTop_toBottomOf="@+id/regal_01_SPACE_TOP"
         app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0107"
@@ -1656,7 +1656,7 @@
         app:layout_constraintStart_toEndOf="@+id/regal_01_SPACE_BOT"
         app:layout_constraintTop_toBottomOf="@+id/regal_0118"
         app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0108"
@@ -1670,7 +1670,7 @@
         app:layout_constraintStart_toEndOf="@+id/regal_0107"
         app:layout_constraintTop_toBottomOf="@+id/regal_0117"
         app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0109"
@@ -1684,7 +1684,7 @@
         app:layout_constraintStart_toEndOf="@+id/regal_0108"
         app:layout_constraintTop_toBottomOf="@+id/regal_0116"
         app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0110"
@@ -1698,7 +1698,7 @@
         app:layout_constraintStart_toEndOf="@+id/regal_0109"
         app:layout_constraintTop_toBottomOf="@+id/regal_0115"
         app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0111"
@@ -1712,7 +1712,7 @@
         app:layout_constraintStart_toEndOf="@+id/regal_0110"
         app:layout_constraintTop_toBottomOf="@+id/regal_0114"
         app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/regal_0112"
@@ -1727,7 +1727,7 @@
         app:layout_constraintStart_toEndOf="@+id/regal_0111"
         app:layout_constraintTop_toBottomOf="@+id/regal_0113"
         app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

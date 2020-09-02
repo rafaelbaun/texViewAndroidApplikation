@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +23,14 @@ import de.lingen.hsosna.texview.database.TableArtikelkombination;
 import de.lingen.hsosna.texview.database.TableLagerbestand;
 
 import static de.lingen.hsosna.texview.MainActivity.colorSwitchState;
+import static de.lingen.hsosna.texview.MainActivity.freeShelveList;
 
 public class RegalfrontFragment extends Fragment {
-    public static final String ARG_REGALNUMMER = "argRegalNummer";
-    public static final String ARG_FACHNUMMER = "argFachNummer";
+    public static final String ARG_SHELVESTOMARKRED = "argShelvesToMarkRed";
+    public static final String ARG_CLICKEDSHELF = "argClickedShelf";
+    private ArrayList<Lagerplatz> shelvesToMarkRed = new ArrayList<>();
+    private CharSequence clickedShelf;
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -38,16 +43,13 @@ public class RegalfrontFragment extends Fragment {
      * Um verarbeiten zu können, welche Parameter übergeben wurden, muss ein Bundle erstellt werden,
      * dass die übergebenen Parameter als Argumente setzt und somit die Daten in dieser Klasse verfügbar macht.
      *
-     * @param regalNummer Regalnummer des darzustellenden Regales
-     * @param fachNummer
      * @return Ein RegalfrontFragment wird zurückgegeben mit den übergebenen Werten als Argumente gesetzt.
      */
-    public static RegalfrontFragment newInstance (CharSequence regalNummer,
-                                                  ArrayList<CharSequence> fachNummer) {
+    public static RegalfrontFragment newInstance (ArrayList<Lagerplatz> shelvesToMarkRed, CharSequence clickedShelf) {
         RegalfrontFragment fragment = new RegalfrontFragment();
         Bundle args = new Bundle();
-        args.putCharSequence(ARG_REGALNUMMER, regalNummer);
-        args.putCharSequenceArrayList(ARG_FACHNUMMER, fachNummer);
+        args.putParcelableArrayList(ARG_SHELVESTOMARKRED, (ArrayList<? extends Parcelable>) shelvesToMarkRed);
+        args.putCharSequence(ARG_CLICKEDSHELF, clickedShelf);
         fragment.setArguments(args);
         return fragment;
     }
@@ -63,20 +65,20 @@ public class RegalfrontFragment extends Fragment {
         mDatabase = dbHelper.getReadableDatabase();
         TextView textView = v.findViewById(R.id.textviewRegalfachbezeichnung);
         if (getArguments() != null) {
-            regalID = getArguments().getCharSequence(ARG_REGALNUMMER);
-            faecherToMark = getArguments().getCharSequenceArrayList(ARG_FACHNUMMER);
+            shelvesToMarkRed = getArguments().getParcelableArrayList(ARG_SHELVESTOMARKRED);
+            clickedShelf = getArguments().getCharSequence(ARG_CLICKEDSHELF);
         }
+        //clickedShelf = v.getContentDescription();
 
         if(colorSwitchState){
-            ImageView abcdef = v.findViewById(R.id.fach07);
-            abcdef.setImageResource(R.drawable.ic_regal_free);
+            markFreeShelves(v);
         }
 
 
         markFaecher(v);
 
         String regalPrefix = "RegalNr: ";
-        textView.setText(regalPrefix.concat((String) regalID));
+        textView.setText(regalPrefix.concat((String) clickedShelf));
         fillRecyclerView(v);
         return v;
     }
@@ -226,9 +228,9 @@ public class RegalfrontFragment extends Fragment {
 
     public ArrayList<Artikel> getListWithContents (int regalFachNummer) {
         ArrayList<Artikel> artikelListe = new ArrayList<Artikel>();
-        int lagerort = Integer.parseInt(regalID.subSequence(0, 2).toString());
-        int regal_nr = Integer.parseInt(regalID.subSequence(2, 4).toString());
-        int zeile = Integer.parseInt(regalID.subSequence(4, 6).toString());
+        int lagerort = Integer.parseInt(clickedShelf.subSequence(0, 2).toString());
+        int regal_nr = Integer.parseInt(clickedShelf.subSequence(2, 4).toString());
+        int zeile = Integer.parseInt(clickedShelf.subSequence(4, 6).toString());
         int lagerplatz = Integer.parseInt("" + regal_nr + "" + zeile + "" + regalFachNummer + "");
         Cursor cursor = mDatabase.rawQuery(
                 "SELECT " + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID + ", "
@@ -280,17 +282,54 @@ public class RegalfrontFragment extends Fragment {
     }
 
     public void markFaecher(View v){
-        if(faecherToMark != null && faecherToMark.size() != 0){
+        if(shelvesToMarkRed != null && shelvesToMarkRed.size() != 0){
             ArrayList<View> imageViewsOfShelvesToMark = new ArrayList<>();
-            for (CharSequence fach : faecherToMark){
-                v.findViewsWithText(imageViewsOfShelvesToMark, fach, View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
-                for (View singleShelf : imageViewsOfShelvesToMark){
-                    ImageView oneShelf = (ImageView) singleShelf;
-                    oneShelf.setImageResource(R.drawable.ic_regal_marked);
+            for (Lagerplatz lagerplatz : shelvesToMarkRed){
+                if(lagerplatz.getLocation().equals(clickedShelf)){
+                    v.findViewsWithText(imageViewsOfShelvesToMark, "" + lagerplatz.getRegalfach(), View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
                 }
+            }
+            for (View singleShelf : imageViewsOfShelvesToMark){
+                ImageView oneShelf = (ImageView) singleShelf;
+                oneShelf.setImageResource(R.drawable.ic_shelf_marked_red);
             }
 
         }
+    }
 
+    public void markFreeShelves (View v) {
+        if (colorSwitchState && v != null) {
+            if (freeShelveList != null && freeShelveList.size() != 0) {
+                ArrayList<View> imageViewsOfShelvesToMarkAsFree = new ArrayList<>();
+
+                for(Lagerplatz lagerplatz : freeShelveList){
+                    if (lagerplatz.getLocation().equals(clickedShelf)){
+                        v.findViewsWithText(imageViewsOfShelvesToMarkAsFree, "" + lagerplatz.getRegalfach(), View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+                    }
+                }
+                for (View singleShelf : imageViewsOfShelvesToMarkAsFree){
+                    ImageView oneShelf = (ImageView) singleShelf;
+                    oneShelf.setImageResource(R.drawable.ic_shelf_free_high);
+                }
+            }
+        }
+    }
+
+    public void unmarkFreeShelves (View v) {
+        if (v != null) {
+            if (freeShelveList != null && freeShelveList.size() != 0) {
+                ArrayList<View> imageViewsOfShelvesToMarkAsFree = new ArrayList<>();
+
+                for(Lagerplatz lagerplatz : freeShelveList){
+                    if (lagerplatz.getLocation().equals(clickedShelf)){
+                        v.findViewsWithText(imageViewsOfShelvesToMarkAsFree, "" + lagerplatz.getRegalfach(), View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+                    }
+                }
+                for (View singleShelf : imageViewsOfShelvesToMarkAsFree){
+                    ImageView oneShelf = (ImageView) singleShelf;
+                    oneShelf.setImageResource(R.drawable.ic_shelf_normal);
+                }
+            }
+        }
     }
 }

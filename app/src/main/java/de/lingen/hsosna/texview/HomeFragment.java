@@ -1,6 +1,5 @@
 package de.lingen.hsosna.texview;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -19,23 +18,10 @@ import static de.lingen.hsosna.texview.MainActivity.freeShelveList;
 
 public class HomeFragment extends Fragment {
 
-    public static final String ARG_REGALETOMARK = "argRegaleToMark";
-    public static final String ARG_FAECHERTOMARK = "argFaecherToMark";
     public static final String ARG_SHELVESTOMARKRED = "argShelvesToMarkRed";
-    private ArrayList<CharSequence> regaleToMark = new ArrayList<>();
-    private ArrayList<CharSequence> facherToMark = new ArrayList<>();
     private ArrayList<Lagerplatz> shelvesToMarkRed = new ArrayList<>();
 
-    public static HomeFragment newInstance (ArrayList<CharSequence> regaleToMark, ArrayList<CharSequence> faecherToMark){
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putCharSequenceArrayList(ARG_REGALETOMARK, regaleToMark);
-        args.putCharSequenceArrayList(ARG_FAECHERTOMARK, faecherToMark);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    public static HomeFragment newInstance2 (ArrayList<Lagerplatz> shelvesToMarkRed){
+     public static HomeFragment newInstance (ArrayList<Lagerplatz> shelvesToMarkRed){
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
         args.putParcelableArrayList(ARG_SHELVESTOMARKRED,
@@ -50,8 +36,6 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home_copy, container, false);
 
         if (getArguments() != null){
-            regaleToMark = getArguments().getCharSequenceArrayList(ARG_REGALETOMARK);
-            facherToMark = getArguments().getCharSequenceArrayList(ARG_FAECHERTOMARK);
             shelvesToMarkRed = getArguments().getParcelableArrayList(ARG_SHELVESTOMARKRED);
         }
 
@@ -77,7 +61,7 @@ public class HomeFragment extends Fragment {
             }
             for (View singleShelf : imageViewsOfShelvesToMark){
                 ImageView oneShelf = (ImageView) singleShelf;
-                oneShelf.setImageResource(R.drawable.ic_regal_marked);
+                oneShelf.setImageResource(R.drawable.ic_shelf_marked_red);
             }
 
         }
@@ -87,7 +71,16 @@ public class HomeFragment extends Fragment {
     public void markFreeShelves(View v){
         if(colorSwitchState && v != null) {
             if(freeShelveList != null && freeShelveList.size() != 0){
-                ArrayList<View> imageViewsOfShelvesToMarkAsFree = new ArrayList<>();
+                ArrayList<View> imageViewsOfShelvesToMarkAsFreeLow = new ArrayList<>();
+                ArrayList<View> imageViewsOfShelvesToMarkAsFreeMedium = new ArrayList<>();
+                ArrayList<View> imageViewsOfShelvesToMarkAsFreeHigh = new ArrayList<>();
+                ArrayList<View> imageViewsOfShelvesToMarkAsFreeFull = new ArrayList<>();
+
+
+                int numberOfFreeShelfCompartments = 1;
+                int lastShelfLocation = 0;
+
+
                 for (Lagerplatz lagerplatz : freeShelveList) {
                     boolean contains = false;
                     for (Lagerplatz shelveToMarkRed : shelvesToMarkRed){
@@ -96,19 +89,55 @@ public class HomeFragment extends Fragment {
                     }
                     if(!contains)
                     {
-                        v.findViewsWithText(imageViewsOfShelvesToMarkAsFree, lagerplatz.getLocation(),
-                                View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+                        if(lagerplatz.getLagerplatz() != lastShelfLocation) { // nicht der davor
+                            lastShelfLocation = lagerplatz.getLagerplatz();
+                            numberOfFreeShelfCompartments = 1;
+                        }
+                        else{
+                            numberOfFreeShelfCompartments++;
+                        }
+
+                        switch (numberOfFreeShelfCompartments){
+                            case 1:
+                            case 2:
+                                v.findViewsWithText(imageViewsOfShelvesToMarkAsFreeLow, lagerplatz.getLocation(),
+                                        View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+                                break;
+                            case 3:
+                            case 4:
+                                v.findViewsWithText(imageViewsOfShelvesToMarkAsFreeMedium, lagerplatz.getLocation(),
+                                        View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+                                break;
+                            case 5:
+                            case 6:
+                                v.findViewsWithText(imageViewsOfShelvesToMarkAsFreeHigh, lagerplatz.getLocation(),
+                                        View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+                                break;
+                            case 7:
+                                v.findViewsWithText(imageViewsOfShelvesToMarkAsFreeFull, lagerplatz.getLocation(),
+                                        View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+                                break;
+                        }
                     }
                 }
-                for (View singleShelf : imageViewsOfShelvesToMarkAsFree){
+                for (View singleShelf : imageViewsOfShelvesToMarkAsFreeLow){
                     ImageView oneShelf = (ImageView) singleShelf;
-                    oneShelf.setImageResource(R.drawable.ic_regal_free);
+                    oneShelf.setImageResource(R.drawable.ic_shelf_free_low);
+                }
+                for (View singleShelf : imageViewsOfShelvesToMarkAsFreeMedium){
+                    ImageView oneShelf = (ImageView) singleShelf;
+                    oneShelf.setImageResource(R.drawable.ic_shelf_free_medium);
+                }
+                for (View singleShelf : imageViewsOfShelvesToMarkAsFreeHigh){
+                    ImageView oneShelf = (ImageView) singleShelf;
+                    oneShelf.setImageResource(R.drawable.ic_shelf_free_high);
+                }
+                for (View singleShelf : imageViewsOfShelvesToMarkAsFreeFull){
+                    ImageView oneShelf = (ImageView) singleShelf;
+                    oneShelf.setImageResource(R.drawable.ic_shelf_free_full);
                 }
             }
         }
-        //liste markieren
-        // check if regal is checked
-
     }
 
     public void unmarkFreeShelves(View v){
@@ -129,7 +158,7 @@ public class HomeFragment extends Fragment {
                 }
                 for (View singleShelf : imageViewsOfShelvesToMarkAsFree){
                         ImageView oneShelf = (ImageView) singleShelf;
-                        oneShelf.setImageResource(R.drawable.ic_regal2);
+                        oneShelf.setImageResource(R.drawable.ic_shelf_normal);
                 }
             }
         }

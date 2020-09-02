@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toStartOf="@+id/fach02"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toTopOf="@+id/view"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/fach02"
@@ -44,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toEndOf="@+id/fach01"
         app:layout_constraintTop_toTopOf="@+id/view"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/fach03"
@@ -57,7 +57,7 @@
         app:layout_constraintEnd_toStartOf="@+id/fach04"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@id/fach01"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/fach04"
@@ -70,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toEndOf="@+id/fach03"
         app:layout_constraintTop_toBottomOf="@id/fach02"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/fach05"
@@ -83,7 +83,7 @@
         app:layout_constraintEnd_toStartOf="@id/fach06"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@id/fach03"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/fach06"
@@ -96,7 +96,7 @@
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toEndOf="@+id/fach05"
         app:layout_constraintTop_toBottomOf="@id/fach04"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <ImageView
         android:id="@+id/fach07"
@@ -109,7 +109,7 @@
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@id/fach05"
-        app:srcCompat="@drawable/ic_regal2" />
+        app:srcCompat="@drawable/ic_shelf_normal" />
 
     <TextView
         android:id="@+id/textviewRegalfachbezeichnung"

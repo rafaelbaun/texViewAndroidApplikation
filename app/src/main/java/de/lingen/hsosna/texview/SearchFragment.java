@@ -52,8 +52,7 @@ public class SearchFragment extends Fragment {
      * Interface um Daten an die MainActivity zu senden.
      */
     public interface SearchFragmentListener {
-        void onSearchInputSent (CharSequence input, CharSequence input2);
-        void onSearchInputSent2 (Lagerplatz input);
+        void onSearchInputSent (Lagerplatz input);
     }
 
     @Nullable
@@ -121,19 +120,10 @@ public class SearchFragment extends Fragment {
 
                         @Override
                         public void onDeleteClick (int position) {
-                            Lagerplatz lp = new Lagerplatz(60, suchErgebnisse.get(position).getLagerplatz(), suchErgebnisse.get(position).getRegalfach());
-                            CharSequence lagerplatz = "60" + String.valueOf(suchErgebnisse.get(position).getLagerplatz());
-                            CharSequence lagerfach = String.valueOf(suchErgebnisse.get(position).getRegalfach());
-                            //listener.onSearchInputSent(suchErgebnisse.get(position).getLagerplatz());
-                            listener.onSearchInputSent2(lp);
-                            //listener.onSearchInputSent(lagerplatz, lagerfach);
+                            Lagerplatz checkedLagerplatz = new Lagerplatz(60, suchErgebnisse.get(position).getLagerplatz(), suchErgebnisse.get(position).getRegalfach());
+                            listener.onSearchInputSent(checkedLagerplatz);
                         }
                     });
-
-
-
-
-
 
 
 
@@ -180,9 +170,6 @@ public class SearchFragment extends Fragment {
 
     public ArrayList<Artikel> getListWithSearchResults (String SqlWhereQuery) {
         ArrayList<Artikel> artikelListe = new ArrayList<Artikel>();
-//        int lagerort = Integer.parseInt(regalID.subSequence(0, 2).toString());
-//        int regal_nr = Integer.parseInt(regalID.subSequence(2, 4).toString());
-//        int zeile = Integer.parseInt(regalID.subSequence(4, 6).toString());
 
         Cursor cursor = mDatabase.rawQuery(
                 "SELECT " + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ + ", "
@@ -233,6 +220,7 @@ public class SearchFragment extends Fragment {
         }
         return artikelListe;
     }
+
 
 
     //TODO prevent sql injection

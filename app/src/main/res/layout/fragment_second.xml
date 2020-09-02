@@ -30,7 +30,7 @@
         android:layout_width="396dp"
         android:layout_height="306dp"
         android:contextClickable="false"
-        android:src="@drawable/ic_regal2"
+        android:src="@drawable/ic_shelf_normal"
         tools:layout_editor_absoluteX="235dp"
         tools:layout_editor_absoluteY="229dp" />
 

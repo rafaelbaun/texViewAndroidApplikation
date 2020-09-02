@@ -1,12 +1,15 @@
 package de.lingen.hsosna.texview;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.navigation.NavigationView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -15,22 +18,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.Switch;
-import android.widget.Toast;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-import de.lingen.hsosna.texview.database.TableArtikelkombination;
 import de.lingen.hsosna.texview.database.TableLagerbestand;
 import de.lingen.hsosna.texview.database.TableLagerplaetze;
 
-import static de.lingen.hsosna.texview.HomeFragment.ARG_FAECHERTOMARK;
+import static de.lingen.hsosna.texview.RegalfrontFragment.ARG_SHELVESTOMARKRED;
 
 /**
  * Die MainActivity ist die gesamte Zeit der Applikationslaufzeit aktiv, da sie über Fragmente und
@@ -141,19 +137,20 @@ public class MainActivity extends AppCompatActivity
         // neues fragment mit values
 
 
-        HomeFragment hfrag = (HomeFragment)getSupportFragmentManager().findFragmentByTag("HOME_FRAGMENT_AFTER_SEARCH");
-        if(hfrag != null && hfrag.isVisible()) {
-            Bundle b = hfrag.getArguments();
-            RegalfrontFragment fragment = RegalfrontFragment.newInstance(view.getContentDescription(), b.getCharSequenceArrayList(ARG_FAECHERTOMARK));
-            //fragment wird gesetzt
+        HomeFragment homeFragment = (HomeFragment)getSupportFragmentManager().findFragmentByTag("HOME_FRAGMENT");
+        if(homeFragment != null && homeFragment.isVisible()) {
+            Bundle b = homeFragment.getArguments();
+
+            RegalfrontFragment fragment;
+            if(b!= null) {
+                fragment = RegalfrontFragment.newInstance(b.<Lagerplatz>getParcelableArrayList(ARG_SHELVESTOMARKRED), view.getContentDescription());
+            }
+            else {
+                fragment = RegalfrontFragment.newInstance(new ArrayList<Lagerplatz>(), view.getContentDescription());
+            }
+
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    fragment, "REGALFRONT_FRAGMENT_AFTER_SEARCH")
-                    .commit();
-        }else {
-            RegalfrontFragment fragment = RegalfrontFragment.newInstance(view.getContentDescription(), new ArrayList<CharSequence>());
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    fragment, "REGALFRONT_FRAGMENT")
-                    .commit();
+                    fragment, "REGALFRONT_FRAGMENT").commit();
         }
     }
 
@@ -246,17 +243,33 @@ public class MainActivity extends AppCompatActivity
             public void onCheckedChanged (CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     colorSwitchState = true;
+                    //HOMEFRAGMENT
                     HomeFragment homeFragment = (HomeFragment)getSupportFragmentManager().findFragmentByTag("HOME_FRAGMENT");
-                    assert homeFragment != null;
-                    homeFragment.markFreeShelves(findViewById(android.R.id.content).getRootView());
+                    if(homeFragment != null){
+                        homeFragment.markFreeShelves(findViewById(android.R.id.content).getRootView());
+                    }
+                    //REGALFRONTFRAGMENT
+                    RegalfrontFragment regalfrontFragment = (RegalfrontFragment)getSupportFragmentManager().findFragmentByTag("REGALFRONT_FRAGMENT");
+                    if(regalfrontFragment != null){
+                        regalfrontFragment.markFreeShelves(findViewById(android.R.id.content).getRootView());
+                    }
                     //markFreeShelves();
                     displayToastLong("checked movement");
                 }
                 else{
                     colorSwitchState = false;
+                    //HOMEFRAGMENT
                     HomeFragment homeFragment = (HomeFragment)getSupportFragmentManager().findFragmentByTag("HOME_FRAGMENT");
-                    assert homeFragment != null;
-                    homeFragment.unmarkFreeShelves(findViewById(android.R.id.content).getRootView());
+                    if(homeFragment != null) {
+                        homeFragment.unmarkFreeShelves(
+                                findViewById(android.R.id.content).getRootView());
+                    }
+                    //REGALFRONTFRAGMENT
+                    RegalfrontFragment regalfrontFragment = (RegalfrontFragment)getSupportFragmentManager().findFragmentByTag("REGALFRONT_FRAGMENT");
+                    if(regalfrontFragment != null){
+                        regalfrontFragment.unmarkFreeShelves(findViewById(android.R.id.content).getRootView());
+                    }
+
                     displayToastLong("unchecked movmement");
                     //unmarkFreeShelves();
                 }
@@ -264,35 +277,6 @@ public class MainActivity extends AppCompatActivity
         });
 
         return true;
-    }
-
-    private void unmarkFreeShelves () {
-        HomeFragment homeFragment = (HomeFragment)getSupportFragmentManager().findFragmentByTag("HOME_FRAGMENT");
-        if(homeFragment != null && homeFragment.isVisible()) {
-            ImageView a = findViewById(R.id.regal_0212);
-            a.setImageResource(R.drawable.ic_regal2);
-            //homeFragment.markRegale();
-        }
-        RegalfrontFragment regalfrontFragment = (RegalfrontFragment)getSupportFragmentManager().findFragmentByTag("REGALFRONT_FRAGMENT");
-        if(regalfrontFragment != null && regalfrontFragment.isVisible()){
-            ImageView b = findViewById(R.id.fach04);
-            b.setImageResource(R.drawable.ic_regal2);
-        }
-    }
-
-    private void markFreeShelves () {
-        HomeFragment homeFragment = (HomeFragment)getSupportFragmentManager().findFragmentByTag("HOME_FRAGMENT");
-        if(homeFragment != null && homeFragment.isVisible()) {
-            ImageView a = findViewById(R.id.regal_0212);
-            a.setImageResource(R.drawable.ic_regal_free);
-        }
-        RegalfrontFragment regalfrontFragment = (RegalfrontFragment)getSupportFragmentManager().findFragmentByTag("REGALFRONT_FRAGMENT");
-        if(regalfrontFragment != null && regalfrontFragment.isVisible()){
-            ImageView b = findViewById(R.id.fach04);
-            b.setImageResource(R.drawable.ic_regal_free);
-        }
-
-
     }
 
     @Override
@@ -329,32 +313,14 @@ public class MainActivity extends AppCompatActivity
      * @param input Daten die übergeben wurden aus den Eingabefeldern des Fragmentes.
      */
     @Override
-    public void onSearchInputSent (CharSequence input, CharSequence input2) {
-        ArrayList<CharSequence> regaleToMark = new ArrayList<>();
-        regaleToMark.add(input);
-
-        ArrayList<CharSequence> faecherToMark = new ArrayList<>();
-        faecherToMark.add(input2);
-
-        HomeFragment fragment = HomeFragment.newInstance(regaleToMark, faecherToMark);
-        //fragment wird gesetzt
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment, "HOME_FRAGMENT")//_AFTER_SEARCH")
-                .commit();
-        //displayToastLong(input.toString());
-    }
-
-    @Override
-    public void onSearchInputSent2 (Lagerplatz input) {
+    public void onSearchInputSent (Lagerplatz input) {
         ArrayList<Lagerplatz> shelvesToMarkRed = new ArrayList<>();
         shelvesToMarkRed.add(input);
 
-        HomeFragment fragment = HomeFragment.newInstance2(shelvesToMarkRed);
+        HomeFragment fragment = HomeFragment.newInstance(shelvesToMarkRed);
         //fragment wird gesetzt
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment, "HOME_FRAGMENT")//_AFTER_SEARCH")
                 .commit();
-    }
-
-    public void testenLocation (View view) {
     }
 
     public void returnHome (View view){
@@ -367,7 +333,7 @@ public class MainActivity extends AppCompatActivity
         ArrayList<Lagerplatz> freeShelves = new ArrayList<>();
 
         Cursor cursor = mDatabase.rawQuery(
-                "SELECT DISTINCT " + TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERPLATZ + ", "
+                "SELECT " + TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERPLATZ + ", "
                 + TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERORT
                 + " FROM " + TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME + ""
                 + " LEFT OUTER JOIN " + TableLagerbestand.LagerbestandEntry.TABLE_NAME + ""
