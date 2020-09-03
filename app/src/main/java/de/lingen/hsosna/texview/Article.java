@@ -3,7 +3,7 @@ package de.lingen.hsosna.texview;
 /**
  * Ein einzelner Artikel wird dargestellt und erhält Daten aus Artikelkombinationen
  */
-public class Artikel {
+public class Article {
     private int artikelID;
     private String artikel_Bezeichnung;
     private int farbe_ID;
@@ -27,7 +27,7 @@ public class Artikel {
      * @param menge               Menge des Artikels
      * @param mengenEinheit       zugehörige Einheit zu der Menge
      */
-    public Artikel (int artikelID, String artikel_Bezeichnung, int farbe_ID,
+    public Article (int artikelID, String artikel_Bezeichnung, int farbe_ID,
                     String farbe_Bezeichnung, int groessen_ID, String fertigungszustand,
                     String menge, String mengenEinheit, int lagerplatz) {
         this.artikelID = artikelID;

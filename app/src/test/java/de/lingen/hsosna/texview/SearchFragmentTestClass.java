@@ -28,7 +28,7 @@ public class SearchFragmentTestClass extends Fragment {
 
 
     private Button button;
-    private GroceryDBHelper dbHelper;
+    private DatabaseHelper dbHelper;
     private SQLiteDatabase mDatabase;
 
     public SearchFragmentTestClass (String editArtikelNr, String editArtikelBez,
@@ -50,7 +50,7 @@ public class SearchFragmentTestClass extends Fragment {
 
         //DB CON
         Context context = getActivity();
-        dbHelper = new GroceryDBHelper(context);
+        dbHelper = new DatabaseHelper(context);
         mDatabase = dbHelper.getReadableDatabase();
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +58,7 @@ public class SearchFragmentTestClass extends Fragment {
             public void onClick (View v) {
                 String SqlWhereQuery = getSqlWhereQuery();
                 if(SqlWhereQuery.length() != 0) {
-                    ArrayList<Artikel> suchErgebnisse = getListWithSearchResults(SqlWhereQuery);
+                    ArrayList<Article> suchErgebnisse = getListWithSearchResults(SqlWhereQuery);
 
 
                 } else {
@@ -71,15 +71,15 @@ public class SearchFragmentTestClass extends Fragment {
 
 
 
-    public ArrayList<Artikel> getListWithSearchResults (String SqlWhereQuery) {
-        ArrayList<Artikel> artikelListe = new ArrayList<Artikel>();
+    public ArrayList<Article> getListWithSearchResults (String SqlWhereQuery) {
+        ArrayList<Article> articleList = new ArrayList<Article>();
 //        int lagerort = Integer.parseInt(regalID.subSequence(0, 2).toString());
 //        int regal_nr = Integer.parseInt(regalID.subSequence(2, 4).toString());
 //        int zeile = Integer.parseInt(regalID.subSequence(4, 6).toString());
 
         Cursor cursor = mDatabase.rawQuery(
                 "SELECT " + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID + ", "
-                + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSE_ID + ", "
+                + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_MENGE + ", "
@@ -91,8 +91,8 @@ public class SearchFragmentTestClass extends Fragment {
                 + " LEFT JOIN " + TableArtikelkombination.ArtikelkombinationenEntry.TABLE_NAME + ""
                 + " ON " + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID + " = "
                 + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_ID
-                + " AND " + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSE_ID + " = "
-                + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSE_ID
+                + " AND " + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID + " = "
+                + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSEN_ID
                 + " AND " + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID + " = "
                 + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_ID
                 + SqlWhereQuery + " LIMIT 200 "
@@ -110,19 +110,19 @@ public class SearchFragmentTestClass extends Fragment {
                 String fertigungszustand = cursor.getString(cursor.getColumnIndex(
                         TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND));
                 int groessenId = cursor.getInt(cursor.getColumnIndex(
-                        TableLagerbestand.LagerbestandEntry.COLUMN_GROESSE_ID));
+                        TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID));
                 String artikelBez = cursor.getString(cursor.getColumnIndex(
                         TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG));
                 String farbBez = cursor.getString(cursor.getColumnIndex(
                         TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_BEZEICHNUNGEN));
-                Artikel artikel = new Artikel(artikelId, artikelBez, farbId, farbBez, groessenId,
-                        fertigungszustand, menge, mengeneinheit);
-                artikelListe.add(artikel);
+                Article article = new Article(artikelId, artikelBez, farbId, farbBez, groessenId,
+                        fertigungszustand, menge, mengeneinheit,0);
+                articleList.add(article);
             }
         } finally {
             cursor.close();
         }
-        return artikelListe;
+        return articleList;
     }
 
     public String getSqlWhereQuery(){
@@ -183,7 +183,7 @@ public class SearchFragmentTestClass extends Fragment {
                 SqlQuery.append(" AND ");
             }
             int groesse = Integer.parseInt(editGroesse.trim());
-            SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_GROESSE_ID)
+            SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID)
                     .append(" LIKE '")
                     .append(groesse)
                     .append("%'");

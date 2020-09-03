@@ -1,4 +1,4 @@
-package de.lingen.hsosna.texview;
+package de.lingen.hsosna.texview.fragments;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -21,6 +21,11 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.ArrayList;
 
+import de.lingen.hsosna.texview.Article;
+import de.lingen.hsosna.texview.ArticleAdapter;
+import de.lingen.hsosna.texview.DatabaseHelper;
+import de.lingen.hsosna.texview.Lagerplatz;
+import de.lingen.hsosna.texview.R;
 import de.lingen.hsosna.texview.database.TableArtikelkombination;
 import de.lingen.hsosna.texview.database.TableLagerbestand;
 
@@ -38,11 +43,11 @@ public class SearchFragment extends Fragment {
     private EditText editFertigungszustand;
 
 
-    private GroceryDBHelper dbHelper;
+    private DatabaseHelper dbHelper;
     private SQLiteDatabase mDatabase;
 
     private RecyclerView mRecyclerView;
-    private ExampleAdapter mAdapter;
+    private ArticleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private BottomSheetBehavior mBottomSheetBehaviour;
 
@@ -78,7 +83,7 @@ public class SearchFragment extends Fragment {
 
         //DB CON
         Context context = getActivity();
-        dbHelper = new GroceryDBHelper(context);
+        dbHelper = new DatabaseHelper(context);
         mDatabase = dbHelper.getReadableDatabase();
 
 
@@ -101,19 +106,19 @@ public class SearchFragment extends Fragment {
             public void onClick (View v) {
                 String SqlWhereQuery = getSqlWhereQuery();
                 if(SqlWhereQuery.length() != 0) {
-                    final ArrayList<Artikel> suchErgebnisse = getListWithSearchResults(SqlWhereQuery);
+                    final ArrayList<Article> suchErgebnisse = getListWithSearchResults(SqlWhereQuery);
 
 
                     String suchAnzeige = " Suchergebnisse";
                     mSuchergebnisse.setText((String.valueOf(suchErgebnisse.size())).concat(suchAnzeige));
 
 
-                    mAdapter = new ExampleAdapter(suchErgebnisse);// LIST WITH CONTENTS
+                    mAdapter = new ArticleAdapter(suchErgebnisse);// LIST WITH CONTENTS
 
 
 
 
-                    mAdapter.setOnItemClickListener(new ExampleAdapter.OnItemClickListener() {
+                    mAdapter.setOnItemClickListener(new ArticleAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick (int position) {
                         }
@@ -168,13 +173,13 @@ public class SearchFragment extends Fragment {
 
 
 
-    public ArrayList<Artikel> getListWithSearchResults (String SqlWhereQuery) {
-        ArrayList<Artikel> artikelListe = new ArrayList<Artikel>();
+    public ArrayList<Article> getListWithSearchResults (String SqlWhereQuery) {
+        ArrayList<Article> articleList = new ArrayList<Article>();
 
         Cursor cursor = mDatabase.rawQuery(
                 "SELECT " + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID + ", "
-                + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSE_ID + ", "
+                + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_MENGE + ", "
@@ -186,8 +191,8 @@ public class SearchFragment extends Fragment {
                 + " LEFT JOIN " + TableArtikelkombination.ArtikelkombinationenEntry.TABLE_NAME + ""
                 + " ON " + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID + " = "
                 + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_ID
-                + " AND " + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSE_ID + " = "
-                + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSE_ID
+                + " AND " + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID + " = "
+                + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSEN_ID
                 + " AND " + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID + " = "
                 + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_ID
                 + SqlWhereQuery + " LIMIT 200 "
@@ -205,20 +210,20 @@ public class SearchFragment extends Fragment {
                 String fertigungszustand = cursor.getString(cursor.getColumnIndex(
                         TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND));
                 int groessenId = cursor.getInt(cursor.getColumnIndex(
-                        TableLagerbestand.LagerbestandEntry.COLUMN_GROESSE_ID));
+                        TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID));
                 String artikelBez = cursor.getString(cursor.getColumnIndex(
                         TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG));
                 String farbBez = cursor.getString(cursor.getColumnIndex(
                         TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_BEZEICHNUNGEN));
                 int lagerplatz = cursor.getInt(cursor.getColumnIndex(TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ));
-                Artikel artikel = new Artikel(artikelId, artikelBez, farbId, farbBez, groessenId,
+                Article article = new Article(artikelId, artikelBez, farbId, farbBez, groessenId,
                         fertigungszustand, menge, mengeneinheit, lagerplatz);
-                artikelListe.add(artikel);
+                articleList.add(article);
             }
         } finally {
             cursor.close();
         }
-        return artikelListe;
+        return articleList;
     }
 
 
@@ -279,7 +284,7 @@ public class SearchFragment extends Fragment {
                 SqlQuery.append(" AND ");
             }
             int groesse = Integer.parseInt(editGroesse.getText().toString().trim());
-            SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_GROESSE_ID)
+            SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID)
                     .append(" LIKE '")
                     .append(groesse)
                     .append("%'");

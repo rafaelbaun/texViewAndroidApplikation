@@ -1,4 +1,4 @@
-package de.lingen.hsosna.texview;
+package de.lingen.hsosna.texview.fragments;
 
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -12,6 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
+
+import de.lingen.hsosna.texview.Lagerplatz;
+import de.lingen.hsosna.texview.R;
 
 import static de.lingen.hsosna.texview.MainActivity.colorSwitchState;
 import static de.lingen.hsosna.texview.MainActivity.freeShelveList;
@@ -43,6 +46,9 @@ public class HomeFragment extends Fragment {
         // wenn home frag mit color switch = on aufgerufen wird
         if(colorSwitchState){
             markFreeShelves(v);
+        }
+        else{
+            unmarkFreeShelves(v);
         }
 
 

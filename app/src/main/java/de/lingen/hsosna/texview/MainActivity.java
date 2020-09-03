@@ -25,8 +25,13 @@ import java.util.ArrayList;
 
 import de.lingen.hsosna.texview.database.TableLagerbestand;
 import de.lingen.hsosna.texview.database.TableLagerplaetze;
+import de.lingen.hsosna.texview.fragments.DatabaseFragment;
+import de.lingen.hsosna.texview.fragments.FilterFragment;
+import de.lingen.hsosna.texview.fragments.HomeFragment;
+import de.lingen.hsosna.texview.fragments.RegalfrontFragment;
+import de.lingen.hsosna.texview.fragments.SearchFragment;
 
-import static de.lingen.hsosna.texview.RegalfrontFragment.ARG_SHELVESTOMARKRED;
+import static de.lingen.hsosna.texview.fragments.RegalfrontFragment.ARG_SHELVESTOMARKRED;
 
 /**
  * Die MainActivity ist die gesamte Zeit der Applikationslaufzeit aktiv, da sie über Fragmente und
@@ -42,7 +47,7 @@ public class MainActivity extends AppCompatActivity
     public static ArrayList<Lagerplatz> freeShelveList;
     public ArrayList<CharSequence> freeShelveBoxList;
 
-    private GroceryDBHelper dbHelper;
+    private DatabaseHelper dbHelper;
     private SQLiteDatabase mDatabase;
 
     public static boolean colorSwitchState;
@@ -54,7 +59,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
 
-        dbHelper = new GroceryDBHelper(this);
+        dbHelper = new DatabaseHelper(this);
         mDatabase = dbHelper.getReadableDatabase();
         freeShelveList = getFreeShelves();
 
@@ -93,36 +98,58 @@ public class MainActivity extends AppCompatActivity
      */
     public void getClickedRegalFach (View view) {
         displayToast((String) view.getContentDescription());
+
+        //muss wahrscheinlich aus der methode
+        ArrayList<View> bottomSheets = new ArrayList<>();
+        bottomSheets.add(findViewById(R.id.slideUpPaneFach01));
+        bottomSheets.add(findViewById(R.id.slideUpPaneFach02));
+        bottomSheets.add(findViewById(R.id.slideUpPaneFach03));
+        bottomSheets.add(findViewById(R.id.slideUpPaneFach04));
+        bottomSheets.add(findViewById(R.id.slideUpPaneFach05));
+        bottomSheets.add(findViewById(R.id.slideUpPaneFach06));
+        bottomSheets.add(findViewById(R.id.slideUpPaneFach07));
+        /////////////////////////
+
+
+
         //RegalfrontFragment.fachID = view.getContentDescription();
         if (view.getContentDescription().toString().equals("1")) {
-            View bottomSheet = findViewById(R.id.slideUpPaneFach01);
-            mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet);
+            hideSlideUpPanes(bottomSheets);
+            mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheets.get(0));
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else if (view.getContentDescription().toString().equals("2")) {
-            View bottomSheet2 = findViewById(R.id.slideUpPaneFach02);
-            mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet2);
+            hideSlideUpPanes(bottomSheets);
+            mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheets.get(1));
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else if (view.getContentDescription().toString().equals("3")) {
-            View bottomSheet2 = findViewById(R.id.slideUpPaneFach03);
-            mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet2);
+            hideSlideUpPanes(bottomSheets);
+            mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheets.get(2));
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else if (view.getContentDescription().toString().equals("4")) {
-            View bottomSheet2 = findViewById(R.id.slideUpPaneFach04);
-            mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet2);
+            hideSlideUpPanes(bottomSheets);
+            mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheets.get(3));
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else if (view.getContentDescription().toString().equals("5")) {
-            View bottomSheet2 = findViewById(R.id.slideUpPaneFach05);
-            mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet2);
+            hideSlideUpPanes(bottomSheets);
+            mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheets.get(4));
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else if (view.getContentDescription().toString().equals("6")) {
-            View bottomSheet2 = findViewById(R.id.slideUpPaneFach06);
-            mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet2);
+            hideSlideUpPanes(bottomSheets);
+            mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheets.get(5));
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else if (view.getContentDescription().toString().equals("7")) {
-            View bottomSheet2 = findViewById(R.id.slideUpPaneFach07);
-            mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet2);
+            hideSlideUpPanes(bottomSheets);
+            mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheets.get(6));
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
         }
+    }
+
+    public void hideSlideUpPanes (ArrayList<View> bottomSheets){
+        for (View v : bottomSheets) {
+            mBottomSheetBehaviour = BottomSheetBehavior.from(v);
+            mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_HIDDEN);
+        }
+
     }
 
     /**

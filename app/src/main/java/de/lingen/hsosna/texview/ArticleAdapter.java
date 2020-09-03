@@ -15,8 +15,8 @@ import java.util.ArrayList;
  * Um den Recyclerview zu füllen, wird der Adapter mit den TextView's des Layouts gefüllt und diesen
  * die zugehörigen Daten zugeordnet.
  */
-public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> {
-    private ArrayList<Artikel> mExampleList;
+public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ExampleViewHolder> {
+    private ArrayList<Article> mExampleList;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener{
@@ -86,7 +86,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         }
     }
 
-    public ExampleAdapter (ArrayList<Artikel> exampleList) {
+    public ArticleAdapter (ArrayList<Article> exampleList) {
         mExampleList = exampleList;
     }
 
@@ -100,7 +100,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
 
     @Override
     public void onBindViewHolder (@NonNull ExampleViewHolder holder, int position) {
-        Artikel currentItem = mExampleList.get(position);
+        Article currentItem = mExampleList.get(position);
         holder.mTextArtikelNr.setText(String.valueOf(currentItem.getArtikelID()));
         holder.mTextArtikelBez.setText(currentItem.getArtikel_Bezeichnung());
         holder.mTextFarbeID.setText(String.valueOf(currentItem.getFarbe_ID()));

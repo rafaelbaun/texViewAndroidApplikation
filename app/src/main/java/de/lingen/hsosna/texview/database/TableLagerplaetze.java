@@ -16,5 +16,6 @@ public class TableLagerplaetze {
         public static final String COLUMN_REGAL_NR = "regal_nr_lagerplaetze";
         public static final String COLUMN_ZEILE = "zeile_lagerplaetze";
         public static final String COLUMN_SPALTE = "spalte_lagerplaetze";
+        public static final String COLUMN_BESCHREIBUNG = "beschreibung_lagerplaetze";
     }
 }

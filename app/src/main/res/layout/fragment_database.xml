@@ -1,92 +1,222 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@android:color/holo_red_dark"
-    android:padding="16dp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DB Fragment"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/>
-
-    <EditText
-        android:id="@+id/edittext_name"
+        android:id="@+id/textView_CaptionSettings"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/textview_amount"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
-        android:textSize="50sp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/edittext_name"/>
-    <Button
-        android:id="@+id/button_decrease"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textview_amount"
-        android:layout_alignTop="@+id/textview_amount"
-        android:layout_toStartOf="@+id/textview_amount"
-        android:text="-"/>
-
-    <Button
-        android:id="@+id/button_increase"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textview_amount"
-        android:layout_alignBottom="@+id/textview_amount"
-        android:layout_toEndOf="@+id/textview_amount"
-        android:text="+" />
-
-    <Button
-        android:id="@+id/button_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="add"
-        android:layout_alignBottom="@+id/button_increase"
-        android:layout_alignTop="@+id/button_increase"
-        android:layout_toEndOf="@id/button_increase"
-        android:layout_marginStart="8dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/poppins_light"
+        android:padding="4dp"
+        android:text="Einstellungen"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+    <View
+        android:id="@+id/divider_settings_1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/textview_amount"/>
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:background="?android:attr/listDivider" />
 
-    <Button
-        android:id="@+id/buttonDeleteDB"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:text="Wipe Database" />
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="Datenbank"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/buttonFillDB"
-        android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/horizontalWithButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/button_reloadFromServer"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="#0DFFFFFF"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_refresh"
+                    android:text="Load from Server" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Datenbestand"
+                    android:fontFamily="@font/poppins"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="aktualisieren"
+                    android:fontFamily="@font/poppins"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/button_loadFromServer"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="#0DFFFFFF"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_cloud_download"
+                    android:text="Load from Server" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Datenbank"
+                    android:fontFamily="@font/poppins"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="vom Server laden"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/button_loadFromMemory"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="#0DFFFFFF"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_document_download"
+                    android:text="Load from Memory" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Datenbank"
+                    android:fontFamily="@font/poppins"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="aus Speicher laden"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/button_deleteDbContent"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="#0DFFFFFF"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_trash"
+                    android:text="Delete Database Content" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Datenbank"
+                    android:fontFamily="@font/poppins"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="löschen"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:progressTint="@color/colorPrimary"
+            android:visibility="invisible"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider_settings_2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="8dp"
+        android:background="?android:attr/listDivider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/buttonDeleteDB"
-        android:text="Fill Database" />
-
-    <Button
-        android:id="@+id/buttonFetchServerDB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/buttonFillDB"
-        android:text="Fetch Server DB" />
-    <Button
-        android:id="@+id/buttonConnectDB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/buttonFetchServerDB"
-        android:text="Connect to DB" />
-
-
-</RelativeLayout>
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="Login"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/buttonFetchServerDB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fetch Server DB" />
+    </LinearLayout>
+</LinearLayout>

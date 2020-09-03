@@ -1,4 +1,4 @@
-package de.lingen.hsosna.texview;
+package de.lingen.hsosna.texview.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import de.lingen.hsosna.texview.R;
 
 public class FilterFragment extends Fragment {
     private FilterFragmentListener listener;

@@ -1,4 +1,4 @@
-package de.lingen.hsosna.texview;
+package de.lingen.hsosna.texview.fragments;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -19,6 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import de.lingen.hsosna.texview.Article;
+import de.lingen.hsosna.texview.ArticleAdapter;
+import de.lingen.hsosna.texview.DatabaseHelper;
+import de.lingen.hsosna.texview.Lagerplatz;
+import de.lingen.hsosna.texview.R;
 import de.lingen.hsosna.texview.database.TableArtikelkombination;
 import de.lingen.hsosna.texview.database.TableLagerbestand;
 
@@ -34,10 +39,8 @@ public class RegalfrontFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private GroceryDBHelper dbHelper;
+    private DatabaseHelper dbHelper;
     private SQLiteDatabase mDatabase;
-    private CharSequence regalID;
-    private ArrayList<CharSequence> faecherToMark = new ArrayList<>();
 
     /**
      * Um verarbeiten zu können, welche Parameter übergeben wurden, muss ein Bundle erstellt werden,
@@ -59,9 +62,10 @@ public class RegalfrontFragment extends Fragment {
     public View onCreateView (@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                               @Nullable Bundle savedInstanceState) {
         //View v = inflater.inflate(R.layout.fragment_regalfront, container, false);
-        View v = inflater.inflate(R.layout.bottomsheet_test, container, false);
+        //Klappt View v = inflater.inflate(R.layout.bottomsheet_test, container, false);
+        View v = inflater.inflate(R.layout.fragment_shelf_frontal, container, false);
         Context context = getActivity();
-        dbHelper = new GroceryDBHelper(context);
+        dbHelper = new DatabaseHelper(context);
         mDatabase = dbHelper.getReadableDatabase();
         TextView textView = v.findViewById(R.id.textviewRegalfachbezeichnung);
         if (getArguments() != null) {
@@ -72,6 +76,8 @@ public class RegalfrontFragment extends Fragment {
 
         if(colorSwitchState){
             markFreeShelves(v);
+        } else {
+            unmarkFreeShelves(v);
         }
 
 
@@ -92,149 +98,62 @@ public class RegalfrontFragment extends Fragment {
         mRecyclerView = v.findViewById(R.id.recyclerView_fach01);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mAdapter = new ExampleAdapter(getListWithContents(1));// LIST WITH CONTENTS
+        mAdapter = new ArticleAdapter(getListWithContents(1));// LIST WITH CONTENTS
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
         mRecyclerView = v.findViewById(R.id.recyclerView_fach02);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mAdapter = new ExampleAdapter(getListWithContents(2));
+        mAdapter = new ArticleAdapter(getListWithContents(2));
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
         mRecyclerView = v.findViewById(R.id.recyclerView_fach03);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mAdapter = new ExampleAdapter(getListWithContents(3));
+        mAdapter = new ArticleAdapter(getListWithContents(3));
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
         mRecyclerView = v.findViewById(R.id.recyclerView_fach04);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mAdapter = new ExampleAdapter(getListWithContents(4));
+        mAdapter = new ArticleAdapter(getListWithContents(4));
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
         mRecyclerView = v.findViewById(R.id.recyclerView_fach05);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mAdapter = new ExampleAdapter(getListWithContents(5));
+        mAdapter = new ArticleAdapter(getListWithContents(5));
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
         mRecyclerView = v.findViewById(R.id.recyclerView_fach06);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mAdapter = new ExampleAdapter(getListWithContents(6));
+        mAdapter = new ArticleAdapter(getListWithContents(6));
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
         mRecyclerView = v.findViewById(R.id.recyclerView_fach07);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mAdapter = new ExampleAdapter(getListWithContents(7));
+        mAdapter = new ArticleAdapter(getListWithContents(7));
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    /**
-     * Eine ArrayList wird mit Artikeln gefüllt die sich in dem Regal befinden, welches übergeben wird
-     *
-     * @param regalFachNummer Die Regalfachnummer wird als Integer übergeben
-     * @return Eine ArrayListe mit Objekten der Klasse "Artikel" wird zurückgegeben
-     */
-    /*public ArrayList<Artikel> fillArrayWithData (int regalFachNummer) {
-        ArrayList<Artikel> artikelListe = new ArrayList<Artikel>();
-        switch (regalFachNummer) {
-            case 1:
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                break;
-            case 2:
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                break;
-            case 3:
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                break;
-            case 4:
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                break;
-            case 5:
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                break;
-            case 6:
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                break;
-            case 7:
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                artikelListe.add(
-                        new Artikel(79987, "Sheldon", 100935, "Punkte, 2,5cm, erika, rose", 140,
-                                "FW", "44", "m"));
-                break;
-        }
-        return artikelListe;
-    }*/
-
-    public ArrayList<Artikel> getListWithContents (int regalFachNummer) {
-        ArrayList<Artikel> artikelListe = new ArrayList<Artikel>();
+    public ArrayList<Article> getListWithContents (int regalFachNummer) {
+        ArrayList<Article> articleList = new ArrayList<Article>();
         int lagerort = Integer.parseInt(clickedShelf.subSequence(0, 2).toString());
         int regal_nr = Integer.parseInt(clickedShelf.subSequence(2, 4).toString());
         int zeile = Integer.parseInt(clickedShelf.subSequence(4, 6).toString());
         int lagerplatz = Integer.parseInt("" + regal_nr + "" + zeile + "" + regalFachNummer + "");
         Cursor cursor = mDatabase.rawQuery(
                 "SELECT " + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID + ", "
-                + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSE_ID + ", "
+                + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_MENGE + ", "
@@ -246,8 +165,8 @@ public class RegalfrontFragment extends Fragment {
                 + " LEFT JOIN " + TableArtikelkombination.ArtikelkombinationenEntry.TABLE_NAME + ""
                 + " ON " + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID + " = "
                 + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_ID
-                + " AND " + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSE_ID + " = "
-                + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSE_ID
+                + " AND " + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID + " = "
+                + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSEN_ID
                 + " AND " + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID + " = "
                 + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_ID
                 + " WHERE " + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ + "="
@@ -266,19 +185,19 @@ public class RegalfrontFragment extends Fragment {
                 String fertigungszustand = cursor.getString(cursor.getColumnIndex(
                         TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND));
                 int groessenId = cursor.getInt(cursor.getColumnIndex(
-                        TableLagerbestand.LagerbestandEntry.COLUMN_GROESSE_ID));
+                        TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID));
                 String artikelBez = cursor.getString(cursor.getColumnIndex(
                         TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG));
                 String farbBez = cursor.getString(cursor.getColumnIndex(
                         TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_BEZEICHNUNGEN));
-                Artikel artikel = new Artikel(artikelId, artikelBez, farbId, farbBez, groessenId,
+                Article article = new Article(artikelId, artikelBez, farbId, farbBez, groessenId,
                         fertigungszustand, menge, mengeneinheit, lagerplatz);
-                artikelListe.add(artikel);
+                articleList.add(article);
             }
         } finally {
             cursor.close();
         }
-        return artikelListe;
+        return articleList;
     }
 
     public void markFaecher(View v){
