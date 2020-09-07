@@ -1,11 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_view_test"
     tools:context="de.lingen.hsosna.texview.MainActivity"
-    tools:showIn="navigation_view"
-    android:id="@+id/nav_view_test">
+    tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/group_top"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
@@ -19,14 +21,27 @@
             android:icon="@drawable/ic_search"
             android:title="Search" />
     </group>
-    <item android:title="Settings">
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_dbcon2"
+            android:icon="@drawable/ic_info"
+            android:title="Info" />
+        <item
+            android:id="@+id/nav_dbcon"
+            android:icon="@drawable/ic_settings"
+            android:title="Einstellungen" />
+
+    </group>
+
+    <!--<item android:title="Settings">
         <menu>
             <item
                 android:id="@+id/nav_dbcon"
                 android:icon="@drawable/ic_settings"
                 android:title="Settings" />
-
-
         </menu>
-    </item>
+    </item>-->
 </menu>

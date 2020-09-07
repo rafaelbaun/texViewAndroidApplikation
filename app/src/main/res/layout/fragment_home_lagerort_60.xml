@@ -1,0 +1,1563 @@
+<?xml version="1.0" encoding="utf-8"?>
+<de.lingen.hsosna.texview.layouts.ZoomLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/zoom_linear_layout">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+        <!--    REIHE 05    -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/regal_0501"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0501"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0502"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0502"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0503"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0503"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0504"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0504"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0505"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0505"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0506"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0506"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0507"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0507"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0508"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0508"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_05_SPACE"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalSPACE"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0509"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0509"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0510"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0510"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0511"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0511"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0512"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0512"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0513"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0513"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0514"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0514"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+        </LinearLayout>
+        <!-- REIHE 04 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/regal_0428"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0428"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0427"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0427"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0426"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0426"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0425"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0425"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0424"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0424"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0423"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0423"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0422"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0422"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0421"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0421"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_04_SPACE_TOP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalSPACE"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0420"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0420"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0419"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0419"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0418"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0418"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0417"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0417"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0416"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0416"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0415"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0415"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/regal_0401"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0401"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0402"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0402"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0403"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0403"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0404"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0404"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0405"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0405"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0406"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0406"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0407"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0407"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0408"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0408"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_04_SPACE_BOT"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalSPACE"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0409"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0409"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0410"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0410"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0411"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0411"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0412"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0412"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0413"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0413"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0414"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0414"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+        </LinearLayout>
+        <!-- REIHE 03-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/regal_0328"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0328"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0327"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0327"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0326"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0326"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0325"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0325"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0324"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0324"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0323"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0323"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0322"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0322"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0321"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0321"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_03_SPACE_TOP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalSPACE"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0320"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0320"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0319"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0319"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0318"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0318"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0317"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0317"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0316"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0316"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0315"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0315"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/regal_0301"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0301"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0302"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0302"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0303"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0303"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0304"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0304"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0305"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0305"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0306"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0306"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0307"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0307"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0308"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0308"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_03_SPACE_BOT"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalSPACE"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0309"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0309"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0310"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0310"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0311"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0311"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0312"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0312"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0313"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0313"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0314"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0314"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+        </LinearLayout>
+        <!-- REIHE 02 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/regal_02x1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalSPACE"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_02x2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalSPACE"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0224"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0224"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0223"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0223"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal"
+                tools:ignore="TooManyViews" />
+
+            <ImageView
+                android:id="@+id/regal_0222"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0222"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0221"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0221"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0220"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0220"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0219"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0219"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_02_SPACE_TOP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalSPACE"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0218"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0218"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0217"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0217"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0216"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0216"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0215"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0215"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0214"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0214"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0213"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0213"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/regal_02x3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalSPACE"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_02x4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalSPACE"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0201"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0201"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0202"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0202"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0203"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0203"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0204"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0204"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0205"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0205"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0206"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0206"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_02_SPACE_BOT"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalSPACE"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0207"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0207"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0208"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0208"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0209"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0209"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0210"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0210"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0211"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0211"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0212"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0212"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+        </LinearLayout>
+        <!-- Reihe 01 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/regal_01x1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalSPACE"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_01x2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalSPACE"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0124"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0124"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0123"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0123"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0122"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0122"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0121"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0121"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0120"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0120"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0119"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0119"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_01_SPACE_TOP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalSPACE"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0118"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0118"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0117"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0117"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0116"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0116"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0115"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0115"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0114"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0114"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0113"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0113"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/regal_01x3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalTemp"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                android:visibility="visible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_01x4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalSPACE"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0101"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0101"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0102"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0102"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0103"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0103"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0104"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0104"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0105"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0105"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0106"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0106"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_01_SPACE_BOT"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regalSPACE"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0107"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0107"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0108"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0108"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0109"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0109"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0110"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0110"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0111"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0111"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+
+            <ImageView
+                android:id="@+id/regal_0112"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/regal0112"
+                android:onClick="getClickedRegal"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_shelf_normal" />
+        </LinearLayout>
+    </LinearLayout>
+</de.lingen.hsosna.texview.layouts.ZoomLinearLayout>

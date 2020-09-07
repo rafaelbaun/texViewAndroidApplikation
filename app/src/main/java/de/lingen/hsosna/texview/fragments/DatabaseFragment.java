@@ -45,7 +45,6 @@ import okhttp3.Response;
 public class DatabaseFragment extends Fragment {
     private SQLiteDatabase mDatabase;
     private ProgressBar progressBar;
-    private ProgressBar progressBar2;
 
 
     @Nullable

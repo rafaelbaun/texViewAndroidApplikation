@@ -1,11 +1,13 @@
 package de.lingen.hsosna.texview;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
@@ -30,6 +32,7 @@ import de.lingen.hsosna.texview.fragments.FilterFragment;
 import de.lingen.hsosna.texview.fragments.HomeFragment;
 import de.lingen.hsosna.texview.fragments.RegalfrontFragment;
 import de.lingen.hsosna.texview.fragments.SearchFragment;
+import de.lingen.hsosna.texview.layouts.ZoomLinearLayout;
 
 import static de.lingen.hsosna.texview.fragments.RegalfrontFragment.ARG_SHELVESTOMARKRED;
 
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //setContentView(R.layout.fragment_home_lagerort_60);
 
 
         dbHelper = new DatabaseHelper(this);
@@ -88,6 +92,9 @@ public class MainActivity extends AppCompatActivity
                     new HomeFragment(), "HOME_FRAGMENT").commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
+
+
+
     }
 
     /**
@@ -236,6 +243,10 @@ public class MainActivity extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new SearchFragment(), "SEARCH_FRAGMENT").commit();
                 break;
+            case R.id.nav_dbcon2:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new DatabaseFragment(), "DB_FRAGMENT").commit();
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -312,7 +323,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.searchButton:
                 Toast.makeText(this, "Suche ausgewählt", Toast.LENGTH_SHORT).show();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new SearchFragment(), "FILTER_FRAGMENT").commit();
+                        new SearchFragment(), "SEARCH_FRAGMENT").commit();
                 NavigationView navigationView = findViewById(R.id.nav_view);
                 navigationView.setCheckedItem(R.id.nav_search);
                 return true;
@@ -381,4 +392,5 @@ public class MainActivity extends AppCompatActivity
 
         return freeShelves;
     }
+
 }

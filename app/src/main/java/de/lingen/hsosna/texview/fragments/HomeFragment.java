@@ -1,8 +1,10 @@
 package de.lingen.hsosna.texview.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -12,9 +14,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import de.lingen.hsosna.texview.Lagerplatz;
+import de.lingen.hsosna.texview.MainActivity;
 import de.lingen.hsosna.texview.R;
+import de.lingen.hsosna.texview.layouts.ZoomLinearLayout;
 
 import static de.lingen.hsosna.texview.MainActivity.colorSwitchState;
 import static de.lingen.hsosna.texview.MainActivity.freeShelveList;
@@ -33,10 +38,24 @@ public class HomeFragment extends Fragment {
         return fragment;
     }
 
+    @SuppressLint ("ClickableViewAccessibility")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_home_copy, container, false);
+        //View v = inflater.inflate(R.layout.fragment_home_copy, container, false);
+        View v = inflater.inflate(R.layout.fragment_home_lagerort_60, container, false);
+
+
+        //ZOOMMTEST
+        final ZoomLinearLayout zoomLinearLayout = (ZoomLinearLayout) v.findViewById(R.id.zoom_linear_layout);
+        zoomLinearLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch (View v, MotionEvent event) {
+                zoomLinearLayout.init(getActivity());
+                return false;
+            }
+        });
+        //////////////
 
         if (getArguments() != null){
             shelvesToMarkRed = getArguments().getParcelableArrayList(ARG_SHELVESTOMARKRED);
