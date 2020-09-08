@@ -174,8 +174,6 @@
 
     <string name="regalTemp">606200</string>
 
-
-
     <string name="regalFach01">1</string>
     <string name="regalFach02">2</string>
     <string name="regalFach03">3</string>
@@ -185,7 +183,38 @@
     <string name="regalFach07">7</string>
 
     <string name="testFall">Bitte füllen Sie mindestens ein Feld aus</string>
-    <string name="suchergebnisse"> Suchergebnisse</string>
+
+    <!-- //SEARCHFRAGMENT// -->
+    <string name="searchFragment_searchResults"> Suchergebnisse</string>
+    <string name="searchFragment_title">Artikel Suche</string>
+    <string name="searchFragment_submitButton">Suchen</string>
+
+        <!-- TextView's -->
+    <string name="searchFragment_textView_articleId">Artikel Nr</string>
+    <string name="searchFragment_textView_articleShortDescription">Kurzbez.</string>
+    <string name="searchFragment_textView_contains">(enthält)</string>
+    <string name="searchFragment_textView_pieceId">Stücknummer</string>
+    <string name="searchFragment_textView_pieceDivision">Stückteilung</string>
+    <string name="searchFragment_textView_colorId">Farb ID</string>
+    <string name="searchFragment_textView_colorDescription">Farbbez.</string>
+    <string name="searchFragment_textView_size">Größe</string>
+    <string name="searchFragment_textView_manufacturingState">Fert. Zustand</string>
+        <!-- EditText's -->
+    <string name="searchFragment_editText_articleId">Artikel Nr.</string>
+    <string name="searchFragment_editText_articleShortDescription">Kurzbezeichnung</string>
+    <string name="searchFragment_editText_pieceId">Stücknummer</string>
+    <string name="searchFragment_editText_pieceDivision">Stückteilung</string>
+    <string name="searchFragment_editText_colorId">Farb ID</string>
+    <string name="searchFragment_editText_colorDescription">Farbbezeichnung</string>
+    <string name="searchFragment_editText_size">Größe</string>
+    <string name="searchFragment_editText_manufacturingState">Fertigungszustand</string>
+
+        <!-- Icon Descrptions -->
+    <string name="searchFragment_iconDescription_misc">Icon for Miscellaneous Searchattributes</string>
+    <string name="searchFragment_iconDescription_color">Icon for Color Searchattributes</string>
+    <string name="searchFragment_iconDescription_article">Icon for Article Searchattributes</string>
+
+
 
 
 </resources>

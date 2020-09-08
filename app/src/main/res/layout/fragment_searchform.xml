@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:minHeight="800dp"
+        android:orientation="vertical"
+        android:padding="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/searchFragment_title"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.9"
+            android:gravity="top|center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/searchFragment_icon_article"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/searchFragment_iconDescription_article"
+                android:padding="8dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_itemtag"
+                tools:ignore="NestedWeights" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="top"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/searchFragment_textView_articleId"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:translationY="8dp" />
+
+                <EditText
+                    android:id="@+id/searchFragment_editText_articleId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/searchFragment_editText_articleId"
+                    android:imeOptions="actionSearch"
+                    android:importantForAutofill="no"
+                    android:inputType="number" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:translationY="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="@string/searchFragment_textView_articleShortDescription"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/searchFragment_textView_contains" />
+                </LinearLayout>
+
+
+                <EditText
+                    android:id="@+id/searchFragment_editText_articleShortDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/searchFragment_editText_articleShortDescription"
+                    android:imeOptions="actionSearch"
+                    android:importantForAutofill="no"
+                    android:inputType="text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/searchFragment_textView_pieceId"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:translationY="8dp" />
+
+                <EditText
+                    android:id="@+id/searchFragment_editText_pieceId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/searchFragment_editText_pieceId"
+                    android:imeOptions="actionSearch"
+                    android:importantForAutofill="no"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/searchFragment_textView_pieceDivision"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:translationY="8dp" />
+
+                <EditText
+                    android:id="@+id/searchFragment_editText_pieceDivision"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/searchFragment_editText_pieceDivision"
+                    android:imeOptions="actionSearch"
+                    android:importantForAutofill="no"
+                    android:inputType="number" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/searchFragment_divider__article_color"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:minHeight="300dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/searchFragment_icon_color"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/searchFragment_iconDescription_color"
+                android:padding="8dp"
+                android:scaleType="fitEnd"
+                app:srcCompat="@drawable/ic_color"
+                tools:ignore="NestedWeights" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="top"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/searchFragment_textView_colorId"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:translationY="8dp" />
+
+                <EditText
+                    android:id="@+id/searchFragment_editText_colorId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/searchFragment_editText_colorId"
+                    android:imeOptions="actionSearch"
+                    android:importantForAutofill="no"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/searchFragment_textView_colorDescription"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:translationY="8dp" />
+
+
+                <EditText
+                    android:id="@+id/searchFragment_editText_colorDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/searchFragment_editText_colorDescription"
+                    android:imeOptions="actionSearch"
+                    android:importantForAutofill="no"
+                    android:inputType="text" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/searchFragment_divider__color_misc"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:minHeight="300dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/searchFragment_icon_misc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/searchFragment_iconDescription_misc"
+                android:padding="8dp"
+                android:scaleType="fitEnd"
+                app:srcCompat="@drawable/ic_misc"
+                tools:ignore="NestedWeights" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="top"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/searchFragment_textView_size"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:translationY="8dp" />
+
+
+                <EditText
+                    android:id="@+id/searchFragment_editText_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/searchFragment_editText_size"
+                    android:imeOptions="actionSearch"
+                    android:importantForAutofill="no"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/searchFragment_textView_manufacturingState"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:translationY="8dp" />
+
+
+                <EditText
+                    android:id="@+id/searchFragment_editText_manufacturingState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/searchFragment_editText_manufacturingState"
+                    android:imeOptions="actionSearch"
+                    android:importantForAutofill="no"
+                    android:inputType="text" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/searchFragment_button_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/searchFragment_submitButton" />
+    </LinearLayout>
+</ScrollView>

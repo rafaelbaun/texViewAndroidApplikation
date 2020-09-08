@@ -1,318 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/include_searchFragment_searchForm"
+        layout="@layout/fragment_searchform"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    android:clickable="false"
-    android:paddingLeft="50dp"
-    android:paddingRight="50dp"
-    android:scrollbars="vertical">
-
-
-
-
-    <TextView
-        android:id="@+id/searchfragment_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Artikel Suche"
-        android:textColor="@android:color/black"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/submitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Suchen"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewArtikelbez"
-        app:layout_constraintDimensionRatio="h,1:1"
-        app:layout_constraintStart_toStartOf="@+id/divider"
-        app:layout_constraintTop_toTopOf="@+id/textViewArtikelNr"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_itemtag" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewFarbbez"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="@+id/divider"
-        app:layout_constraintTop_toTopOf="@+id/textViewFarbID"
-        app:srcCompat="@drawable/ic_color" />
-
-    <TextView
-        android:id="@+id/textViewArtikelNr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Artikel Nr"
-        android:textColor="@android:color/black"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewArtikelbez"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/textViewArtikelbez"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Kurzbez."
-        android:textColor="@android:color/black"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/divider"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textViewArtikelNr" />
-
-    <TextView
-        android:id="@+id/textViewArtikelbezZusatz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(enthält)"
-        android:translationY="-10dp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewArtikelbez"
-        app:layout_constraintStart_toStartOf="@+id/textViewArtikelbez"
-        app:layout_constraintTop_toBottomOf="@+id/textViewArtikelbez" />
-
-    <TextView
-        android:id="@+id/textViewFarbID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Farb ID"
-        android:textColor="@android:color/black"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewFarbbez"
-        app:layout_constraintStart_toStartOf="@+id/textViewFarbbez"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/textViewFarbbez"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Farbbez."
-        android:textColor="@android:color/black"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/divider2"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/textViewFarbID" />
-
-    <TextView
-        android:id="@+id/textViewGroesse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Größe"
-        android:textColor="@android:color/black"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewFertzstd"
-        app:layout_constraintStart_toStartOf="@+id/textViewFertzstd"
-        app:layout_constraintTop_toBottomOf="@+id/divider2"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/textViewFertzstd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="24dp"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Fert. Zustand"
-        android:textColor="@android:color/black"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/editTextFertigungszustand"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGroesse" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <EditText
-        android:id="@+id/editTextArtikelNr"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Artikel Nr."
-        android:inputType="number"
-        app:layout_constraintBaseline_toBaselineOf="@id/textViewArtikelNr"
-        app:layout_constraintEnd_toEndOf="@+id/divider"
-        app:layout_constraintStart_toStartOf="@+id/editTextFertigungszustand" />
-
-    <EditText
-        android:id="@+id/editTextArtikelkurzbez"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Kurzbezeichnung"
-        android:inputType="text"
-        app:layout_constraintBaseline_toBaselineOf="@id/textViewArtikelbez"
-        app:layout_constraintEnd_toEndOf="@+id/divider"
-        app:layout_constraintStart_toStartOf="@+id/editTextArtikelNr" />
-
-    <EditText
-        android:id="@+id/editTextFarbbezeichnung"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Farbbezeichnung"
-        android:inputType="text"
-        app:layout_constraintBaseline_toBaselineOf="@id/textViewFarbbez"
-        app:layout_constraintEnd_toEndOf="@+id/divider"
-        app:layout_constraintStart_toStartOf="@+id/editTextFertigungszustand" />
-
-    <EditText
-        android:id="@+id/editTextFarbID"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Farb ID"
-        android:inputType="number"
-        app:layout_constraintBaseline_toBaselineOf="@id/textViewFarbID"
-        app:layout_constraintEnd_toEndOf="@+id/divider"
-        app:layout_constraintStart_toStartOf="@+id/editTextFarbbezeichnung" />
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-    <EditText
-        android:id="@+id/editTextGroesse"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Größe"
-        android:inputType="number"
-        app:layout_constraintBaseline_toBaselineOf="@id/textViewGroesse"
-        app:layout_constraintEnd_toEndOf="@+id/divider2"
-        app:layout_constraintStart_toStartOf="@+id/editTextFertigungszustand" />
-
-    <EditText
-        android:id="@+id/editTextFertigungszustand"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Fertigungszustand"
-        android:inputType="text"
-        app:layout_constraintBaseline_toBaselineOf="@id/textViewFertzstd"
-        app:layout_constraintEnd_toEndOf="@+id/divider2"
-        app:layout_constraintStart_toEndOf="@+id/textViewFertzstd" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewFertzstd"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="@+id/divider2"
-        app:layout_constraintTop_toTopOf="@+id/textViewGroesse"
-        app:srcCompat="@drawable/ic_misc" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="984dp"
-        app:layout_constraintGuide_percent="0.9" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textViewFertzstd"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/slideUpjmvgmjhPaneFach01"
+        android:id="@+id/searchFragment_searchResultSlideUpPane"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F2FFFFFF"
         app:behavior_hideable="true"
         app:behavior_peekHeight="48dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
-                android:id="@+id/textViewSuchergebnisse"
+                android:id="@+id/searchFragment_searchResultHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:background="@color/colorPrimary"
-                android:textColor="@color/colorAccent"
+                android:fontFamily="@font/poppins_light"
                 android:padding="8dp"
-                android:text="Suchergebnisse"
+                android:text="@string/searchFragment_searchResults"
                 android:textAlignment="center"
-                android:textSize="24sp"
-                android:fontFamily="@font/poppins_light"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerVgvhgview_fach01"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            android:padding="4dp"
-            android:layout_marginTop="48dp"
-            android:scrollbars="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/searchFragment_recyclerView_searchResult"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="48dp"
+                android:background="@color/colorPrimary"
+                android:padding="4dp"
+                android:scrollbars="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>

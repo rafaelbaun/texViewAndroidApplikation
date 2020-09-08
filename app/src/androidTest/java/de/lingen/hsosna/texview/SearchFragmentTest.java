@@ -48,12 +48,12 @@ public class SearchFragmentTest {
 
     @Test
     public void testFillSearchForm(){
-        onView(withId(R.id.editTextArtikelNr)).perform(replaceText("79987")); //Artikel Nr
-        onView(withId(R.id.editTextArtikelkurzbez)).perform(replaceText("Sheldon")); //Kurzbez
-        onView(withId(R.id.editTextFarbID)).perform(replaceText("100935")); //FarbID
-        onView(withId(R.id.editTextFarbbezeichnung)).perform(replaceText("Punkte, 2,5cm, erika, rose")); //Farbbez
-        onView(withId(R.id.editTextGroesse)).perform(replaceText("140")); //Groeße
-        onView(withId(R.id.editTextFertigungszustand)).perform(replaceText("FW")); //Fertzustand
+        onView(withId(R.id.searchFragment_editText_articleId)).perform(replaceText("79987")); //Artikel Nr
+        onView(withId(R.id.searchFragment_editText_articleShortDesc)).perform(replaceText("Sheldon")); //Kurzbez
+        onView(withId(R.id.searchFragment_editText_colorId)).perform(replaceText("100935")); //FarbID
+        onView(withId(R.id.searchFragment_editText_colorDescription)).perform(replaceText("Punkte, 2,5cm, erika, rose")); //Farbbez
+        onView(withId(R.id.searchFragment_editText_size)).perform(replaceText("140")); //Groeße
+        onView(withId(R.id.searchFragment_editText_manufacturingState)).perform(replaceText("FW")); //Fertzustand
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
@@ -77,13 +77,13 @@ public class SearchFragmentTest {
     // Additionen werden ignoriert bei ArtikelNr
     @Test
     public void testSearchArticleIdAddition(){
-        onView(withId(R.id.editTextArtikelNr)).perform(replaceText("12+25"));
+        onView(withId(R.id.searchFragment_editText_articleId)).perform(replaceText("12+25"));
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        onView(withId(R.id.submitButton)).perform(click());
+        onView(withId(R.id.searchFragment_button_submit)).perform(click());
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -94,13 +94,13 @@ public class SearchFragmentTest {
     // negative ArtikelNr wird ignoriert
     @Test
     public void testSearchArticleIdNegative(){
-        onView(withId(R.id.editTextArtikelNr)).perform(replaceText(String.valueOf(-61000)));
+        onView(withId(R.id.searchFragment_editText_articleId)).perform(replaceText(String.valueOf(-61000)));
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        onView(withId(R.id.submitButton)).perform(click());
+        onView(withId(R.id.searchFragment_button_submit)).perform(click());
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -112,14 +112,14 @@ public class SearchFragmentTest {
     // ArtikelNr & Artikelbezeichnung
     @Test
     public void testSearchArticleConny(){
-        onView(withId(R.id.editTextArtikelNr)).perform(replaceText(String.valueOf(61000)));
-        onView(withId(R.id.editTextArtikelkurzbez)).perform(replaceText("Conny"));
+        onView(withId(R.id.searchFragment_editText_articleId)).perform(replaceText(String.valueOf(61000)));
+        onView(withId(R.id.searchFragment_editText_articleShortDesc)).perform(replaceText("Conny"));
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        onView(withId(R.id.submitButton)).perform(click());
+        onView(withId(R.id.searchFragment_button_submit)).perform(click());
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -130,13 +130,13 @@ public class SearchFragmentTest {
     // Artikelbezeichnung mit whitespaces
     @Test
     public void testSearchArticleIdWhitespaces(){
-        onView(withId(R.id.editTextArtikelkurzbez)).perform(replaceText("   Conny   "));
+        onView(withId(R.id.searchFragment_editText_articleShortDesc)).perform(replaceText("   Conny   "));
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        onView(withId(R.id.submitButton)).perform(click());
+        onView(withId(R.id.searchFragment_button_submit)).perform(click());
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -147,14 +147,14 @@ public class SearchFragmentTest {
     // FarbId & Farbbezeichnung
     @Test
     public void testSearchColorIdAndColordescription(){
-        onView(withId(R.id.editTextFarbID)).perform(replaceText(String.valueOf(173)));
-        onView(withId(R.id.editTextFarbbezeichnung)).perform(replaceText("beige"));
+        onView(withId(R.id.searchFragment_editText_colorId)).perform(replaceText(String.valueOf(173)));
+        onView(withId(R.id.searchFragment_editText_colorDescription)).perform(replaceText("beige"));
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        onView(withId(R.id.submitButton)).perform(click());
+        onView(withId(R.id.searchFragment_button_submit)).perform(click());
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -165,14 +165,14 @@ public class SearchFragmentTest {
     //FarbId mit führenden Stellen
     @Test
     public void testSearchColorIdWithUnfinishedNumber(){
-        onView(withId(R.id.editTextFarbID)).perform(replaceText(String.valueOf(17)));
-        onView(withId(R.id.editTextFarbbezeichnung)).perform(replaceText("beige"));
+        onView(withId(R.id.searchFragment_editText_colorId)).perform(replaceText(String.valueOf(17)));
+        onView(withId(R.id.searchFragment_editText_colorDescription)).perform(replaceText("beige"));
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        onView(withId(R.id.submitButton)).perform(click());
+        onView(withId(R.id.searchFragment_button_submit)).perform(click());
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -183,14 +183,14 @@ public class SearchFragmentTest {
     //Größe & Fertigungszustand
     @Test
     public void testSearchSizeAndManufacturingstatus(){
-        onView(withId(R.id.editTextGroesse)).perform(replaceText(String.valueOf(155)));
-        onView(withId(R.id.editTextFertigungszustand)).perform(replaceText("FW"));
+        onView(withId(R.id.searchFragment_editText_size)).perform(replaceText(String.valueOf(155)));
+        onView(withId(R.id.searchFragment_editText_manufacturingState)).perform(replaceText("FW"));
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        onView(withId(R.id.submitButton)).perform(click());
+        onView(withId(R.id.searchFragment_button_submit)).perform(click());
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -202,14 +202,14 @@ public class SearchFragmentTest {
     @Test
     public void testSearchManufacturingstatusIsANumber(){
         onView(withId(R.id.searchButton)).perform(click());
-        onView(withId(R.id.editTextGroesse)).perform(replaceText(String.valueOf(155)));
-        onView(withId(R.id.editTextFertigungszustand)).perform(replaceText("0"));
+        onView(withId(R.id.searchFragment_editText_size)).perform(replaceText(String.valueOf(155)));
+        onView(withId(R.id.searchFragment_editText_manufacturingState)).perform(replaceText("0"));
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        onView(withId(R.id.submitButton)).perform(click());
+        onView(withId(R.id.searchFragment_button_submit)).perform(click());
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {

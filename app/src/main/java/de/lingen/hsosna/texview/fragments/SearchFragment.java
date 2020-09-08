@@ -66,20 +66,15 @@ public class SearchFragment extends Fragment {
                               @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_search, container, false);
 
-
-        //TEST
-        editText = v.findViewById(R.id.editText);
-        editText2 = v.findViewById(R.id.editText2);
-        button = v.findViewById(R.id.submitButton);
-
         //Belegung der Attribute
-        editArtikelNr = v.findViewById(R.id.editTextArtikelNr);
-        editArtikelBez = v.findViewById(R.id.editTextArtikelkurzbez);
-        editFardId = v.findViewById(R.id.editTextFarbID);
-        editFarbBez = v.findViewById(R.id.editTextFarbbezeichnung);
-        editGroesse = v.findViewById(R.id.editTextGroesse);
-        editFertigungszustand = v.findViewById(R.id.editTextFertigungszustand);
+        editArtikelNr = v.findViewById(R.id.searchFragment_editText_articleId);
+        editArtikelBez = v.findViewById(R.id.searchFragment_editText_articleShortDesc);
+        editFardId = v.findViewById(R.id.searchFragment_editText_colorId);
+        editFarbBez = v.findViewById(R.id.searchFragment_editText_colorDescription);
+        editGroesse = v.findViewById(R.id.searchFragment_editText_size);
+        editFertigungszustand = v.findViewById(R.id.searchFragment_editText_manufacturingState);
 
+        button = v.findViewById(R.id.searchFragment_button_submit);
 
         //DB CON
         Context context = getActivity();
@@ -88,18 +83,18 @@ public class SearchFragment extends Fragment {
 
 
         //SUCHERGEBN
-        mRecyclerView = v.findViewById(R.id.recyclerVgvhgview_fach01);
+        mRecyclerView = v.findViewById(R.id.searchFragment_recyclerView_searchResult);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         //slide up pane
-        View bottomSheet = v.findViewById(R.id.slideUpjmvgmjhPaneFach01);
+        View bottomSheet = v.findViewById(R.id.searchFragment_searchResultSlideUpPane);
         mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheet);
         mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_HIDDEN);
 
 
-        mSuchergebnisse = v.findViewById(R.id.textViewSuchergebnisse);
+        mSuchergebnisse = v.findViewById(R.id.searchFragment_searchResultHeader);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
