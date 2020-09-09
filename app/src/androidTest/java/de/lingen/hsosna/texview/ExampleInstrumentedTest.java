@@ -41,7 +41,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void testSelectShelfAndCompartment() {
         onView(withId(R.id.regal_0101)).perform(click());
-        onView(withId(R.id.fach01)).perform(click());
+        onView(withId(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment01)).perform(click());
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {

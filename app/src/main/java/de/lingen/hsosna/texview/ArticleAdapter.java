@@ -49,15 +49,15 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ExampleV
          */
         public ExampleViewHolder (@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
-            mTextArtikelNr = itemView.findViewById(R.id.text_artikelNr);
-            mTextArtikelBez = itemView.findViewById(R.id.text_artikelBez);
-            mTextFarbeID = itemView.findViewById(R.id.text_farbID);
-            mTextFarbeBez = itemView.findViewById(R.id.text_farbBez);
-            mTextGroessenID = itemView.findViewById(R.id.text_groesse);
-            mTextFertZust = itemView.findViewById(R.id.text_fertigungszustand);
-            mTextMenge = itemView.findViewById(R.id.text_menge);
-            mTextMengenEinheit = itemView.findViewById(R.id.text_mengenEinheit);
-            mLocationMarkerImage = itemView.findViewById(R.id.icon_locationMarker);
+            mTextArtikelNr = itemView.findViewById(R.id.itemArticle_placeholder_articleId);
+            mTextArtikelBez = itemView.findViewById(R.id.itemArticle_placeholder_articleDescription);
+            mTextFarbeID = itemView.findViewById(R.id.itemArticle_placeholder_colorId);
+            mTextFarbeBez = itemView.findViewById(R.id.itemArticle_placeholder_colorDescription);
+            mTextGroessenID = itemView.findViewById(R.id.itemArticle_placeholder_size);
+            mTextFertZust = itemView.findViewById(R.id.itemArticle_placeholder_manufacturingState);
+            mTextMenge = itemView.findViewById(R.id.itemArticle_placeholder_amount);
+            mTextMengenEinheit = itemView.findViewById(R.id.itemArticle_placeholder_amountUnit);
+            mLocationMarkerImage = itemView.findViewById(R.id.itemArticle_icon_location);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

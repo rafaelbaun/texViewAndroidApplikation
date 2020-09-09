@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="8dp">
+
+
+    <View
+        android:id="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="w,9:16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment01"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/regalFach01"
+        android:onClick="getClickedRegalFach"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment03"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment02"
+        app:layout_constraintStart_toStartOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintTop_toTopOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:srcCompat="@drawable/ic_shelf_normal" />
+
+    <ImageView
+        android:id="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment02"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/regalFach02"
+        android:onClick="getClickedRegalFach"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment04"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintStart_toEndOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment01"
+        app:layout_constraintTop_toTopOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:srcCompat="@drawable/ic_shelf_normal" />
+
+    <ImageView
+        android:id="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment03"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/regalFach03"
+        android:onClick="getClickedRegalFach"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment05"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment04"
+        app:layout_constraintStart_toStartOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintTop_toBottomOf="@id/fragment_shelf_frontal_shelfonly_imageView_compartment01"
+        app:srcCompat="@drawable/ic_shelf_normal" />
+
+    <ImageView
+        android:id="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment04"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/regalFach04"
+        android:onClick="getClickedRegalFach"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment06"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintStart_toEndOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment03"
+        app:layout_constraintTop_toBottomOf="@id/fragment_shelf_frontal_shelfonly_imageView_compartment02"
+        app:srcCompat="@drawable/ic_shelf_normal" />
+
+    <ImageView
+        android:id="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment05"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/regalFach05"
+        android:onClick="getClickedRegalFach"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment07"
+        app:layout_constraintEnd_toStartOf="@id/fragment_shelf_frontal_shelfonly_imageView_compartment06"
+        app:layout_constraintStart_toStartOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintTop_toBottomOf="@id/fragment_shelf_frontal_shelfonly_imageView_compartment03"
+        app:srcCompat="@drawable/ic_shelf_normal" />
+
+    <ImageView
+        android:id="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment06"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/regalFach06"
+        android:onClick="getClickedRegalFach"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment07"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintStart_toEndOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment05"
+        app:layout_constraintTop_toBottomOf="@id/fragment_shelf_frontal_shelfonly_imageView_compartment04"
+        app:srcCompat="@drawable/ic_shelf_normal" />
+
+    <ImageView
+        android:id="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment07"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/regalFach07"
+        android:onClick="getClickedRegalFach"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintStart_toStartOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintTop_toBottomOf="@id/fragment_shelf_frontal_shelfonly_imageView_compartment05"
+        app:srcCompat="@drawable/ic_shelf_normal" />
+
+    <ImageView
+        android:id="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment01_focused"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="false"
+        android:contentDescription="@string/fragment_shelf_frontal_shelfonly_icon_focused"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment03"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment02"
+        app:layout_constraintStart_toStartOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintTop_toTopOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:srcCompat="@drawable/ic_eye" />
+
+    <ImageView
+        android:id="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment02_focused"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="false"
+        android:contentDescription="@string/fragment_shelf_frontal_shelfonly_icon_focused"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment04"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintStart_toEndOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment01"
+        app:layout_constraintTop_toTopOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:srcCompat="@drawable/ic_eye" />
+
+    <ImageView
+        android:id="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment03_focused"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="false"
+        android:contentDescription="@string/fragment_shelf_frontal_shelfonly_icon_focused"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment05"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment04"
+        app:layout_constraintStart_toStartOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintTop_toBottomOf="@id/fragment_shelf_frontal_shelfonly_imageView_compartment01"
+        app:srcCompat="@drawable/ic_eye" />
+
+    <ImageView
+        android:id="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment04_focused"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="false"
+        android:contentDescription="@string/fragment_shelf_frontal_shelfonly_icon_focused"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment06"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintStart_toEndOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment03"
+        app:layout_constraintTop_toBottomOf="@id/fragment_shelf_frontal_shelfonly_imageView_compartment02"
+        app:srcCompat="@drawable/ic_eye" />
+
+    <ImageView
+        android:id="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment05_focused"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="false"
+        android:contentDescription="@string/fragment_shelf_frontal_shelfonly_icon_focused"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment07"
+        app:layout_constraintEnd_toStartOf="@id/fragment_shelf_frontal_shelfonly_imageView_compartment06"
+        app:layout_constraintStart_toStartOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintTop_toBottomOf="@id/fragment_shelf_frontal_shelfonly_imageView_compartment03"
+        app:srcCompat="@drawable/ic_eye" />
+
+    <ImageView
+        android:id="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment06_focused"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="false"
+        android:contentDescription="@string/fragment_shelf_frontal_shelfonly_icon_focused"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment07"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintStart_toEndOf="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment05"
+        app:layout_constraintTop_toBottomOf="@id/fragment_shelf_frontal_shelfonly_imageView_compartment04"
+        app:srcCompat="@drawable/ic_eye" />
+
+    <ImageView
+        android:id="@+id/fragment_shelf_frontal_shelfonly_imageView_compartment07_focused"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="false"
+        android:contentDescription="@string/fragment_shelf_frontal_shelfonly_icon_focused"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintStart_toStartOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintTop_toBottomOf="@id/fragment_shelf_frontal_shelfonly_imageView_compartment05"
+        app:srcCompat="@drawable/ic_eye" />
+
+    <TextView
+        android:id="@+id/fragment_shelf_frontal_shelfonly_textView_shelfNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_light"
+        android:text="@string/fragment_shelf_frontal_shelfonly_textView_shelfNumber"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_shelf_frontal_shelfonly_viewport"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,15 +1,14 @@
 package de.lingen.hsosna.texview;
 
-import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -32,7 +31,6 @@ import de.lingen.hsosna.texview.fragments.FilterFragment;
 import de.lingen.hsosna.texview.fragments.HomeFragment;
 import de.lingen.hsosna.texview.fragments.RegalfrontFragment;
 import de.lingen.hsosna.texview.fragments.SearchFragment;
-import de.lingen.hsosna.texview.layouts.ZoomLinearLayout;
 
 import static de.lingen.hsosna.texview.fragments.RegalfrontFragment.ARG_SHELVESTOMARKRED;
 
@@ -106,56 +104,108 @@ public class MainActivity extends AppCompatActivity
     public void getClickedRegalFach (View view) {
         displayToast((String) view.getContentDescription());
 
-        //muss wahrscheinlich aus der methode
-        ArrayList<View> bottomSheets = new ArrayList<>();
-        bottomSheets.add(findViewById(R.id.slideUpPaneFach01));
-        bottomSheets.add(findViewById(R.id.slideUpPaneFach02));
-        bottomSheets.add(findViewById(R.id.slideUpPaneFach03));
-        bottomSheets.add(findViewById(R.id.slideUpPaneFach04));
-        bottomSheets.add(findViewById(R.id.slideUpPaneFach05));
-        bottomSheets.add(findViewById(R.id.slideUpPaneFach06));
-        bottomSheets.add(findViewById(R.id.slideUpPaneFach07));
+        ArrayList<View> bottomSheets = getSlideUpPaneArrayList();
         /////////////////////////
-
-
 
         //RegalfrontFragment.fachID = view.getContentDescription();
         if (view.getContentDescription().toString().equals("1")) {
-            hideSlideUpPanes(bottomSheets);
+            hideSlideUpPanes();
+            focusShelfCompartment(1);
             mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheets.get(0));
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else if (view.getContentDescription().toString().equals("2")) {
-            hideSlideUpPanes(bottomSheets);
+            hideSlideUpPanes();
+            focusShelfCompartment(2);
             mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheets.get(1));
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else if (view.getContentDescription().toString().equals("3")) {
-            hideSlideUpPanes(bottomSheets);
+            hideSlideUpPanes();
+            focusShelfCompartment(3);
             mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheets.get(2));
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else if (view.getContentDescription().toString().equals("4")) {
-            hideSlideUpPanes(bottomSheets);
+            hideSlideUpPanes();
+            focusShelfCompartment(4);
             mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheets.get(3));
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else if (view.getContentDescription().toString().equals("5")) {
-            hideSlideUpPanes(bottomSheets);
+            hideSlideUpPanes();
+            focusShelfCompartment(5);
             mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheets.get(4));
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else if (view.getContentDescription().toString().equals("6")) {
-            hideSlideUpPanes(bottomSheets);
+            hideSlideUpPanes();
+            focusShelfCompartment(6);
             mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheets.get(5));
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else if (view.getContentDescription().toString().equals("7")) {
-            hideSlideUpPanes(bottomSheets);
+            hideSlideUpPanes();
+            focusShelfCompartment(7);
             mBottomSheetBehaviour = BottomSheetBehavior.from(bottomSheets.get(6));
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
         }
     }
 
-    public void hideSlideUpPanes (ArrayList<View> bottomSheets){
-        for (View v : bottomSheets) {
+    public void hideSlideUpPanes (){
+        for (View v : getSlideUpPaneArrayList()) {
             mBottomSheetBehaviour = BottomSheetBehavior.from(v);
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_HIDDEN);
         }
+        for (View w : getFocusShelfCompartmentArrayList()) {
+            w.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public ArrayList<View> getSlideUpPaneArrayList(){
+        ArrayList<View> slideUpPanesOfCompartments = new ArrayList<>();
+        slideUpPanesOfCompartments.add(findViewById(R.id.slideUpPane_shelf_compartment01));
+        slideUpPanesOfCompartments.add(findViewById(R.id.slideUpPane_shelf_compartment02));
+        slideUpPanesOfCompartments.add(findViewById(R.id.slideUpPane_shelf_compartment03));
+        slideUpPanesOfCompartments.add(findViewById(R.id.slideUpPane_shelf_compartment04));
+        slideUpPanesOfCompartments.add(findViewById(R.id.slideUpPane_shelf_compartment05));
+        slideUpPanesOfCompartments.add(findViewById(R.id.slideUpPane_shelf_compartment06));
+        slideUpPanesOfCompartments.add(findViewById(R.id.slideUpPane_shelf_compartment07));
+        return slideUpPanesOfCompartments;
+    }
+
+    public ArrayList<View> getFocusShelfCompartmentArrayList(){
+        ArrayList<View> compartmentsToBeFocused = new ArrayList<>();
+        compartmentsToBeFocused.add(findViewById(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment01_focused));
+        compartmentsToBeFocused.add(findViewById(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment02_focused));
+        compartmentsToBeFocused.add(findViewById(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment03_focused));
+        compartmentsToBeFocused.add(findViewById(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment04_focused));
+        compartmentsToBeFocused.add(findViewById(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment05_focused));
+        compartmentsToBeFocused.add(findViewById(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment06_focused));
+        compartmentsToBeFocused.add(findViewById(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment07_focused));
+        return compartmentsToBeFocused;
+    }
+
+    public void focusShelfCompartment (int compartmentToFocus){
+        ImageView compartmentToBeFocused = findViewById(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment07_focused);
+        switch (compartmentToFocus){
+            case 1:
+                compartmentToBeFocused = findViewById(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment01_focused);
+                break;
+            case 2:
+                compartmentToBeFocused = findViewById(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment02_focused);
+                break;
+            case 3:
+                compartmentToBeFocused = findViewById(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment03_focused);
+                break;
+            case 4:
+                compartmentToBeFocused = findViewById(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment04_focused);
+                break;
+            case 5:
+                compartmentToBeFocused = findViewById(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment05_focused);
+                break;
+            case 6:
+                compartmentToBeFocused = findViewById(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment06_focused);
+                break;
+        }
+        if(compartmentToBeFocused != null){
+            compartmentToBeFocused.setVisibility(View.VISIBLE);
+        }
+
 
     }
 

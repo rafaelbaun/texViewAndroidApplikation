@@ -214,7 +214,50 @@
     <string name="searchFragment_iconDescription_color">Icon for Color Searchattributes</string>
     <string name="searchFragment_iconDescription_article">Icon for Article Searchattributes</string>
 
+    <!-- //ITEM ARTICLE// -->
 
+    <!-- Label -->
+    <string name="itemArticle_textView_articleId">Artikel Nr.</string>
+    <string name="itemArticle_textView_articleShortDescription">Artikel Kurzbezeichnung</string>
+    <string name="itemArticle_textView_articleShortDescription_short">Artikel Kurzbez.</string>
+    <string name="itemArticle_textView_pieceId">Stücknummer</string>
+    <string name="itemArticle_textView_pieceDivision">Stückteilung</string>
+    <string name="itemArticle_textView_colorId">Farb ID</string>
+    <string name="itemArticle_textView_colorDescription">Farbbezeichnung</string>
+    <string name="itemArticle_textView_amount">Menge</string>
+    <string name="itemArticle_textView_size">Größe</string>
+    <string name="itemArticle_textView_manufacturingState">Fertigungszustand</string>
+    <string name="itemArticle_textView_manufacturingState_short">Fertzstd</string>
+
+    <!-- Placeholder -->
+    <string name="itemArticle_placeholder_articleId">0</string>
+    <string name="itemArticle_placeholder_articleShortDescription">placeholder</string>
+    <string name="itemArticle_placeholder_pieceId">0</string>
+    <string name="itemArticle_placeholder_pieceDivision">0</string>
+    <string name="itemArticle_placeholder_colorId">0</string>
+    <string name="itemArticle_placeholder_colorDescription">placeholder</string>
+    <string name="itemArticle_placeholder_amount">0</string>
+    <string name="itemArticle_placeholder_amountUnit">m</string>
+    <string name="itemArticle_placeholder_size">0</string>
+    <string name="itemArticle_placeholder_manufacturingState">placeholder</string>
+
+    <!-- Icons -->
+    <string name="itemArticle_iconDescription_article">Icon for Articleattributes for one Article</string>
+    <string name="itemArticle_iconDescription_color">Icon for Colorattributes for one Article</string>
+    <string name="itemArticle_iconDescription_location">Button to mark the current Article on the Map</string>
+    <string name="fragment_shelf_frontal_shelfonly_textView_shelfNumber">Regalbezeichnung</string>
+    <string name="fragment_shelf_frontal_shelfonly_textView_help1">Wählen Sie ein Fach aus</string>
+    <string name="fragment_shelf_frontal_shelfonly_textView_help2">um den Inhalt zu sehen</string>
+
+
+    <string name="bottomsheet_slideup_shelfcompartments_header1">Fach 1 - Regal: </string>
+    <string name="bottomsheet_slideup_shelfcompartments_header2">Fach 2 - Regal: </string>
+    <string name="bottomsheet_slideup_shelfcompartments_header3">Fach 3 - Regal: </string>
+    <string name="bottomsheet_slideup_shelfcompartments_header4">Fach 4 - Regal: </string>
+    <string name="bottomsheet_slideup_shelfcompartments_header5">Fach 5 - Regal: </string>
+    <string name="bottomsheet_slideup_shelfcompartments_header6">Fach 6 - Regal: </string>
+    <string name="bottomsheet_slideup_shelfcompartments_header7">Fach 7 - Regal: </string>
+    <string name="fragment_shelf_frontal_shelfonly_icon_focused">Icon to signal the currently selected shelf compartment.</string>
 
 
 </resources>

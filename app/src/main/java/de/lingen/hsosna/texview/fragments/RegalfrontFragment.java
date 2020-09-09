@@ -61,13 +61,13 @@ public class RegalfrontFragment extends Fragment {
     @Override
     public View onCreateView (@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                               @Nullable Bundle savedInstanceState) {
-        //View v = inflater.inflate(R.layout.fragment_regalfront, container, false);
+        //View v = inflater.inflate(R.layout.fragment_shelf_frontal_shelfonly, container, false);
         //Klappt View v = inflater.inflate(R.layout.bottomsheet_test, container, false);
         View v = inflater.inflate(R.layout.fragment_shelf_frontal, container, false);
         Context context = getActivity();
         dbHelper = new DatabaseHelper(context);
         mDatabase = dbHelper.getReadableDatabase();
-        TextView textView = v.findViewById(R.id.textviewRegalfachbezeichnung);
+        TextView textView = v.findViewById(R.id.fragment_shelf_frontal_shelfonly_textView_shelfNumber);
         if (getArguments() != null) {
             shelvesToMarkRed = getArguments().getParcelableArrayList(ARG_SHELVESTOMARKRED);
             clickedShelf = getArguments().getCharSequence(ARG_CLICKEDSHELF);
@@ -85,8 +85,33 @@ public class RegalfrontFragment extends Fragment {
 
         String regalPrefix = "RegalNr: ";
         textView.setText(regalPrefix.concat((String) clickedShelf));
+
+
+        for (TextView slideUpPaneHeader : getSlideUpPaneHeadersArrayList(v)){
+            String slideUpPaneHeaderText = (String)slideUpPaneHeader.getText();
+            slideUpPaneHeader.setText(slideUpPaneHeaderText.concat((String) clickedShelf));
+        }
         fillRecyclerView(v);
         return v;
+    }
+
+    public ArrayList<TextView> getSlideUpPaneHeadersArrayList(View v){
+        ArrayList<TextView> slideUpPaneHeaders = new ArrayList<>();
+        slideUpPaneHeaders.add(
+                (TextView) v.findViewById(R.id.bottomsheet_slideup_shelfcompartments_header1));
+        slideUpPaneHeaders.add(
+                (TextView) v.findViewById(R.id.bottomsheet_slideup_shelfcompartments_header2));
+        slideUpPaneHeaders.add(
+                (TextView) v.findViewById(R.id.bottomsheet_slideup_shelfcompartments_header3));
+        slideUpPaneHeaders.add(
+                (TextView) v.findViewById(R.id.bottomsheet_slideup_shelfcompartments_header4));
+        slideUpPaneHeaders.add(
+                (TextView) v.findViewById(R.id.bottomsheet_slideup_shelfcompartments_header5));
+        slideUpPaneHeaders.add(
+                (TextView) v.findViewById(R.id.bottomsheet_slideup_shelfcompartments_header6));
+        slideUpPaneHeaders.add(
+                (TextView) v.findViewById(R.id.bottomsheet_slideup_shelfcompartments_header7));
+        return slideUpPaneHeaders;
     }
 
     /**
@@ -95,49 +120,49 @@ public class RegalfrontFragment extends Fragment {
      * @param v Der aktuelle View wird übergeben
      */
     public void fillRecyclerView (View v) {
-        mRecyclerView = v.findViewById(R.id.recyclerView_fach01);
+        mRecyclerView = v.findViewById(R.id.slideUp_recyclerView_compartment01);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mAdapter = new ArticleAdapter(getListWithContents(1));// LIST WITH CONTENTS
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        mRecyclerView = v.findViewById(R.id.recyclerView_fach02);
+        mRecyclerView = v.findViewById(R.id.slideUp_recyclerView_compartment02);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mAdapter = new ArticleAdapter(getListWithContents(2));
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        mRecyclerView = v.findViewById(R.id.recyclerView_fach03);
+        mRecyclerView = v.findViewById(R.id.slideUp_recyclerView_compartment03);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mAdapter = new ArticleAdapter(getListWithContents(3));
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        mRecyclerView = v.findViewById(R.id.recyclerView_fach04);
+        mRecyclerView = v.findViewById(R.id.slideUp_recyclerView_compartment04);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mAdapter = new ArticleAdapter(getListWithContents(4));
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        mRecyclerView = v.findViewById(R.id.recyclerView_fach05);
+        mRecyclerView = v.findViewById(R.id.slideUp_recyclerView_compartment05);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mAdapter = new ArticleAdapter(getListWithContents(5));
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        mRecyclerView = v.findViewById(R.id.recyclerView_fach06);
+        mRecyclerView = v.findViewById(R.id.slideUp_recyclerView_compartment06);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mAdapter = new ArticleAdapter(getListWithContents(6));
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        mRecyclerView = v.findViewById(R.id.recyclerView_fach07);
+        mRecyclerView = v.findViewById(R.id.slideUp_recyclerView_compartment07);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mAdapter = new ArticleAdapter(getListWithContents(7));
