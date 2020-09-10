@@ -260,8 +260,37 @@
     <string name="fragment_shelf_frontal_shelfonly_icon_focused">Icon to signal the currently selected shelf compartment.</string>
 
 
+
+
+    <!-- //FILTERFRAGMENT// -->
     <string name="filterFragment_filterHeader">Filter</string>
 
+    <string name="filterFragment_submitButton">Filtern</string>
+
+    <!-- TextView's -->
+    <string name="filterFragment_textView_articleId">Artikel Nr</string>
+    <string name="filterFragment_textView_articleShortDescription">Kurzbez.</string>
+    <string name="filterFragment_textView_contains">(enthält)</string>
+    <string name="filterFragment_textView_pieceId">Stücknummer</string>
+    <string name="filterFragment_textView_pieceDivision">Stückteilung</string>
+    <string name="filterFragment_textView_colorId">Farb ID</string>
+    <string name="filterFragment_textView_colorDescription">Farbbez.</string>
+    <string name="filterFragment_textView_size">Größe</string>
+    <string name="filterFragment_textView_manufacturingState">Fert. Zustand</string>
+    <!-- EditText's -->
+    <string name="filterFragment_editText_articleId">Artikel Nr.</string>
+    <string name="filterFragment_editText_articleShortDescription">Kurzbezeichnung</string>
+    <string name="filterFragment_editText_pieceId">Stücknummer</string>
+    <string name="filterFragment_editText_pieceDivision">Stückteilung</string>
+    <string name="filterFragment_editText_colorId">Farb ID</string>
+    <string name="filterFragment_editText_colorDescription">Farbbezeichnung</string>
+    <string name="filterFragment_editText_size">Größe</string>
+    <string name="filterFragment_editText_manufacturingState">Fertigungszustand</string>
+
+    <!-- Icon Descrptions -->
+    <string name="filterFragment_iconDescription_misc">Icon for Miscellaneous Searchattributes</string>
+    <string name="filterFragment_iconDescription_color">Icon for Color Searchattributes</string>
+    <string name="filterFragment_iconDescription_article">Icon for Article Searchattributes</string>
 
 
 </resources>

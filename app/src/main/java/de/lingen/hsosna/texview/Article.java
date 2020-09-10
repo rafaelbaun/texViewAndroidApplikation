@@ -1,5 +1,7 @@
 package de.lingen.hsosna.texview;
 
+import android.widget.LinearLayout;
+
 /**
  * Ein einzelner Artikel wird dargestellt und erhält Daten aus Artikelkombinationen
  */
@@ -140,5 +142,9 @@ public class Article {
         String lagerplatzString = String.valueOf(lagerplatz);
         String finalString = "" + lagerplatzString.charAt(3);
         return Integer.parseInt(finalString);
+    }
+
+    public Lagerplatz getLagerplatzObject(){
+        return new Lagerplatz(lagerort, lagerplatz, regalfach);
     }
 }

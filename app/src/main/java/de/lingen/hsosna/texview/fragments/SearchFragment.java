@@ -115,52 +115,9 @@ public class SearchFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                String SqlWhereQuery = getSqlWhereQuery();
-                if(SqlWhereQuery.length() != 0) {
-                    final ArrayList<Article> suchErgebnisse = getListWithSearchResults(SqlWhereQuery);
-
-
-                    String suchAnzeige = " Suchergebnisse";
-                    mSuchergebnisse.setText((String.valueOf(suchErgebnisse.size())).concat(suchAnzeige));
-
-
-                    mAdapter = new ArticleAdapter(suchErgebnisse);// LIST WITH CONTENTS
-
-
-
-
-                    mAdapter.setOnItemClickListener(new ArticleAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick (int position) {
-                        }
-
-                        @Override
-                        public void onDeleteClick (int position) {
-                            Lagerplatz checkedLagerplatz = new Lagerplatz(60, suchErgebnisse.get(position).getLagerplatz(), suchErgebnisse.get(position).getRegalfach());
-                            listener.onSearchInputSent(checkedLagerplatz);
-                        }
-                    });
-
-
-
-
-                    mRecyclerView.setAdapter(mAdapter);
-
-
-                    mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
-                } else {
-                    //TODO ERROR MESSAGE DISPLAY
-                    CharSequence errorMessage = "Bitte füllen Sie mindestens ein Feld aus";
-                    //listener.onSearchInputSent(errorMessage);
-                }
-
-                //listener.onSearchInputSent(input2);
+                performSearch();
             }
         });
-
-
-
-        //mAdapter.
         return v;
     }
 
@@ -180,8 +137,17 @@ public class SearchFragment extends Fragment {
         if(SqlWhereQuery.length() != 0) {
             final ArrayList<Article> suchErgebnisse = getListWithSearchResults(SqlWhereQuery);
 
-            String suchAnzeige = " Suchergebnisse";
-            mSuchergebnisse.setText((String.valueOf(suchErgebnisse.size())).concat(suchAnzeige));
+            switch (suchErgebnisse.size()){
+                case 1:
+                    mSuchergebnisse.setText((String.valueOf(suchErgebnisse.size())).concat(" Suchergebnis"));
+                    break;
+                case 201:
+                    mSuchergebnisse.setText((String.valueOf(suchErgebnisse.size()-1)).concat("+ Suchergebnisse"));
+                    break;
+                default:
+                    mSuchergebnisse.setText((String.valueOf(suchErgebnisse.size())).concat(" Suchergebnisse"));
+                    break;
+            }
             mAdapter = new ArticleAdapter(suchErgebnisse);// LIST WITH CONTENTS
             mAdapter.setOnItemClickListener(new ArticleAdapter.OnItemClickListener() {
                 @Override
@@ -246,7 +212,7 @@ public class SearchFragment extends Fragment {
                 + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSEN_ID
                 + " AND " + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID + " = "
                 + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_ID
-                + SqlWhereQuery + " LIMIT 200 "
+                + SqlWhereQuery + " LIMIT 201 "
                 , null);
         try {
             while (cursor.moveToNext()) {

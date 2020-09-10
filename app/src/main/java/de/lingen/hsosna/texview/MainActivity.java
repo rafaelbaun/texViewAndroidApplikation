@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -90,9 +91,6 @@ public class MainActivity extends AppCompatActivity
                     new HomeFragment(), "HOME_FRAGMENT").commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
-
-
-
     }
 
     /**
@@ -236,6 +234,25 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     fragment, "REGALFRONT_FRAGMENT").commit();
         }
+
+        FilterFragment filterFragment = (FilterFragment) getSupportFragmentManager().findFragmentByTag("FILTER_FRAGMENT");
+        if(filterFragment != null && filterFragment.isVisible()) {
+
+            RegalfrontFragment fragment;
+            if(filterFragment.getShelvesToMarkRed() != null) {
+                fragment = RegalfrontFragment.newInstance(filterFragment.getShelvesToMarkRed(), view.getContentDescription());
+            }
+            else {
+                fragment = RegalfrontFragment.newInstance(new ArrayList<Lagerplatz>(), view.getContentDescription());
+            }
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    fragment, "REGALFRONT_FRAGMENT").commit();
+        }
+
+
+
+
     }
 
     /**
@@ -336,6 +353,11 @@ public class MainActivity extends AppCompatActivity
                     if(homeFragment != null){
                         homeFragment.markFreeShelves(findViewById(android.R.id.content).getRootView());
                     }
+                    //FILTERFRAGMENT
+                    FilterFragment filterFragment = (FilterFragment)getSupportFragmentManager().findFragmentByTag("FILTER_FRAGMENT");
+                    if(filterFragment != null){
+                        filterFragment.markFreeShelves(findViewById(android.R.id.content).getRootView());
+                    }
                     //REGALFRONTFRAGMENT
                     RegalfrontFragment regalfrontFragment = (RegalfrontFragment)getSupportFragmentManager().findFragmentByTag("REGALFRONT_FRAGMENT");
                     if(regalfrontFragment != null){
@@ -350,6 +372,12 @@ public class MainActivity extends AppCompatActivity
                     HomeFragment homeFragment = (HomeFragment)getSupportFragmentManager().findFragmentByTag("HOME_FRAGMENT");
                     if(homeFragment != null) {
                         homeFragment.unmarkFreeShelves(
+                                findViewById(android.R.id.content).getRootView());
+                    }
+                    //HOMEFRAGMENT
+                    FilterFragment filterFragment = (FilterFragment)getSupportFragmentManager().findFragmentByTag("FILTER_FRAGMENT");
+                    if(filterFragment != null) {
+                        filterFragment.unmarkFreeShelves(
                                 findViewById(android.R.id.content).getRootView());
                     }
                     //REGALFRONTFRAGMENT

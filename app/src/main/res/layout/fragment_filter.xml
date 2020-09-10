@@ -6,6 +6,7 @@
 
 
     <include
+        android:id="@+id/filterFragment_homeLayoutImport"
         layout="@layout/fragment_home_lagerort_60"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -15,7 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F2FFFFFF"
-        app:behavior_hideable="true"
         app:behavior_peekHeight="48dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
@@ -37,9 +37,10 @@
                 android:textSize="24sp" />
 
             <include
+                layout="@layout/fragment_filterform"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                layout="@layout/fragment_searchform"/>
+                android:layout_marginTop="48dp" />
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>

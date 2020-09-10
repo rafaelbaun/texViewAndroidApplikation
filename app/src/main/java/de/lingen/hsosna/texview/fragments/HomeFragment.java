@@ -146,28 +146,27 @@ public class HomeFragment extends Fragment {
 
     public void unmarkFreeShelves(View v){
         if(v != null) {
-            if(freeShelveList != null && freeShelveList.size() != 0){
+            if (freeShelveList != null && freeShelveList.size() != 0) {
                 ArrayList<View> imageViewsOfShelvesToMarkAsFree = new ArrayList<>();
                 for (Lagerplatz lagerplatz : freeShelveList) {
                     boolean contains = false;
-                    for (Lagerplatz shelveToMarkRed : shelvesToMarkRed){
+                    for (Lagerplatz shelveToMarkRed : shelvesToMarkRed) {
                         if (shelveToMarkRed.getLocation().equals(lagerplatz.getLocation()))
                             contains = true;
                     }
-                    if(!contains) // for schleife
+                    if (! contains) // for schleife
                     {
-                        v.findViewsWithText(imageViewsOfShelvesToMarkAsFree, lagerplatz.getLocation(),
+                        v.findViewsWithText(imageViewsOfShelvesToMarkAsFree,
+                                lagerplatz.getLocation(),
                                 View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
                     }
                 }
-                for (View singleShelf : imageViewsOfShelvesToMarkAsFree){
-                        ImageView oneShelf = (ImageView) singleShelf;
-                        oneShelf.setImageResource(R.drawable.ic_shelf_normal);
+                for (View singleShelf : imageViewsOfShelvesToMarkAsFree) {
+                    ImageView oneShelf = (ImageView) singleShelf;
+                    oneShelf.setImageResource(R.drawable.ic_shelf_normal);
                 }
             }
         }
-            //liste markieren
-            // check if regal is checked
     }
 
 
