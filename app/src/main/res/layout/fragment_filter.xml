@@ -1,52 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@color/colorAccent">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="122dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Filter Fragment"
-            android:textSize="30sp"
-            android:layout_centerInParent="true"/>
+    <include
+        layout="@layout/fragment_home_lagerort_60"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-        <Spinner
-            android:id="@+id/spinner1"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/filterFragment_searchSlideUpPane"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F2FFFFFF"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="48dp"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Name (Bob)"
-            android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/filterFragment_filterHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorPrimary"
+                android:fontFamily="@font/poppins_light"
+                android:padding="8dp"
+                android:text="@string/filterFragment_filterHeader"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp" />
 
-        <EditText
-            android:id="@+id/editText2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="favourite number"
-            android:inputType="number" />
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/fragment_searchform"/>
+        </RelativeLayout>
 
-        <Button
-            android:id="@+id/submitButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit" />
-
-
-    </LinearLayout>
-
-
-</RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

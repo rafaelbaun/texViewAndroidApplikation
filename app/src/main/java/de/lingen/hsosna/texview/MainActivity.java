@@ -414,6 +414,8 @@ public class MainActivity extends AppCompatActivity
     public void returnHome (View view){
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment(), "HOME_FRAGMENT").commit();
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setCheckedItem(R.id.nav_home);
 
     }
 

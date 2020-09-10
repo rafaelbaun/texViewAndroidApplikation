@@ -5,6 +5,8 @@ package de.lingen.hsosna.texview;
  */
 public class Article {
     private int artikelID;
+    private int stuecknummer;
+    private int stueckteilung;
     private String artikel_Bezeichnung;
     private int farbe_ID;
     private String farbe_Bezeichnung;
@@ -27,10 +29,12 @@ public class Article {
      * @param menge               Menge des Artikels
      * @param mengenEinheit       zugehörige Einheit zu der Menge
      */
-    public Article (int artikelID, String artikel_Bezeichnung, int farbe_ID,
+    public Article (int artikelID, int stuecknummer, int stueckteilung, String artikel_Bezeichnung, int farbe_ID,
                     String farbe_Bezeichnung, int groessen_ID, String fertigungszustand,
                     String menge, String mengenEinheit, int lagerplatz) {
         this.artikelID = artikelID;
+        this.stuecknummer = stuecknummer;
+        this.stueckteilung = stueckteilung;
         this.artikel_Bezeichnung = artikel_Bezeichnung;
         this.farbe_ID = farbe_ID;
         this.farbe_Bezeichnung = farbe_Bezeichnung;
@@ -115,6 +119,14 @@ public class Article {
 
     public int getLagerort () {
         return lagerort;
+    }
+
+    public int getStuecknummer () {
+        return stuecknummer;
+    }
+
+    public int getStueckteilung () {
+        return stueckteilung;
     }
 
     private int formatLagerplatz(int lagerplatz){

@@ -61,7 +61,6 @@ public class RegalfrontFragment extends Fragment {
     @Override
     public View onCreateView (@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                               @Nullable Bundle savedInstanceState) {
-        //View v = inflater.inflate(R.layout.fragment_shelf_frontal_shelfonly, container, false);
         //Klappt View v = inflater.inflate(R.layout.bottomsheet_test, container, false);
         View v = inflater.inflate(R.layout.fragment_shelf_frontal, container, false);
         Context context = getActivity();
@@ -178,6 +177,8 @@ public class RegalfrontFragment extends Fragment {
         int lagerplatz = Integer.parseInt("" + regal_nr + "" + zeile + "" + regalFachNummer + "");
         Cursor cursor = mDatabase.rawQuery(
                 "SELECT " + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID + ", "
+                + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER + ", "
+                + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND + ", "
@@ -201,6 +202,10 @@ public class RegalfrontFragment extends Fragment {
             while (cursor.moveToNext()) {
                 int artikelId = cursor.getInt(cursor.getColumnIndex(
                         TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID));
+                int stuecknummer = cursor.getInt(cursor.getColumnIndex(
+                        TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER));
+                int stueckteilung = cursor.getInt(cursor.getColumnIndex(
+                        TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG));
                 int farbId = cursor.getInt(
                         cursor.getColumnIndex(TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID));
                 String menge = cursor.getString(
@@ -215,7 +220,7 @@ public class RegalfrontFragment extends Fragment {
                         TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG));
                 String farbBez = cursor.getString(cursor.getColumnIndex(
                         TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_BEZEICHNUNGEN));
-                Article article = new Article(artikelId, artikelBez, farbId, farbBez, groessenId,
+                Article article = new Article(artikelId, stuecknummer, stueckteilung, artikelBez, farbId, farbBez, groessenId,
                         fertigungszustand, menge, mengeneinheit, lagerplatz);
                 articleList.add(article);
             }

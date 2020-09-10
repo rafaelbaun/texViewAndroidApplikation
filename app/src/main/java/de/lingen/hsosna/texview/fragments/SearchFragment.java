@@ -37,6 +37,8 @@ public class SearchFragment extends Fragment {
 
     private EditText editArtikelNr;
     private EditText editArtikelBez;
+    private EditText editStuecknummer;
+    private EditText editStueckteilung;
     private EditText editFardId;
     private EditText editFarbBez;
     private EditText editGroesse;
@@ -69,6 +71,8 @@ public class SearchFragment extends Fragment {
         //Belegung der Attribute
         editArtikelNr = v.findViewById(R.id.searchFragment_editText_articleId);
         editArtikelBez = v.findViewById(R.id.searchFragment_editText_articleShortDesc);
+        editStuecknummer = v.findViewById(R.id.searchFragment_editText_pieceId);
+        editStueckteilung = v.findViewById(R.id.searchFragment_editText_pieceDivision);
         editFardId = v.findViewById(R.id.searchFragment_editText_colorId);
         editFarbBez = v.findViewById(R.id.searchFragment_editText_colorDescription);
         editGroesse = v.findViewById(R.id.searchFragment_editText_size);
@@ -174,6 +178,8 @@ public class SearchFragment extends Fragment {
         Cursor cursor = mDatabase.rawQuery(
                 "SELECT " + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID + ", "
+                + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER + ", "
+                + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND + ", "
@@ -196,6 +202,10 @@ public class SearchFragment extends Fragment {
             while (cursor.moveToNext()) {
                 int artikelId = cursor.getInt(cursor.getColumnIndex(
                         TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID));
+                int stuecknummer = cursor.getInt(cursor.getColumnIndex(
+                        TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER));
+                int stueckteilung = cursor.getInt(cursor.getColumnIndex(
+                        TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG));
                 int farbId = cursor.getInt(
                         cursor.getColumnIndex(TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID));
                 String menge = cursor.getString(
@@ -211,7 +221,7 @@ public class SearchFragment extends Fragment {
                 String farbBez = cursor.getString(cursor.getColumnIndex(
                         TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_BEZEICHNUNGEN));
                 int lagerplatz = cursor.getInt(cursor.getColumnIndex(TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ));
-                Article article = new Article(artikelId, artikelBez, farbId, farbBez, groessenId,
+                Article article = new Article(artikelId, stuecknummer, stueckteilung, artikelBez, farbId, farbBez, groessenId,
                         fertigungszustand, menge, mengeneinheit, lagerplatz);
                 articleList.add(article);
             }
@@ -246,6 +256,24 @@ public class SearchFragment extends Fragment {
             SqlQuery.append(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG)
                     .append(" LIKE '%")
                     .append(artikelBez)
+                    .append("%'");
+            hasQuery = true;
+        }
+        //-------STUECKNUMMER
+        if(editStuecknummer.getText().toString().trim().length() != 0 && editStuecknummer.getText().toString().trim().matches("[0-9]+")){
+            int stuecknummer = Integer.parseInt(editStuecknummer.getText().toString().trim());
+            SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER)
+                    .append(" LIKE '")
+                    .append(stuecknummer)
+                    .append("%'");
+            hasQuery = true;
+        }
+        //-------STUECKTEILUNG
+        if(editStueckteilung.getText().toString().trim().length() != 0 && editStueckteilung.getText().toString().trim().matches("[0-9]+")){
+            int stueckteilung = Integer.parseInt(editStueckteilung.getText().toString().trim());
+            SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG)
+                    .append(" LIKE '")
+                    .append(stueckteilung)
                     .append("%'");
             hasQuery = true;
         }

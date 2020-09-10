@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<de.lingen.hsosna.texview.layouts.ZoomLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/zoom_linear_layout">
-
-    <de.lingen.hsosna.texview.layouts.CustomZoomScrollView
-        android:id="@+id/scrollViewisZoomable"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -192,7 +186,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -535,7 +529,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -878,7 +872,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -1082,7 +1076,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/regalSPACE"
+                android:contentDescription="@string/regal0201"
                 android:onClick="getClickedRegal"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/ic_shelf_normal" />
@@ -1224,7 +1218,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -1566,5 +1560,4 @@
                 app:srcCompat="@drawable/ic_shelf_normal" />
         </LinearLayout>
     </LinearLayout>
-    </de.lingen.hsosna.texview.layouts.CustomZoomScrollView>
-</LinearLayout>
+</de.lingen.hsosna.texview.layouts.ZoomLinearLayout>

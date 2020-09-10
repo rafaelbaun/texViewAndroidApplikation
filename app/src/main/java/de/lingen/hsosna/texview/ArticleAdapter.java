@@ -34,6 +34,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ExampleV
     public static class ExampleViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextArtikelNr;
         public TextView mTextArtikelBez;
+        public TextView mTextStuecknummer;
         public TextView mTextFarbeID;
         public TextView mTextFarbeBez;
         public TextView mTextGroessenID;
@@ -51,6 +52,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ExampleV
             super(itemView);
             mTextArtikelNr = itemView.findViewById(R.id.itemArticle_placeholder_articleId);
             mTextArtikelBez = itemView.findViewById(R.id.itemArticle_placeholder_articleDescription);
+            mTextStuecknummer = itemView.findViewById(R.id.itemArticle_placeholder_pieceId);
             mTextFarbeID = itemView.findViewById(R.id.itemArticle_placeholder_colorId);
             mTextFarbeBez = itemView.findViewById(R.id.itemArticle_placeholder_colorDescription);
             mTextGroessenID = itemView.findViewById(R.id.itemArticle_placeholder_size);
@@ -103,6 +105,13 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ExampleV
         Article currentItem = mExampleList.get(position);
         holder.mTextArtikelNr.setText(String.valueOf(currentItem.getArtikelID()));
         holder.mTextArtikelBez.setText(currentItem.getArtikel_Bezeichnung());
+
+        if(currentItem.getStueckteilung() == 0)
+            holder.mTextStuecknummer.setText(String.valueOf(currentItem.getStuecknummer()));
+        else {
+            String stuecknummer = currentItem.getStuecknummer() + "/" + currentItem.getStueckteilung();
+            holder.mTextStuecknummer.setText(stuecknummer);
+        }
         holder.mTextFarbeID.setText(String.valueOf(currentItem.getFarbe_ID()));
         holder.mTextFarbeBez.setText(currentItem.getFarbe_Bezeichnung());
         holder.mTextGroessenID.setText(String.valueOf(currentItem.getGroessen_ID()));

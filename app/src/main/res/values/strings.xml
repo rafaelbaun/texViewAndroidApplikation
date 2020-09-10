@@ -260,4 +260,8 @@
     <string name="fragment_shelf_frontal_shelfonly_icon_focused">Icon to signal the currently selected shelf compartment.</string>
 
 
+    <string name="filterFragment_filterHeader">Filter</string>
+
+
+
 </resources>
