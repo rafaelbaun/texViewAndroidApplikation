@@ -4,9 +4,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -28,6 +30,8 @@ import de.lingen.hsosna.texview.Lagerplatz;
 import de.lingen.hsosna.texview.R;
 import de.lingen.hsosna.texview.database.TableArtikelkombination;
 import de.lingen.hsosna.texview.database.TableLagerbestand;
+
+import static android.view.KeyEvent.KEYCODE_ENTER;
 
 public class SearchFragment extends Fragment {
     private SearchFragmentListener listener;
@@ -78,8 +82,16 @@ public class SearchFragment extends Fragment {
         editGroesse = v.findViewById(R.id.searchFragment_editText_size);
         editFertigungszustand = v.findViewById(R.id.searchFragment_editText_manufacturingState);
 
-        button = v.findViewById(R.id.searchFragment_button_submit);
+        editArtikelNr.setOnEditorActionListener(onEditorActionListener);
+        editArtikelBez.setOnEditorActionListener(onEditorActionListener);
+        editStuecknummer.setOnEditorActionListener(onEditorActionListener);
+        editStueckteilung.setOnEditorActionListener(onEditorActionListener);
+        editFardId.setOnEditorActionListener(onEditorActionListener);
+        editFarbBez.setOnEditorActionListener(onEditorActionListener);
+        editGroesse.setOnEditorActionListener(onEditorActionListener);
+        editFertigungszustand.setOnEditorActionListener(onEditorActionListener);
 
+        button = v.findViewById(R.id.searchFragment_button_submit);
         //DB CON
         Context context = getActivity();
         dbHelper = new DatabaseHelper(context);
@@ -150,6 +162,44 @@ public class SearchFragment extends Fragment {
 
         //mAdapter.
         return v;
+    }
+
+    private TextView.OnEditorActionListener onEditorActionListener = new TextView.OnEditorActionListener() {
+        @Override
+        public boolean onEditorAction (TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH || event.getKeyCode() == KEYCODE_ENTER){
+                performSearch();
+                return true;
+            }
+            return false;
+        }
+    };
+
+    public void performSearch(){
+        String SqlWhereQuery = getSqlWhereQuery();
+        if(SqlWhereQuery.length() != 0) {
+            final ArrayList<Article> suchErgebnisse = getListWithSearchResults(SqlWhereQuery);
+
+            String suchAnzeige = " Suchergebnisse";
+            mSuchergebnisse.setText((String.valueOf(suchErgebnisse.size())).concat(suchAnzeige));
+            mAdapter = new ArticleAdapter(suchErgebnisse);// LIST WITH CONTENTS
+            mAdapter.setOnItemClickListener(new ArticleAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick (int position) {
+                }
+
+                @Override
+                public void onDeleteClick (int position) {
+                    Lagerplatz checkedLagerplatz = new Lagerplatz(60, suchErgebnisse.get(position).getLagerplatz(), suchErgebnisse.get(position).getRegalfach());
+                    listener.onSearchInputSent(checkedLagerplatz);
+                }
+            });
+            mRecyclerView.setAdapter(mAdapter);
+            mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
+        } else {
+            //TODO ERROR MESSAGE DISPLAY
+            CharSequence errorMessage = "Bitte füllen Sie mindestens ein Feld aus";
+        }
     }
 
     @Override
@@ -261,6 +311,9 @@ public class SearchFragment extends Fragment {
         }
         //-------STUECKNUMMER
         if(editStuecknummer.getText().toString().trim().length() != 0 && editStuecknummer.getText().toString().trim().matches("[0-9]+")){
+            if (hasQuery) {
+                SqlQuery.append(" AND ");
+            }
             int stuecknummer = Integer.parseInt(editStuecknummer.getText().toString().trim());
             SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER)
                     .append(" LIKE '")
@@ -270,6 +323,9 @@ public class SearchFragment extends Fragment {
         }
         //-------STUECKTEILUNG
         if(editStueckteilung.getText().toString().trim().length() != 0 && editStueckteilung.getText().toString().trim().matches("[0-9]+")){
+            if (hasQuery) {
+                SqlQuery.append(" AND ");
+            }
             int stueckteilung = Integer.parseInt(editStueckteilung.getText().toString().trim());
             SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG)
                     .append(" LIKE '")
