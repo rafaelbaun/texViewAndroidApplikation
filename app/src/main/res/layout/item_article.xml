@@ -176,7 +176,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBaseline_toBaselineOf="@id/itemArticle_textView_size"
-            app:layout_constraintEnd_toStartOf="@+id/divider_menge_groesse"
+            app:layout_constraintEnd_toStartOf="@+id/divider_article_misc"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -200,7 +200,7 @@
             app:layout_constraintStart_toEndOf="@+id/itemArticle_placeholder_amount" />
 
         <View
-            android:id="@+id/divider_menge_groesse"
+            android:id="@+id/divider_article_misc"
             android:layout_width="1dp"
             android:layout_height="0dp"
             android:layout_margin="1dp"
@@ -221,7 +221,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/divider_groesse_fertzu"
-            app:layout_constraintStart_toEndOf="@+id/divider_menge_groesse"
+            app:layout_constraintStart_toEndOf="@+id/divider_article_misc"
             app:layout_constraintTop_toBottomOf="@+id/divider_farbe_misc" />
 
         <TextView
@@ -241,7 +241,7 @@
             android:background="?android:attr/listDivider"
             app:layout_constraintBottom_toBottomOf="@+id/itemArticle_placeholder_size"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/divider_menge_groesse"
+            app:layout_constraintStart_toStartOf="@id/divider_article_misc"
             app:layout_constraintTop_toBottomOf="@+id/divider_farbe_misc" />
 
         <TextView

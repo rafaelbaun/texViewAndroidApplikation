@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="4dp"
     android:layout_marginBottom="4dp"
-    >
+    app:cardCornerRadius="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/artikelContainer"
@@ -19,106 +16,110 @@
             android:id="@+id/itemArticle_icon_itemtag"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:contentDescription="@string/itemArticle_iconDescription_article"
             android:padding="2dp"
+            android:src="@drawable/ic_itemtag"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_itemtag"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/itemArticle_textView_articleId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Artikel Nr"
+            android:padding="2dp"
+            android:text="@string/itemArticle_textView_articleId"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/guide_verticalMid"
             app:layout_constraintStart_toEndOf="@+id/itemArticle_icon_itemtag"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/itemArticle_icon_itemtag" />
 
         <TextView
             android:id="@+id/itemArticle_placeholder_articleId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/itemArticle_textView_articleId"
-            android:layout_toEndOf="@id/itemArticle_icon_itemtag"
-            android:text="Line 2"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toStartOf="@+id/guide_verticalMid"
-            app:layout_constraintStart_toEndOf="@+id/itemArticle_icon_itemtag"
-            app:layout_constraintTop_toBottomOf="@+id/itemArticle_textView_articleId" />
-
-        <!-- <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Line 1"
+            android:text="@string/itemArticle_placeholder_articleId"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@id/testimage"
-            android:id="@+id/example_text1"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Line 2"
-            android:textSize="15sp"
-            android:layout_below="@id/example_text1"
-            android:layout_toEndOf="@id/testimage"
-            android:layout_marginStart="8dp"
-            android:id="@+id/example_text2"/>-->
+            app:layout_constraintBaseline_toBaselineOf="@id/itemArticle_textView_articleId"
+            app:layout_constraintStart_toEndOf="@id/itemArticle_textView_articleId"
+            app:layout_constraintStart_toStartOf="@+id/itemArticle_placeholder_articleDescription" />
 
         <TextView
             android:id="@+id/itemArticle_textView_articleDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_toEndOf="@id/itemArticle_textView_articleId"
-            android:text="Artikel Kurzbezeichnung"
+            android:padding="2dp"
+            android:text="@string/itemArticle_textView_articleShortDescription_short"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/itemArticle_icon_location"
-            app:layout_constraintStart_toStartOf="@+id/guide_verticalMid"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/itemArticle_icon_itemtag"
+            app:layout_constraintTop_toBottomOf="@+id/itemArticle_textView_articleId" />
 
         <TextView
             android:id="@+id/itemArticle_placeholder_articleDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/itemArticle_textView_articleDescription"
-            android:layout_alignStart="@id/itemArticle_textView_articleDescription"
-            android:layout_toEndOf="@id/itemArticle_icon_itemtag"
-            android:text="Line 2"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toStartOf="@+id/itemArticle_icon_location"
-            app:layout_constraintStart_toStartOf="@+id/guide_verticalMid"
-            app:layout_constraintTop_toBottomOf="@+id/itemArticle_textView_articleDescription" />
+            android:layout_marginStart="8dp"
+            android:text="@string/itemArticle_placeholder_articleShortDescription"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/itemArticle_textView_articleDescription"
+            app:layout_constraintStart_toEndOf="@id/itemArticle_textView_articleDescription" />
 
+        <TextView
+            android:id="@+id/itemArticle_textView_pieceId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="@string/itemArticle_textView_pieceId"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/itemArticle_icon_itemtag"
+            app:layout_constraintTop_toBottomOf="@id/itemArticle_textView_articleDescription" />
 
-        <!--FARBEN -->
+        <TextView
+            android:id="@+id/itemArticle_placeholder_pieceId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/itemArticle_placeholder_pieceId"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/itemArticle_textView_pieceId"
+            app:layout_constraintStart_toEndOf="@id/itemArticle_textView_pieceId"
+            app:layout_constraintStart_toStartOf="@+id/itemArticle_placeholder_articleDescription" />
+
+        <View
+            android:id="@+id/divider_artikel_farbe"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemArticle_textView_pieceId" />
+
         <ImageView
             android:id="@+id/itemArticle_icon_colorpalette"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="4dp"
+            android:contentDescription="@string/itemArticle_iconDescription_color"
             android:padding="2dp"
             android:src="@drawable/ic_color"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemArticle_icon_itemtag" />
+            app:layout_constraintTop_toBottomOf="@+id/divider_artikel_farbe" />
 
         <TextView
             android:id="@+id/itemArticle_textView_colorId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/itemArticle_placeholder_articleId"
-            android:layout_toEndOf="@id/itemArticle_icon_colorpalette"
-            android:text="Farb ID"
+            android:padding="2dp"
+            android:text="@string/itemArticle_textView_colorId"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/guide_verticalMid"
+            app:layout_constraintBottom_toBottomOf="@+id/itemArticle_icon_colorpalette"
             app:layout_constraintStart_toEndOf="@+id/itemArticle_icon_colorpalette"
             app:layout_constraintTop_toTopOf="@+id/itemArticle_icon_colorpalette" />
 
@@ -126,128 +127,134 @@
             android:id="@+id/itemArticle_placeholder_colorId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/itemArticle_textView_colorId"
-            android:layout_toEndOf="@id/itemArticle_icon_itemtag"
-            android:text="Line 2"
-            android:textSize="15sp"
             android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="@+id/itemArticle_textView_colorId"
-            app:layout_constraintTop_toBottomOf="@+id/itemArticle_textView_colorId" />
-
+            android:layout_toEndOf="@id/itemArticle_icon_itemtag"
+            android:text="@string/itemArticle_placeholder_colorId"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/itemArticle_textView_colorId"
+            app:layout_constraintStart_toEndOf="@+id/itemArticle_textView_colorId" />
 
         <TextView
             android:id="@+id/itemArticle_textView_colorDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/itemArticle_placeholder_articleId"
-            android:layout_toEndOf="@id/itemArticle_icon_colorpalette"
-            android:text="Farbbezeichnung"
+            android:padding="2dp"
+            android:text="@string/itemArticle_textView_colorDescription"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintBaseline_toBaselineOf="@id/itemArticle_textView_colorId"
-            app:layout_constraintEnd_toStartOf="@+id/itemArticle_icon_location"
-            app:layout_constraintStart_toStartOf="@+id/guide_verticalMid" />
+            app:layout_constraintEnd_toStartOf="@+id/itemArticle_placeholder_colorDescription"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/itemArticle_placeholder_colorId" />
+
         <TextView
             android:id="@+id/itemArticle_placeholder_colorDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/itemArticle_icon_itemtag"
-            android:text="Line 2"
-            android:textSize="15sp"
             android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="@+id/itemArticle_textView_colorDescription"
-            app:layout_constraintTop_toBottomOf="@+id/itemArticle_textView_colorDescription" />
+            android:layout_toEndOf="@id/itemArticle_icon_itemtag"
+            android:text="@string/itemArticle_placeholder_colorDescription"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/itemArticle_textView_colorDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/itemArticle_textView_colorDescription" />
 
-                <!--Menge-->
         <TextView
             android:id="@+id/itemArticle_textView_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Menge"
+            android:layout_marginStart="6dp"
+            android:text="@string/itemArticle_textView_amount"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintBaseline_toBaselineOf="@id/itemArticle_textView_size"
-            app:layout_constraintEnd_toStartOf="@+id/divider_menge_groesse"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBaseline_toBaselineOf="@id/itemArticle_textView_articleId"
+            app:layout_constraintStart_toEndOf="@+id/divider_article_misc" />
 
         <TextView
             android:id="@+id/itemArticle_placeholder_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Line 2"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toStartOf="@+id/itemArticle_placeholder_amountUnit"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemArticle_textView_amount" />
+            android:layout_marginStart="8dp"
+            android:text="@string/itemArticle_placeholder_amount"
+
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/itemArticle_textView_amount"
+            app:layout_constraintStart_toEndOf="@+id/itemArticle_textView_amount" />
 
         <TextView
             android:id="@+id/itemArticle_placeholder_amountUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:text="Line 2"
-            android:textSize="15sp"
+            android:layout_marginStart="2dp"
+            android:text="@string/itemArticle_placeholder_amountUnit"
+            android:textSize="20sp"
             app:layout_constraintBaseline_toBaselineOf="@id/itemArticle_placeholder_amount"
-            app:layout_constraintEnd_toStartOf="@+id/divider_menge_groesse"
             app:layout_constraintStart_toEndOf="@+id/itemArticle_placeholder_amount" />
 
-       <!--groesse-->
-
+        <View
+            android:id="@+id/divider_article_misc"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_margin="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toTopOf="@+id/divider_artikel_farbe"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="@+id/guide_verticalMid"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/itemArticle_textView_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Größe"
+            android:text="@string/itemArticle_textView_size"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/divider_groesse_fertzu"
-            app:layout_constraintStart_toEndOf="@+id/divider_menge_groesse"
-            app:layout_constraintTop_toBottomOf="@+id/itemArticle_placeholder_colorDescription" />
+            app:layout_constraintBaseline_toBaselineOf="@id/itemArticle_textView_articleDescription"
+            app:layout_constraintStart_toStartOf="@+id/itemArticle_textView_amount" />
+
         <TextView
             android:id="@+id/itemArticle_placeholder_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Line 2"
-            android:textSize="15sp"
-            android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="@+id/itemArticle_textView_size"
-            app:layout_constraintTop_toBottomOf="@+id/itemArticle_textView_size" />
+            android:text="@string/itemArticle_placeholder_size"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/itemArticle_textView_size"
+            app:layout_constraintStart_toStartOf="@+id/itemArticle_placeholder_amount" />
 
-        <!--Fertigungsazustand-->
         <TextView
             android:id="@+id/itemArticle_textView_manufacturingState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fertigungszustand"
+            android:text="@string/itemArticle_textView_manufacturingState_short"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintBaseline_toBaselineOf="@id/itemArticle_textView_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/divider_groesse_fertzu" />
+            app:layout_constraintBaseline_toBaselineOf="@id/itemArticle_textView_pieceId"
+            app:layout_constraintStart_toStartOf="@+id/itemArticle_textView_amount" />
+
         <TextView
             android:id="@+id/itemArticle_placeholder_manufacturingState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Line 2"
-            android:textSize="15sp"
             android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="@+id/itemArticle_textView_manufacturingState"
-            app:layout_constraintTop_toBottomOf="@+id/itemArticle_textView_manufacturingState" />
+            android:text="@string/itemArticle_placeholder_manufacturingState"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/itemArticle_textView_manufacturingState"
+            app:layout_constraintStart_toEndOf="@+id/itemArticle_textView_manufacturingState" />
 
         <ImageView
             android:id="@+id/itemArticle_icon_location"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:onClick="testenLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/itemArticle_iconDescription_location"
             android:padding="2dp"
-            app:layout_constraintBottom_toTopOf="@+id/divider_farbe_misc"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toTopOf="@+id/divider_artikel_farbe"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_location" />
@@ -259,58 +266,11 @@
             android:layout_marginBottom="99dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintGuide_begin="478dp"
-            app:layout_constraintGuide_percent="0.5"
+            app:layout_constraintGuide_percent="0.6"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/divider_farbe_misc"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider_artikel_farbe" />
-
-        <View
-            android:id="@+id/divider_artikel_farbe"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toTopOf="@+id/divider_farbe_misc"
-            app:layout_constraintEnd_toStartOf="@+id/itemArticle_icon_location"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread" />
-
-        <View
-            android:id="@+id/divider_groesse_fertzu"
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            android:layout_margin="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/divider_menge_groesse"
-            app:layout_constraintTop_toBottomOf="@+id/divider_farbe_misc" />
-
-        <View
-            android:id="@+id/divider_menge_groesse"
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            android:layout_margin="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/divider_groesse_fertzu"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider_farbe_misc"
-            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </androidx.cardview.widget.CardView>
