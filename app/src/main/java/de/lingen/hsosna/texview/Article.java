@@ -109,10 +109,6 @@ public class Article {
         return mengenEinheit;
     }
 
-    public void setLagerplatz(int lagerplatz){
-        this.lagerplatz = lagerplatz;
-    }
-
     public int getLagerplatz(){
         return lagerplatz;
     }

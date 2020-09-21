@@ -159,7 +159,7 @@ public class SearchFragment extends Fragment {
                 }
 
                 @Override
-                public void onDeleteClick (int position) {
+                public void onLocationMarkerClick (int position) {
                     Lagerplatz checkedLagerplatz = new Lagerplatz(60, suchErgebnisse.get(position).getLagerplatz(), suchErgebnisse.get(position).getRegalfach());
                     listener.onSearchInputSent(checkedLagerplatz);
                 }
@@ -179,7 +179,7 @@ public class SearchFragment extends Fragment {
             listener = (SearchFragmentListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                                       + " must implement FragmentAListener");
+                                       + " must implement Search Fragment Listener");
         }
     }
 

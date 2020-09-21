@@ -21,7 +21,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ExampleV
 
     public interface OnItemClickListener{
         void onItemClick(int position);
-        void onDeleteClick (int position);
+        void onLocationMarkerClick (int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener){
@@ -80,7 +80,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ExampleV
                         int position = getAdapterPosition();
                         //int test = mExampleList.get(position).getArtikelID();
                         if (position != RecyclerView.NO_POSITION){
-                            listener.onDeleteClick(position);
+                            listener.onLocationMarkerClick(position);
                         }
                     }
                 }

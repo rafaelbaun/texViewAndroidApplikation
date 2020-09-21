@@ -36,6 +36,7 @@ import de.lingen.hsosna.texview.fragments.InfoFragment;
 import de.lingen.hsosna.texview.fragments.KPIFragment;
 import de.lingen.hsosna.texview.fragments.RegalfrontFragment;
 import de.lingen.hsosna.texview.fragments.SearchFragment;
+import de.lingen.hsosna.texview.fragments.ShelffrontTemporaryFragment;
 
 import static de.lingen.hsosna.texview.fragments.RegalfrontFragment.ARG_SHELVESTOMARKRED;
 
@@ -45,7 +46,7 @@ import static de.lingen.hsosna.texview.fragments.RegalfrontFragment.ARG_SHELVEST
  */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        SearchFragment.SearchFragmentListener {
+        SearchFragment.SearchFragmentListener, RegalfrontFragment.ShelfFrontFragmentListener, ShelffrontTemporaryFragment.ShelfFrontFragmentListener {
     private DrawerLayout drawer;
     private View decorView;
     private BottomSheetBehavior mBottomSheetBehaviour;
@@ -229,8 +230,13 @@ public class MainActivity extends AppCompatActivity
                 fragment = RegalfrontFragment.newInstance(new ArrayList<Lagerplatz>(), view.getContentDescription());
             }
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    fragment, "REGALFRONT_FRAGMENT").commit();
+            if(view.getContentDescription().equals("606200")){
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        ShelffrontTemporaryFragment.newInstance(view.getContentDescription()), "REGALFRONT_TEMP_FRAGMENT").commit();
+            } else {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        fragment, "REGALFRONT_FRAGMENT").commit();
+            }
         }
 
         FilterFragment filterFragment = (FilterFragment) getSupportFragmentManager().findFragmentByTag("FILTER_FRAGMENT");
@@ -244,13 +250,14 @@ public class MainActivity extends AppCompatActivity
                 fragment = RegalfrontFragment.newInstance(new ArrayList<Lagerplatz>(), view.getContentDescription());
             }
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    fragment, "REGALFRONT_FRAGMENT").commit();
+            if(view.getContentDescription().equals("606200")){
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        ShelffrontTemporaryFragment.newInstance(view.getContentDescription()), "REGALFRONT_TEMP_FRAGMENT").commit();
+            } else {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        fragment, "REGALFRONT_FRAGMENT").commit();
+            }
         }
-
-
-
-
     }
 
     /**
@@ -368,8 +375,6 @@ public class MainActivity extends AppCompatActivity
                     if(regalfrontFragment != null){
                         regalfrontFragment.markFreeShelves(findViewById(android.R.id.content).getRootView());
                     }
-                    //markFreeShelves();
-                    displayToastLong("checked movement");
                 }
                 else{
                     colorSwitchState = false;
@@ -379,7 +384,7 @@ public class MainActivity extends AppCompatActivity
                         homeFragment.unmarkFreeShelves(
                                 findViewById(android.R.id.content).getRootView());
                     }
-                    //HOMEFRAGMENT
+                    //FILTERFRAGMENT
                     FilterFragment filterFragment = (FilterFragment)getSupportFragmentManager().findFragmentByTag("FILTER_FRAGMENT");
                     if(filterFragment != null) {
                         filterFragment.unmarkFreeShelves(
@@ -390,9 +395,6 @@ public class MainActivity extends AppCompatActivity
                     if(regalfrontFragment != null){
                         regalfrontFragment.unmarkFreeShelves(findViewById(android.R.id.content).getRootView());
                     }
-
-                    displayToastLong("unchecked movmement");
-                    //unmarkFreeShelves();
                 }
             }
         });
@@ -440,6 +442,11 @@ public class MainActivity extends AppCompatActivity
         HomeFragment fragment = HomeFragment.newInstance(shelvesToMarkRed);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment, "HOME_FRAGMENT")
                 .commit();
+    }
+
+    @Override
+    public void onShelfFrontInputSent (Lagerplatz input) {
+        onSearchInputSent(input);
     }
 
     public void returnHome (View view){

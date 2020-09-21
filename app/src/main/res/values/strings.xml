@@ -312,5 +312,10 @@
     <string name="settingsFragment_loadFromMemoryDescription">Datenbank aus dem Speicher laden</string>
     <string name="settingsFragment_deleteDatabaseDescription">Datenbank löschen</string>
     <string name="settingsFragment_loadingDescription">Bitte warten…</string>
+    <string name="fragment_shelf_frontal_loadingTitle">Regaldaten werden geladen</string>
+    <string name="fragment_shelf_frontal_loadingDescription">Bitte warten…</string>
+    <string name="fragment_shelf_temporal_header">Temporärer Lagerplatz</string>
+    <string name="fragment_shelf_temporal_loadingMessage">Daten werden geladen</string>
+    <string name="fragment_shelf_temporal_loadingMessage2">Bitte warten…</string>
 
 </resources>
