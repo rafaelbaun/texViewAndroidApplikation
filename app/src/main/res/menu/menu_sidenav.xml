@@ -20,13 +20,17 @@
             android:id="@+id/nav_search"
             android:icon="@drawable/ic_search"
             android:title="Search" />
+        <item
+            android:id="@+id/nav_kpi"
+            android:icon="@drawable/ic_kpi"
+            android:title="KPI's" />
     </group>
     <group
         android:id="@+id/group2"
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_dbcon2"
+            android:id="@+id/nav_info"
             android:icon="@drawable/ic_info"
             android:title="Info" />
         <item
@@ -34,6 +38,13 @@
             android:icon="@drawable/ic_settings"
             android:title="Einstellungen" />
 
+    </group>
+    <group
+        android:id="@+id/group_logout">
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="Log Out" />
     </group>
 
     <!--<item android:title="Settings">

@@ -97,7 +97,8 @@
                     android:hint="@string/filterFragment_editText_articleId"
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textCursorDrawable="@null" />
 
                 <EditText
                     android:id="@+id/filterFragment_editText_articleShortDesc"
@@ -107,7 +108,8 @@
                     android:hint="@string/filterFragment_editText_articleShortDescription"
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textCursorDrawable="@null" />
 
                 <EditText
                     android:id="@+id/filterFragment_editText_pieceId"
@@ -118,6 +120,7 @@
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
                     android:inputType="number"
+                    android:textCursorDrawable="@null"
                     android:translationY="14sp" />
 
                 <EditText
@@ -129,6 +132,7 @@
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
                     android:inputType="number"
+                    android:textCursorDrawable="@null"
                     android:translationY="14sp" />
             </LinearLayout>
 
@@ -198,7 +202,8 @@
                     android:hint="@string/filterFragment_editText_colorId"
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textCursorDrawable="@null" />
 
                 <EditText
                     android:id="@+id/filterFragment_editText_colorDescription"
@@ -208,7 +213,8 @@
                     android:hint="@string/filterFragment_editText_colorDescription"
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textCursorDrawable="@null" />
 
             </LinearLayout>
         </LinearLayout>
@@ -278,7 +284,8 @@
                     android:hint="@string/filterFragment_editText_size"
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textCursorDrawable="@null" />
 
                 <EditText
                     android:id="@+id/filterFragment_editText_manufacturingState"
@@ -288,7 +295,8 @@
                     android:hint="@string/filterFragment_editText_manufacturingState"
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textCursorDrawable="@null" />
             </LinearLayout>
 
         </LinearLayout>

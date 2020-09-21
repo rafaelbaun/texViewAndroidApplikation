@@ -293,4 +293,24 @@
     <string name="filterFragment_iconDescription_article">Icon for Article Searchattributes</string>
 
 
+
+    <string name="settingsFragment_textView_pageCaption">Einstellungen</string>
+    <string name="settingsFragment_textView_databaseCaption">Datenbank</string>
+
+    <string name="settingsFragment_textView_database">Datenbank</string>
+    <string name="settingsFragment_textView_datapool">Datenbestand</string>
+    <string name="settingsFragment_textView_refresh">aktualisieren</string>
+    <string name="settingsFragment_textView_loadFromServer">vom Server laden</string>
+    <string name="settingsFragment_textView_loadFromMemory">aus Speicher laden</string>
+    <string name="settingsFragment_textView_delete">löschen</string>
+
+
+
+
+    <string name="settingsFragment_refreshDescription">Datenbestand aktualisieren</string>
+    <string name="settingsFragment_loadFromServerDescription">Datenbank vom Server laden</string>
+    <string name="settingsFragment_loadFromMemoryDescription">Datenbank aus dem Speicher laden</string>
+    <string name="settingsFragment_deleteDatabaseDescription">Datenbank löschen</string>
+    <string name="settingsFragment_loadingDescription">Bitte warten…</string>
+
 </resources>

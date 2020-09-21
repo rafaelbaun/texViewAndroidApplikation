@@ -8,13 +8,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import org.json.JSONArray;
@@ -27,7 +28,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 
 import de.lingen.hsosna.texview.DatabaseHelper;
 import de.lingen.hsosna.texview.R;
@@ -42,96 +42,104 @@ import okhttp3.Response;
 /**
  * Eine SQLite Datenbank wird erstellt und mittels der DBHelper Klasse werden drei Tabellen in ihr erstellt.
  */
-public class DatabaseFragment extends Fragment {
+public class SettingsFragment extends Fragment {
     private SQLiteDatabase mDatabase;
     private ProgressBar progressBar;
+    private AlertDialog alertDialog;
 
 
     @Nullable
     @Override
     public View onCreateView (@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                               @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_database, container, false);
+        View v = inflater.inflate(R.layout.fragment_settings, container, false);
+
         DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
         mDatabase = dbHelper.getWritableDatabase();
-        progressBar = v.findViewById(R.id.progressBar);
+
+        progressBar = v.findViewById(R.id.fragmentSettings_progressBar);
+        ((ViewGroup) progressBar.getParent()).removeView(progressBar);
 
 
-        ImageButton button = v.findViewById(R.id.button_loadFromServer);
-        // BUTTONS
+        //Buttons
+        ImageButton buttonRefreshDatabase = v.findViewById(R.id.button_reloadFromServer);
+        ImageButton buttonLoadFromServer = v.findViewById(R.id.button_loadFromServer);
         ImageButton buttonDeleteDb = v.findViewById(R.id.button_deleteDbContent);
-        ImageButton buttonFillDb = v.findViewById(R.id.button_loadFromMemory);
-        Button buttonFetchServerDB = v.findViewById(R.id.buttonFetchServerDB);
-        ArrayList<String> test = new ArrayList<>();
+        ImageButton buttonLoadFromMemory = v.findViewById(R.id.button_loadFromMemory);
 
 
-        button.setOnClickListener(new View.OnClickListener() {
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        alertDialogBuilder.setCancelable(false);
+        alertDialogBuilder.setMessage(R.string.settingsFragment_loadingDescription);
+
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        progressBar.setLayoutParams(lp);
+        progressBar.setPadding(20,0,20,0);
+        alertDialogBuilder.setView(progressBar);
+
+        //TODO
+        //Refresh Database content
+        buttonRefreshDatabase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                startAsyncTast(v);
+                alertDialogBuilder.setTitle(R.string.settingsFragment_refreshDescription);
+                alertDialogBuilder.setIcon(R.drawable.ic_refresh);
+                alertDialog = alertDialogBuilder.create();
             }
         });
-        ////////////////////////////////////// BUTTON DELETE DB
+        //Fill Database from Server
+        buttonLoadFromServer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                alertDialogBuilder.setTitle(R.string.settingsFragment_loadFromServerDescription);
+                alertDialogBuilder.setIcon(R.drawable.ic_cloud_download);
+                alertDialog = alertDialogBuilder.create();
+                startAsyncTast(true);
+            }
+        });
+
+        //Fill Database from Memory
+        buttonLoadFromMemory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                alertDialogBuilder.setTitle(R.string.settingsFragment_loadFromMemoryDescription);
+                alertDialogBuilder.setIcon(R.drawable.ic_document_download);
+                alertDialog = alertDialogBuilder.create();
+                startAsyncTast(false);
+            }
+        });
+
+        //Delete Database
         buttonDeleteDb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
                 deleteDatabaseContents(mDatabase);
             }
         });
-        ///////////////////////////////////// BUTTON FILL DB FROM MEMORY
-        buttonFillDb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View v) {
-                try {
-                    readDataToDbArtikelkombinationen(null);
-                    Toast.makeText(getActivity().getApplicationContext(),
-                            "Artikelkombinationen hinzugefügt", Toast.LENGTH_SHORT).show();
-                    readDataToDbLagerplaetze(null);
-                    Toast.makeText(getActivity().getApplicationContext(),
-                            "Lagerplaetze hinzugefügt", Toast.LENGTH_SHORT).show();
-                    readDataToDbLagerbestand(null);
-                    Toast.makeText(getActivity().getApplicationContext(),
-                            "Lagerbestand hinzugefügt", Toast.LENGTH_SHORT).show();
-                    readDataToDbLagerbestandSumme(null);
-                    Toast.makeText(getActivity().getApplicationContext(),
-                            "Lagerbestand Summe hinzugefügt", Toast.LENGTH_SHORT).show();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        ////////////////////////// BUTTON FETCH SERVER DB
-        buttonFetchServerDB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View v) {
-                getJsonFromServer("http://131.173.65.147/artikelkombinationen.php", TableArtikelkombination.ArtikelkombinationenEntry.TABLE_NAME);
-                getJsonFromServer("http://131.173.65.147/lagerplaetze.php", TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME);
-                getJsonFromServer("http://131.173.65.147/lagerbestand_summe.php", TableLagerbestand_Summe.Lagerbestand_SummeEntry.TABLE_NAME);
-                getJsonFromServer("http://131.173.65.147/lagerbestand.php", TableLagerbestand.LagerbestandEntry.TABLE_NAME);
-                Toast.makeText(getActivity().getApplicationContext(), "daten gezogen",
-                        Toast.LENGTH_SHORT).show();
-                ///ACTIOPN HERE
-            }
-        });
-
 
         return v;
     }
 
-    public void startAsyncTast(View v){
+    public void startAsyncTast(boolean getFromServer){
         String[][] dataToPull = new String[4][2];
         dataToPull[0][0] = TableArtikelkombination.ArtikelkombinationenEntry.TABLE_NAME;
         dataToPull[1][0] = TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME;
         dataToPull[2][0] = TableLagerbestand_Summe.Lagerbestand_SummeEntry.TABLE_NAME;
         dataToPull[3][0] = TableLagerbestand.LagerbestandEntry.TABLE_NAME;
 
-        dataToPull[0][1] = "http://131.173.65.147/artikelkombinationen.php";
-        dataToPull[1][1] = "http://131.173.65.147/lagerplaetze.php";
-        dataToPull[2][1] = "http://131.173.65.147/lagerbestand_summe.php";
-        dataToPull[3][1] = "http://131.173.65.147/lagerbestand.php";
-        ExampleAsyncTask task = new ExampleAsyncTask(this, dataToPull);
+        if(getFromServer) {
+            dataToPull[0][1] = "http://131.173.65.147/artikelkombinationen.php";
+            dataToPull[1][1] = "http://131.173.65.147/lagerplaetze.php";
+            dataToPull[2][1] = "http://131.173.65.147/lagerbestand_summe.php";
+            dataToPull[3][1] = "http://131.173.65.147/lagerbestand.php";
+        }
+        else{
+            dataToPull[0][1] = null;
+            dataToPull[1][1] = null;
+            dataToPull[2][1] = null;
+            dataToPull[3][1] = null;
+        }
+        FillDatabaseAsyncTask task = new FillDatabaseAsyncTask(this, dataToPull);
         task.execute();
 
     }
@@ -140,26 +148,16 @@ public class DatabaseFragment extends Fragment {
         String deleteString =
                 "DELETE FROM " + TableArtikelkombination.ArtikelkombinationenEntry.TABLE_NAME + ";";
         db.execSQL(deleteString);
-        Toast.makeText(getActivity().getApplicationContext(),
-                "Tabelle: " + TableArtikelkombination.ArtikelkombinationenEntry.TABLE_NAME
-                + " wurde gelöscht", Toast.LENGTH_SHORT).show();
+
         deleteString = "DELETE FROM " + TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME + ";";
         db.execSQL(deleteString);
-        Toast.makeText(getActivity().getApplicationContext(),
-                "Tabelle: " + TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME + " wurde gelöscht",
-                Toast.LENGTH_SHORT).show();
+
         deleteString = "DELETE FROM " + TableLagerbestand.LagerbestandEntry.TABLE_NAME + ";";
         db.execSQL(deleteString);
-        Toast.makeText(getActivity().getApplicationContext(),
-                "Tabelle: " + TableLagerbestand.LagerbestandEntry.TABLE_NAME + " wurde gelöscht",
-                Toast.LENGTH_SHORT).show();
+
         deleteString =
                 "DELETE FROM " + TableLagerbestand_Summe.Lagerbestand_SummeEntry.TABLE_NAME + ";";
         db.execSQL(deleteString);
-        Toast.makeText(getActivity().getApplicationContext(),
-                "Tabelle: " + TableLagerbestand_Summe.Lagerbestand_SummeEntry.TABLE_NAME
-                + " wurde gelöscht",
-                Toast.LENGTH_SHORT).show();
     }
 
     private void readDataToDbArtikelkombinationen (JSONArray array)
@@ -241,7 +239,6 @@ public class DatabaseFragment extends Fragment {
         }
     }
 
-    //TODO
     private void readDataToDbLagerbestand (JSONArray array)
             throws IOException, JSONException {
         //names of columns in json file
@@ -478,46 +475,13 @@ public class DatabaseFragment extends Fragment {
         return new String(builder);
     }
 
-    public void getJsonFromServer (final String url, final String Table) {
-        @SuppressLint ("StaticFieldLeak") AsyncTask<Integer,Void,Void> asyncTask =
-                new AsyncTask<Integer,Void,Void>() {
-                    @Override
-                    protected Void doInBackground (Integer... integers) {
-                        OkHttpClient client = new OkHttpClient();
-                        Request request = new Request.Builder().url(url).build();
-                        try {
-                            Response response = client.newCall(request).execute();
-                            JSONArray array = new JSONArray(response.body().string());
-                            switch(Table){
-                                case TableArtikelkombination.ArtikelkombinationenEntry.TABLE_NAME:
-                                    readDataToDbArtikelkombinationen(array);
-                                    break;
-                                case TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME:
-                                    readDataToDbLagerplaetze(array);
-                                    break;
-                                case TableLagerbestand.LagerbestandEntry.TABLE_NAME:
-                                    readDataToDbLagerbestand(array);
-                                    break;
-                                case TableLagerbestand_Summe.Lagerbestand_SummeEntry.TABLE_NAME:
-                                    readDataToDbLagerbestandSumme(array);
-                                    break;
-                            }
-                        } catch (IOException | JSONException e) {
-                            e.printStackTrace();
-                        }
-                        return null;
-                    }
-                };
-        asyncTask.execute();
-    }
-
-    private static class ExampleAsyncTask extends AsyncTask<Integer, Integer, String>{
-        private WeakReference<DatabaseFragment> activityWeakReference;
+    private static class FillDatabaseAsyncTask extends AsyncTask<Integer, Integer, String>{
+        private WeakReference<SettingsFragment> activityWeakReference;
         private String[][] dataToPull;
 
 
-        ExampleAsyncTask(DatabaseFragment fragment, String[][] dataToPullArray){
-            activityWeakReference = new WeakReference<DatabaseFragment>(fragment);
+        FillDatabaseAsyncTask (SettingsFragment fragment, String[][] dataToPullArray){
+            activityWeakReference = new WeakReference<SettingsFragment>(fragment);
             dataToPull = dataToPullArray;
 
         }
@@ -526,22 +490,29 @@ public class DatabaseFragment extends Fragment {
         protected void onPreExecute () {
             super.onPreExecute();
 
-            DatabaseFragment fragment = activityWeakReference.get();
-            if(fragment == null || fragment.getActivity().isFinishing()) {
+            SettingsFragment fragment = activityWeakReference.get();
+            if(fragment == null || fragment.isRemoving()) {
                 return;
             }
+
+
+            fragment.alertDialog.show();
             fragment.progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected String doInBackground (Integer... integers) {
             OkHttpClient client = new OkHttpClient();
+
             for (int i = 0; i < dataToPull.length; i++) {
-                Request request = new Request.Builder().url(dataToPull[i][1]).build();
-                DatabaseFragment fragment = activityWeakReference.get();
+                SettingsFragment fragment = activityWeakReference.get();
+                JSONArray array = null;
                 try {
-                    Response response = client.newCall(request).execute();
-                    JSONArray array = new JSONArray(response.body().string());
+                    if(dataToPull[i][1] != null) {
+                        Request request = new Request.Builder().url(dataToPull[i][1]).build();
+                        Response response = client.newCall(request).execute();
+                        array = new JSONArray(response.body().string());
+                    }
                     switch (dataToPull[i][0]) {
                         case TableArtikelkombination.ArtikelkombinationenEntry.TABLE_NAME:
                             fragment.readDataToDbArtikelkombinationen(array);
@@ -567,30 +538,23 @@ public class DatabaseFragment extends Fragment {
         @Override
         protected void onProgressUpdate (Integer... values) {
             super.onProgressUpdate(values);
-            DatabaseFragment fragment = activityWeakReference.get();
-            if(fragment == null || fragment.getActivity().isFinishing()) {
+            SettingsFragment fragment = activityWeakReference.get();
+            if(fragment == null || fragment.isRemoving()) {
                 return;
             }
             fragment.progressBar.setProgress(values[0]);
-
         }
 
         @Override
         protected void onPostExecute (String s) {
             super.onPostExecute(s);
-
-            DatabaseFragment fragment = activityWeakReference.get();
-            if(fragment == null || fragment.getActivity().isFinishing()) {
+            SettingsFragment fragment = activityWeakReference.get();
+            if(fragment == null || fragment.isRemoving()) {
                 return;
             }
-
-            fragment.showToast(s);
+            fragment.alertDialog.dismiss();
             fragment.progressBar.setProgress(0);
             fragment.progressBar.setVisibility(View.INVISIBLE);
-
-
         }
-
-
     }
 }

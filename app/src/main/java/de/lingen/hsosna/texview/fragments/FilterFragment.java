@@ -32,6 +32,7 @@ import de.lingen.hsosna.texview.database.TableLagerbestand;
 import static android.view.KeyEvent.KEYCODE_ENTER;
 import static de.lingen.hsosna.texview.MainActivity.colorSwitchState;
 import static de.lingen.hsosna.texview.MainActivity.freeShelveList;
+import static de.lingen.hsosna.texview.MainActivity.hideKeyboardFrom;
 
 public class FilterFragment extends Fragment {
 
@@ -50,6 +51,8 @@ public class FilterFragment extends Fragment {
     private SQLiteDatabase mDatabase;
 
     private BottomSheetBehavior mBottomSheetBehaviour;
+
+    private TextView filterHeader;
 
 
     private ArrayList<Lagerplatz> shelvesToMarkRed = new ArrayList<>();
@@ -92,6 +95,7 @@ public class FilterFragment extends Fragment {
         editGroesse.setOnEditorActionListener(onEditorActionListener);
         editFertigungszustand.setOnEditorActionListener(onEditorActionListener);
 
+        filterHeader = v.findViewById(R.id.filterFragment_filterHeader);
         button = v.findViewById(R.id.filterFragment_button_submit);
         dbHelper = new DatabaseHelper(getActivity());
         mDatabase = dbHelper.getReadableDatabase();
@@ -113,6 +117,7 @@ public class FilterFragment extends Fragment {
     }
 
     public void performFilter () {
+        hideKeyboardFrom(getContext(), getView());
         unmarkShelves(getView());
         if (colorSwitchState) {
             markFreeShelves(getView());
@@ -121,6 +126,10 @@ public class FilterFragment extends Fragment {
         if (SqlWhereQuery.length() != 0) {
             final ArrayList<Article> suchErgebnisse = getListWithSearchResults(SqlWhereQuery);
 
+            if(suchErgebnisse.size() == 1)
+                filterHeader.setText((String.valueOf(suchErgebnisse.size())).concat(" Ergebnis"));
+            else
+                filterHeader.setText((String.valueOf(suchErgebnisse.size())).concat(" Ergebnisse"));
             shelvesToMarkRed = getShelvesToMarkFromFilterResults(suchErgebnisse);
 
 

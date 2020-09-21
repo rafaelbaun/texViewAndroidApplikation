@@ -51,6 +51,8 @@ public class HomeFragment extends Fragment {
         else{
             unmarkFreeShelves(v);
         }
+
+
         markRegale(v);
         return v;
     }

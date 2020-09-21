@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -258,4 +259,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintGuide_percent=".33"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/shelfProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:progressTint="@color/colorPrimary"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_shelf_frontal_shelfonly_textView_shelfNumber"
+        app:layout_constraintStart_toStartOf="@+id/fragment_shelf_frontal_shelfonly_textView_shelfNumber"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_shelf_frontal_shelfonly_textView_shelfNumber" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

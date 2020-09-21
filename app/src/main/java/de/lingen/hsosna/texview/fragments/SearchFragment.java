@@ -32,6 +32,7 @@ import de.lingen.hsosna.texview.database.TableArtikelkombination;
 import de.lingen.hsosna.texview.database.TableLagerbestand;
 
 import static android.view.KeyEvent.KEYCODE_ENTER;
+import static de.lingen.hsosna.texview.MainActivity.hideKeyboardFrom;
 
 public class SearchFragment extends Fragment {
     private SearchFragmentListener listener;
@@ -115,7 +116,9 @@ public class SearchFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
+
                 performSearch();
+
             }
         });
         return v;
@@ -133,6 +136,7 @@ public class SearchFragment extends Fragment {
     };
 
     public void performSearch(){
+        hideKeyboardFrom(getContext(), getView());
         String SqlWhereQuery = getSqlWhereQuery();
         if(SqlWhereQuery.length() != 0) {
             final ArrayList<Article> suchErgebnisse = getListWithSearchResults(SqlWhereQuery);
@@ -184,10 +188,7 @@ public class SearchFragment extends Fragment {
         super.onDetach();
         listener = null;
     }
-
-
-
-
+    
     public ArrayList<Article> getListWithSearchResults (String SqlWhereQuery) {
         ArrayList<Article> articleList = new ArrayList<Article>();
 
@@ -246,8 +247,6 @@ public class SearchFragment extends Fragment {
         }
         return articleList;
     }
-
-
 
     //TODO prevent sql injection
     public String getSqlWhereQuery(){

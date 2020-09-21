@@ -65,7 +65,8 @@
                     android:hint="@string/searchFragment_editText_articleId"
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textCursorDrawable="@null" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -97,7 +98,8 @@
                     android:hint="@string/searchFragment_editText_articleShortDescription"
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textCursorDrawable="@null" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -116,7 +118,8 @@
                     android:hint="@string/searchFragment_editText_pieceId"
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textCursorDrawable="@null" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -135,7 +138,8 @@
                     android:hint="@string/searchFragment_editText_pieceDivision"
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textCursorDrawable="@null" />
             </LinearLayout>
 
         </LinearLayout>
@@ -191,7 +195,8 @@
                     android:hint="@string/searchFragment_editText_colorId"
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textCursorDrawable="@null" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -211,7 +216,8 @@
                     android:hint="@string/searchFragment_editText_colorDescription"
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textCursorDrawable="@null" />
 
             </LinearLayout>
         </LinearLayout>
@@ -268,7 +274,8 @@
                     android:hint="@string/searchFragment_editText_size"
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textCursorDrawable="@null" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -288,7 +295,8 @@
                     android:hint="@string/searchFragment_editText_manufacturingState"
                     android:imeOptions="actionSearch"
                     android:importantForAutofill="no"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textCursorDrawable="@null" />
             </LinearLayout>
 
         </LinearLayout>

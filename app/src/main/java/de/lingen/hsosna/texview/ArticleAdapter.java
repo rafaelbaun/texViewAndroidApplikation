@@ -92,6 +92,10 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ExampleV
         mExampleList = exampleList;
     }
 
+    public ArticleAdapter(){
+        mExampleList = new ArrayList<>();
+    }
+
     @Override
     public ExampleViewHolder onCreateViewHolder (@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_article, parent,

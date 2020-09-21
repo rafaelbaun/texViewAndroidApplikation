@@ -176,12 +176,12 @@
             android:id="@+id/itemArticle_placeholder_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:text="@string/itemArticle_placeholder_amount"
 
             android:textSize="20sp"
             app:layout_constraintBaseline_toBaselineOf="@id/itemArticle_textView_amount"
-            app:layout_constraintStart_toEndOf="@+id/itemArticle_textView_amount" />
+            app:layout_constraintStart_toEndOf="@+id/itemArticle_textView_amount"
+            app:layout_constraintStart_toStartOf="@+id/itemArticle_placeholder_manufacturingState" />
 
         <TextView
             android:id="@+id/itemArticle_placeholder_amountUnit"

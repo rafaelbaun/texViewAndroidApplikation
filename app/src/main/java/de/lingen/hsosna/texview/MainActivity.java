@@ -1,5 +1,7 @@
 package de.lingen.hsosna.texview;
 
+import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -7,8 +9,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
-import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -27,9 +29,11 @@ import java.util.ArrayList;
 
 import de.lingen.hsosna.texview.database.TableLagerbestand;
 import de.lingen.hsosna.texview.database.TableLagerplaetze;
-import de.lingen.hsosna.texview.fragments.DatabaseFragment;
+import de.lingen.hsosna.texview.fragments.SettingsFragment;
 import de.lingen.hsosna.texview.fragments.FilterFragment;
 import de.lingen.hsosna.texview.fragments.HomeFragment;
+import de.lingen.hsosna.texview.fragments.InfoFragment;
+import de.lingen.hsosna.texview.fragments.KPIFragment;
 import de.lingen.hsosna.texview.fragments.RegalfrontFragment;
 import de.lingen.hsosna.texview.fragments.SearchFragment;
 
@@ -47,7 +51,6 @@ public class MainActivity extends AppCompatActivity
     private BottomSheetBehavior mBottomSheetBehaviour;
 
     public static ArrayList<Lagerplatz> freeShelveList;
-    public ArrayList<CharSequence> freeShelveBoxList;
 
     private DatabaseHelper dbHelper;
     private SQLiteDatabase mDatabase;
@@ -59,8 +62,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //setContentView(R.layout.fragment_home_lagerort_60);
-
 
         dbHelper = new DatabaseHelper(this);
         mDatabase = dbHelper.getReadableDatabase();
@@ -100,8 +101,6 @@ public class MainActivity extends AppCompatActivity
      * @param view Das geklickte Regalfach wird als Parameter der Klasse "View" übergeben.
      */
     public void getClickedRegalFach (View view) {
-        displayToast((String) view.getContentDescription());
-
         ArrayList<View> bottomSheets = getSlideUpPaneArrayList();
         /////////////////////////
 
@@ -215,7 +214,6 @@ public class MainActivity extends AppCompatActivity
      * @param view Das geklickte Regal wird als Parameter der Klasse "View" übergeben.
      */
     public void getClickedRegal (View view) {
-        displayToast((String) view.getContentDescription());
         // neues fragment mit values
 
 
@@ -302,17 +300,22 @@ public class MainActivity extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new FilterFragment(), "FILTER_FRAGMENT").commit();
                 break;
-            case R.id.nav_dbcon:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new DatabaseFragment(), "DB_FRAGMENT").commit();
-                break;
             case R.id.nav_search:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new SearchFragment(), "SEARCH_FRAGMENT").commit();
                 break;
-            case R.id.nav_dbcon2:
+            case R.id.nav_kpi:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new DatabaseFragment(), "DB_FRAGMENT").commit();
+                        new KPIFragment(), "KPI_FRAGMENT").commit();
+                break;
+
+            case R.id.nav_info:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new InfoFragment(), "INFO_FRAGMENT").commit();
+                break;
+            case R.id.nav_dbcon:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new SettingsFragment(), "DB_FRAGMENT").commit();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
@@ -341,6 +344,8 @@ public class MainActivity extends AppCompatActivity
         itemSwitch.setActionView(R.layout.switch_color);
         Switch sw = (Switch) menu.findItem(R.id.switchColor).getActionView().findViewById(R.id.switchColorAction);
 
+        if (colorSwitchState)
+            sw.setChecked(true);
 
         //color switch changes
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -399,7 +404,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected (@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.searchButton:
-                Toast.makeText(this, "Suche ausgewählt", Toast.LENGTH_SHORT).show();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new SearchFragment(), "SEARCH_FRAGMENT").commit();
                 NavigationView navigationView = findViewById(R.id.nav_view);
@@ -434,8 +438,7 @@ public class MainActivity extends AppCompatActivity
         shelvesToMarkRed.add(input);
 
         HomeFragment fragment = HomeFragment.newInstance(shelvesToMarkRed);
-        //fragment wird gesetzt
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment, "HOME_FRAGMENT")//_AFTER_SEARCH")
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment, "HOME_FRAGMENT")
                 .commit();
     }
 
@@ -471,6 +474,12 @@ public class MainActivity extends AppCompatActivity
         }
 
         return freeShelves;
+    }
+
+    public static void hideKeyboardFrom(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        assert imm != null;
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
 }
