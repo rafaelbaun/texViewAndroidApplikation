@@ -160,7 +160,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
-                        android:text="@string/settingsFragment_textView_loadFromServer"
+                        android:text="@string/settingsFragment_textView_loadFromMemory"
                         android:textAlignment="center"
                         android:textSize="18sp" />
                 </LinearLayout>

@@ -557,4 +557,6 @@ public class SettingsFragment extends Fragment {
             fragment.progressBar.setVisibility(View.INVISIBLE);
         }
     }
+
+
 }
