@@ -7,13 +7,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import de.lingen.hsosna.texview.database.TableArtikelkombination;
+import de.lingen.hsosna.texview.database.TableKpi;
 import de.lingen.hsosna.texview.database.TableLagerbestand;
 import de.lingen.hsosna.texview.database.TableLagerbestand_Summe;
 import de.lingen.hsosna.texview.database.TableLagerplaetze;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "lagerverwaltung.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
     public DatabaseHelper (@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -125,6 +126,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_ID
                 + ") ON DELETE RESTRICT ON UPDATE CASCADE" + ");";
         db.execSQL(SQL_CREATE_LAGERBESTAND_SUMME_TABLE);
+
+
+    final String SQL_CREATE_KPI_TABLE =
+            "CREATE TABLE " + TableKpi.KpiEntry.TABLE_NAME + " ("
+            + TableKpi.KpiEntry.COLUMN_NAME + " TEXT NOT NULL, "
+            + TableKpi.KpiEntry.COLUMN_CURRENTVALUE + " INTEGER NOT NULL, "
+            + TableKpi.KpiEntry.COLUMN_MAXVALUE + " INTEGER, "
+            + TableKpi.KpiEntry.COLUMN_TIMESTAMP + " TEXT NOT NULL, "
+
+            + "PRIMARY KEY(" + TableKpi.KpiEntry.COLUMN_NAME + ", "
+            + TableKpi.KpiEntry.COLUMN_CURRENTVALUE + ", "
+            + TableKpi.KpiEntry.COLUMN_MAXVALUE + ", "
+            + TableKpi.KpiEntry.COLUMN_TIMESTAMP + "));";
+        db.execSQL(SQL_CREATE_KPI_TABLE);
     }
 
     @Override
@@ -133,6 +148,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TableLagerbestand.LagerbestandEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TableArtikelkombination.ArtikelkombinationenEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TableKpi.KpiEntry.TABLE_NAME);
         onCreate(db);
     }
 }

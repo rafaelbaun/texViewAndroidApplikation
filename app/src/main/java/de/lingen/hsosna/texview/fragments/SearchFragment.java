@@ -1,6 +1,7 @@
 package de.lingen.hsosna.texview.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -15,13 +16,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import de.lingen.hsosna.texview.Article;
 import de.lingen.hsosna.texview.ArticleAdapter;
@@ -36,8 +40,6 @@ import static de.lingen.hsosna.texview.MainActivity.hideKeyboardFrom;
 
 public class SearchFragment extends Fragment {
     private SearchFragmentListener listener;
-    private EditText editText;
-    private EditText editText2;
     private Button button;
 
     private EditText editArtikelNr;
@@ -48,6 +50,8 @@ public class SearchFragment extends Fragment {
     private EditText editFarbBez;
     private EditText editGroesse;
     private EditText editFertigungszustand;
+    private AlertDialog alertDialog;
+
 
 
     private DatabaseHelper dbHelper;
@@ -72,6 +76,14 @@ public class SearchFragment extends Fragment {
     public View onCreateView (@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                               @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_search, container, false);
+
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this.requireContext(), R.style.AlertDialogTheme);
+        alertDialogBuilder.setTitle("Suchanfrage fehlgeschlagen");
+        alertDialogBuilder.setMessage("Bitte füllen Sie mindestens ein Feld aus!");
+        alertDialogBuilder.setPositiveButton("OK", null);
+        alertDialog = alertDialogBuilder.create();
+
 
         //Belegung der Attribute
         editArtikelNr = v.findViewById(R.id.searchFragment_editText_articleId);
@@ -167,8 +179,7 @@ public class SearchFragment extends Fragment {
             mRecyclerView.setAdapter(mAdapter);
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
         } else {
-            //TODO ERROR MESSAGE DISPLAY
-            CharSequence errorMessage = "Bitte füllen Sie mindestens ein Feld aus";
+            alertDialog.show();
         }
     }
 

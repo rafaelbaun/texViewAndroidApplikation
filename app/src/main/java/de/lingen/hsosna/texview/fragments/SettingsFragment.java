@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ import java.nio.charset.StandardCharsets;
 import de.lingen.hsosna.texview.DatabaseHelper;
 import de.lingen.hsosna.texview.R;
 import de.lingen.hsosna.texview.database.TableArtikelkombination;
+import de.lingen.hsosna.texview.database.TableKpi;
 import de.lingen.hsosna.texview.database.TableLagerbestand;
 import de.lingen.hsosna.texview.database.TableLagerbestand_Summe;
 import de.lingen.hsosna.texview.database.TableLagerplaetze;
@@ -39,14 +41,16 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+
+
 /**
  * Eine SQLite Datenbank wird erstellt und mittels der DBHelper Klasse werden drei Tabellen in ihr erstellt.
  */
 public class SettingsFragment extends Fragment {
+    private static final String TAG = "SettingsFragment";
     private SQLiteDatabase mDatabase;
     private ProgressBar progressBar;
     private AlertDialog alertDialog;
-
 
     @Nullable
     @Override
@@ -56,6 +60,7 @@ public class SettingsFragment extends Fragment {
 
         DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
         mDatabase = dbHelper.getWritableDatabase();
+        Log.d(TAG, "onCreateView: " + mDatabase.getMaximumSize());
 
         progressBar = v.findViewById(R.id.fragmentSettings_progressBar);
         ((ViewGroup) progressBar.getParent()).removeView(progressBar);
@@ -85,6 +90,12 @@ public class SettingsFragment extends Fragment {
                 alertDialogBuilder.setTitle(R.string.settingsFragment_refreshDescription);
                 alertDialogBuilder.setIcon(R.drawable.ic_refresh);
                 alertDialog = alertDialogBuilder.create();
+                /////////NUR ZUM TESTEN
+
+                mDatabase.execSQL("DELETE FROM " + TableKpi.KpiEntry.TABLE_NAME + ";");
+                fillKpis();
+
+                //////
             }
         });
         //Fill Database from Server
@@ -118,6 +129,50 @@ public class SettingsFragment extends Fragment {
         });
 
         return v;
+    }
+
+    private void fillKpis () {
+        ContentValues cv = new ContentValues();
+        cv.put(TableKpi.KpiEntry.COLUMN_NAME, "Freie Lagerplätze");
+        cv.put(TableKpi.KpiEntry.COLUMN_CURRENTVALUE, 100);
+        cv.put(TableKpi.KpiEntry.COLUMN_MAXVALUE, 840);
+        cv.put(TableKpi.KpiEntry.COLUMN_TIMESTAMP, "April 2020");
+        mDatabase.insert(TableKpi.KpiEntry.TABLE_NAME, null, cv);
+
+        cv = new ContentValues();
+        cv.put(TableKpi.KpiEntry.COLUMN_NAME, "Freie Lagerplätze");
+        cv.put(TableKpi.KpiEntry.COLUMN_CURRENTVALUE, 188);
+        cv.put(TableKpi.KpiEntry.COLUMN_MAXVALUE, 840);
+        cv.put(TableKpi.KpiEntry.COLUMN_TIMESTAMP, "Mai 2020");
+        mDatabase.insert(TableKpi.KpiEntry.TABLE_NAME, null, cv);
+
+        cv = new ContentValues();
+        cv.put(TableKpi.KpiEntry.COLUMN_NAME, "Komissionierte Artikel");
+        cv.put(TableKpi.KpiEntry.COLUMN_CURRENTVALUE, 1246);
+        //cv.put(TableKpi.KpiEntry.COLUMN_MAXVALUE, null);
+        cv.put(TableKpi.KpiEntry.COLUMN_TIMESTAMP, "Mai 2020");
+        mDatabase.insert(TableKpi.KpiEntry.TABLE_NAME, null, cv);
+
+        cv = new ContentValues();
+        cv.put(TableKpi.KpiEntry.COLUMN_NAME, "Komissionierte Artikel");
+        cv.put(TableKpi.KpiEntry.COLUMN_CURRENTVALUE, 1300);
+        //cv.put(TableKpi.KpiEntry.COLUMN_MAXVALUE, null);
+        cv.put(TableKpi.KpiEntry.COLUMN_TIMESTAMP, "Juni 2020");
+        mDatabase.insert(TableKpi.KpiEntry.TABLE_NAME, null, cv);
+
+        cv = new ContentValues();
+        cv.put(TableKpi.KpiEntry.COLUMN_NAME, "Belegte Lagerplätze");
+        cv.put(TableKpi.KpiEntry.COLUMN_CURRENTVALUE, 812);
+        cv.put(TableKpi.KpiEntry.COLUMN_MAXVALUE, 840);
+        cv.put(TableKpi.KpiEntry.COLUMN_TIMESTAMP, "September 2020");
+        mDatabase.insert(TableKpi.KpiEntry.TABLE_NAME, null, cv);
+
+        cv = new ContentValues();
+        cv.put(TableKpi.KpiEntry.COLUMN_NAME, "Belegte Lagerplätze");
+        cv.put(TableKpi.KpiEntry.COLUMN_CURRENTVALUE, 602);
+        cv.put(TableKpi.KpiEntry.COLUMN_MAXVALUE, 840);
+        cv.put(TableKpi.KpiEntry.COLUMN_TIMESTAMP, "Oktober 2020");
+        mDatabase.insert(TableKpi.KpiEntry.TABLE_NAME, null, cv);
     }
 
     public void startAsyncTast(boolean getFromServer){

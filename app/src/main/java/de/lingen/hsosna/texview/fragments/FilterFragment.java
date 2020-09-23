@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -46,6 +47,8 @@ public class FilterFragment extends Fragment {
     private EditText editGroesse;
     private EditText editFertigungszustand;
     private Button button;
+    private AlertDialog alertDialog;
+
 
     private DatabaseHelper dbHelper;
     private SQLiteDatabase mDatabase;
@@ -67,6 +70,12 @@ public class FilterFragment extends Fragment {
     public View onCreateView (@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                               @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_filter, container, false);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this.requireContext(), R.style.AlertDialogTheme);
+        alertDialogBuilder.setTitle("Filteranfrage fehlgeschlagen");
+        alertDialogBuilder.setMessage("Bitte füllen Sie mindestens ein Feld aus!");
+        alertDialogBuilder.setPositiveButton("OK", null);
+        alertDialog = alertDialogBuilder.create();
 
 
         if (colorSwitchState) {
@@ -136,8 +145,7 @@ public class FilterFragment extends Fragment {
             markRegale(getView()); // view missing
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_COLLAPSED);
         } else {
-            //TODO ERROR MESSAGE DISPLAY
-            CharSequence errorMessage = "Bitte füllen Sie mindestens ein Feld aus";
+            alertDialog.show();
         }
     }
 
