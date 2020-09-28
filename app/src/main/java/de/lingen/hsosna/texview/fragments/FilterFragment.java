@@ -372,7 +372,7 @@ public class FilterFragment extends Fragment {
             hasQuery = true;
         }
         //-------ARTIKEL BEZ
-        if(editArtikelBez.getText().toString().trim().length() != 0){
+        if(editArtikelBez.getText().toString().trim().length() != 0 && editArtikelBez.getText().toString().trim().matches("[a-zA-ZäöüÄÖÜ0-9 /*-]+")){
             if(hasQuery){
                 SqlQuery.append(" AND ");
             }
@@ -420,7 +420,7 @@ public class FilterFragment extends Fragment {
             hasQuery = true;
         }
         //-------FARB BEZ
-        if(editFarbBez.getText().toString().trim().length() != 0){
+        if(editFarbBez.getText().toString().trim().length() != 0 && editFarbBez.getText().toString().trim().matches("[a-zA-ZäöüÄÖÜ0-9 *-,]+")){
             if(hasQuery){
                 SqlQuery.append(" AND ");
             }
