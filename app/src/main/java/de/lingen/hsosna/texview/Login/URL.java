@@ -4,7 +4,7 @@ public class URL {
 
 
 
-    private static String URL = "http://192.168.0.3:8888/";
+    private static String URL = "http://131.173.65.147/";
 
 
     public static String getURL() {

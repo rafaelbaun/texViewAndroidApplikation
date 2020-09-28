@@ -322,7 +322,7 @@
 
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="login">login</string>
+    <string name="login">Login</string>
     <string name="signuphere">signuphere</string>
     <string name="signup">signup</string>
     <string name="fullname">fullname</string>
@@ -332,5 +332,6 @@
     <string name="admin_name">Admin Name</string>
 
     <string name="benutzer_hinzufuegen">Benutzer hinzufügen</string>
+    <string name="loginButton">Login</string>
 
 </resources>
