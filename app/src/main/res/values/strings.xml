@@ -318,4 +318,19 @@
     <string name="fragment_shelf_temporal_loadingMessage">Daten werden geladen</string>
     <string name="fragment_shelf_temporal_loadingMessage2">Bitte warten…</string>
 
+    //----------------Login
+
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">login</string>
+    <string name="signuphere">signuphere</string>
+    <string name="signup">signup</string>
+    <string name="fullname">fullname</string>
+    <string name="email">email</string>
+    <string name="loginhere">loginhere</string>
+    <string name="admin_login">Admin Login</string>
+    <string name="admin_name">Admin Name</string>
+
+    <string name="benutzer_hinzufuegen">Benutzer hinzufügen</string>
+
 </resources>
