@@ -1,15 +1,19 @@
 package de.lingen.hsosna.texview.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
@@ -25,7 +29,7 @@ public class HomeFragment extends Fragment {
     public static final String ARG_SHELVESTOMARKRED = "argShelvesToMarkRed";
     private ArrayList<Lagerplatz> shelvesToMarkRed = new ArrayList<>();
 
-     public static HomeFragment newInstance (ArrayList<Lagerplatz> shelvesToMarkRed){
+    public static HomeFragment newInstance (ArrayList<Lagerplatz> shelvesToMarkRed){
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
         args.putParcelableArrayList(ARG_SHELVESTOMARKRED,
@@ -171,5 +175,23 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    public void showDBUpdate () {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this.requireContext(), R.style.AlertDialogTheme);
+        alertDialogBuilder.setCancelable(false);
+        alertDialogBuilder.setMessage("Bitte laden Sie den neuesten Datenbestand herunter");
+        alertDialogBuilder.setTitle("Datenbestand ist veraltet");
+        alertDialogBuilder.setIcon(R.drawable.ic_warning);
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick (DialogInterface dialog, int which) {
+                dialog.dismiss();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new SettingsFragment(), "DB_FRAGMENT").addToBackStack(null).commit();
 
+            }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
 }

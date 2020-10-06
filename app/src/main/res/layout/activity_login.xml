@@ -17,7 +17,7 @@
         android:layout_gravity="center_horizontal"
         android:fontFamily="@font/poppins_light"
         android:padding="4dp"
-        android:text="@string/login"
+        android:text="@string/activity_login_header"
         android:textAlignment="center"
         android:textSize="36sp"
         android:textStyle="bold" />
@@ -46,9 +46,11 @@
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_user"
             android:ems="10"
+            android:importantForAutofill="no"
             android:fontFamily="@font/poppins_light"
-            android:hint="@string/username"
-            android:inputType="textPersonName" />
+            android:hint="@string/activity_login_username"
+            android:inputType="textPersonName"
+            android:textCursorDrawable="@null"/>
 
         <EditText
             android:id="@+id/password"
@@ -56,9 +58,11 @@
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_password"
             android:ems="10"
+            android:importantForAutofill="no"
             android:fontFamily="@font/poppins_light"
-            android:hint="@string/password"
-            android:inputType="textPassword" />
+            android:hint="@string/activity_login_password"
+            android:inputType="textPassword"
+            android:textCursorDrawable="@null"/>
 
         <ProgressBar
             android:id="@+id/progress"
@@ -76,7 +80,7 @@
             android:layout_marginTop="10dp"
             android:background="@color/colorPrimary"
             android:padding="4dp"
-            android:text="@string/loginButton"
+            android:text="@string/activity_login_loginButton"
             android:textColor="@color/colorAccent" />
     </LinearLayout>
 </LinearLayout>

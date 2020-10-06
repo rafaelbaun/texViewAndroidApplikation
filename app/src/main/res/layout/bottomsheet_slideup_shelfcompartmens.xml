@@ -4,273 +4,277 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:id="@+id/slideUpPane_shelf_compartment01"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F2FFFFFF"
+        android:gravity="center"
+        android:orientation="vertical"
         app:behavior_hideable="true"
         app:behavior_peekHeight="0dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/bottomsheet_slideup_shelfcompartments_header1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/poppins_light"
+            android:padding="6dp"
+            android:text="@string/bottomsheet_slideup_shelfcompartments_header1"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/bottomsheet_slideup_shelfcompartments_header1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:background="@color/colorPrimary"
-                android:fontFamily="@font/poppins_light"
-                android:padding="8dp"
-                android:text="@string/bottomsheet_slideup_shelfcompartments_header1"
-                android:textAlignment="center"
-                android:textColor="@color/colorAccent"
-                android:textSize="24sp" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/slideUp_recyclerView_compartment01"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="48dp"
                 android:background="@color/colorPrimary"
                 android:padding="4dp"
                 android:scrollbars="vertical"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-        </RelativeLayout>
-    </androidx.core.widget.NestedScrollView>
 
-    <androidx.core.widget.NestedScrollView
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/slideUpPane_shelf_compartment02"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F2FFFFFF"
+        android:gravity="center"
+        android:orientation="vertical"
         app:behavior_hideable="true"
         app:behavior_peekHeight="0dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/bottomsheet_slideup_shelfcompartments_header2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/poppins_light"
+            android:padding="6dp"
+            android:text="@string/bottomsheet_slideup_shelfcompartments_header2"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/bottomsheet_slideup_shelfcompartments_header2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:background="@color/colorPrimary"
-                android:fontFamily="@font/poppins_light"
-                android:padding="8dp"
-                android:text="@string/bottomsheet_slideup_shelfcompartments_header2"
-                android:textAlignment="center"
-                android:textColor="@color/colorAccent"
-                android:textSize="24sp" />
-
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/slideUp_recyclerView_compartment02"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="48dp"
                 android:background="@color/colorPrimary"
                 android:padding="4dp"
                 android:scrollbars="vertical"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-        </RelativeLayout>
-    </androidx.core.widget.NestedScrollView>
 
-    <androidx.core.widget.NestedScrollView
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/slideUpPane_shelf_compartment03"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F2FFFFFF"
+        android:gravity="center"
+        android:orientation="vertical"
         app:behavior_hideable="true"
         app:behavior_peekHeight="0dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
-
-        <RelativeLayout
+        <TextView
+            android:id="@+id/bottomsheet_slideup_shelfcompartments_header3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/poppins_light"
+            android:padding="6dp"
+            android:text="@string/bottomsheet_slideup_shelfcompartments_header3"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/bottomsheet_slideup_shelfcompartments_header3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:background="@color/colorPrimary"
-                android:fontFamily="@font/poppins_light"
-                android:padding="8dp"
-                android:text="@string/bottomsheet_slideup_shelfcompartments_header3"
-                android:textAlignment="center"
-                android:textColor="@color/colorAccent"
-                android:textSize="24sp" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/slideUp_recyclerView_compartment03"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="48dp"
                 android:background="@color/colorPrimary"
                 android:padding="4dp"
                 android:scrollbars="vertical"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-        </RelativeLayout>
-    </androidx.core.widget.NestedScrollView>
 
-    <androidx.core.widget.NestedScrollView
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/slideUpPane_shelf_compartment04"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F2FFFFFF"
+        android:gravity="center"
+        android:orientation="vertical"
         app:behavior_hideable="true"
         app:behavior_peekHeight="0dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/bottomsheet_slideup_shelfcompartments_header4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/poppins_light"
+            android:padding="6dp"
+            android:text="@string/bottomsheet_slideup_shelfcompartments_header4"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/bottomsheet_slideup_shelfcompartments_header4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:background="@color/colorPrimary"
-                android:fontFamily="@font/poppins_light"
-                android:padding="8dp"
-                android:text="@string/bottomsheet_slideup_shelfcompartments_header4"
-                android:textAlignment="center"
-                android:textColor="@color/colorAccent"
-                android:textSize="24sp" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/slideUp_recyclerView_compartment04"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="48dp"
                 android:background="@color/colorPrimary"
                 android:padding="4dp"
                 android:scrollbars="vertical"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-        </RelativeLayout>
-    </androidx.core.widget.NestedScrollView>
 
-    <androidx.core.widget.NestedScrollView
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/slideUpPane_shelf_compartment05"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F2FFFFFF"
+        android:gravity="center"
+        android:orientation="vertical"
         app:behavior_hideable="true"
         app:behavior_peekHeight="0dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/bottomsheet_slideup_shelfcompartments_header5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/poppins_light"
+            android:padding="6dp"
+            android:text="@string/bottomsheet_slideup_shelfcompartments_header5"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/bottomsheet_slideup_shelfcompartments_header5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:background="@color/colorPrimary"
-                android:fontFamily="@font/poppins_light"
-                android:padding="8dp"
-                android:text="@string/bottomsheet_slideup_shelfcompartments_header5"
-                android:textAlignment="center"
-                android:textColor="@color/colorAccent"
-                android:textSize="24sp" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/slideUp_recyclerView_compartment05"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="48dp"
                 android:background="@color/colorPrimary"
                 android:padding="4dp"
                 android:scrollbars="vertical"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-        </RelativeLayout>
-    </androidx.core.widget.NestedScrollView>
 
-    <androidx.core.widget.NestedScrollView
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/slideUpPane_shelf_compartment06"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F2FFFFFF"
+        android:gravity="center"
+        android:orientation="vertical"
         app:behavior_hideable="true"
         app:behavior_peekHeight="0dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/bottomsheet_slideup_shelfcompartments_header6"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/poppins_light"
+            android:padding="6dp"
+            android:text="@string/bottomsheet_slideup_shelfcompartments_header6"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/bottomsheet_slideup_shelfcompartments_header6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:background="@color/colorPrimary"
-                android:fontFamily="@font/poppins_light"
-                android:padding="8dp"
-                android:text="@string/bottomsheet_slideup_shelfcompartments_header6"
-                android:textAlignment="center"
-                android:textColor="@color/colorAccent"
-                android:textSize="24sp" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/slideUp_recyclerView_compartment06"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="48dp"
                 android:background="@color/colorPrimary"
                 android:padding="4dp"
                 android:scrollbars="vertical"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-        </RelativeLayout>
-    </androidx.core.widget.NestedScrollView>
 
-    <androidx.core.widget.NestedScrollView
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/slideUpPane_shelf_compartment07"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F2FFFFFF"
+        android:gravity="center"
+        android:orientation="vertical"
         app:behavior_hideable="true"
         app:behavior_peekHeight="0dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/bottomsheet_slideup_shelfcompartments_header7"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/poppins_light"
+            android:padding="6dp"
+            android:text="@string/bottomsheet_slideup_shelfcompartments_header7"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/bottomsheet_slideup_shelfcompartments_header7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:background="@color/colorPrimary"
-                android:fontFamily="@font/poppins_light"
-                android:padding="8dp"
-                android:text="@string/bottomsheet_slideup_shelfcompartments_header7"
-                android:textAlignment="center"
-                android:textColor="@color/colorAccent"
-                android:textSize="24sp" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/slideUp_recyclerView_compartment07"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="48dp"
                 android:background="@color/colorPrimary"
                 android:padding="4dp"
                 android:scrollbars="vertical"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-        </RelativeLayout>
-    </androidx.core.widget.NestedScrollView>
 
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

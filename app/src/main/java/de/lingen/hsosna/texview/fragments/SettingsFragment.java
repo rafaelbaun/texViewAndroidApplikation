@@ -1,11 +1,10 @@
 package de.lingen.hsosna.texview.fragments;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +29,7 @@ import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.nio.charset.StandardCharsets;
 
+import de.lingen.hsosna.texview.Constants;
 import de.lingen.hsosna.texview.DatabaseHelper;
 import de.lingen.hsosna.texview.R;
 import de.lingen.hsosna.texview.database.TableArtikelkombination;
@@ -37,11 +37,12 @@ import de.lingen.hsosna.texview.database.TableKpi;
 import de.lingen.hsosna.texview.database.TableLagerbestand;
 import de.lingen.hsosna.texview.database.TableLagerbestand_Summe;
 import de.lingen.hsosna.texview.database.TableLagerplaetze;
+import de.lingen.hsosna.texview.database.TableTimestamp;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-
+import static de.lingen.hsosna.texview.MainActivity.timestampServerGlobal;
 
 /**
  * Eine SQLite Datenbank wird erstellt und mittels der DBHelper Klasse werden drei Tabellen in ihr erstellt.
@@ -52,19 +53,18 @@ public class SettingsFragment extends Fragment {
     private ProgressBar progressBar;
     private AlertDialog alertDialog;
 
+    @Override
+    public void onCreate (@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
+        mDatabase = dbHelper.getWritableDatabase();
+    }
+
     @Nullable
     @Override
     public View onCreateView (@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                               @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_settings, container, false);
-
-        DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
-        mDatabase = dbHelper.getWritableDatabase();
-        Log.d(TAG, "onCreateView: " + mDatabase.getMaximumSize());
-
-        progressBar = v.findViewById(R.id.fragmentSettings_progressBar);
-        ((ViewGroup) progressBar.getParent()).removeView(progressBar);
-
 
         //Buttons
         ImageButton buttonRefreshDatabase = v.findViewById(R.id.button_reloadFromServer);
@@ -72,24 +72,25 @@ public class SettingsFragment extends Fragment {
         ImageButton buttonDeleteDb = v.findViewById(R.id.button_deleteDbContent);
         ImageButton buttonLoadFromMemory = v.findViewById(R.id.button_loadFromMemory);
 
-
-        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
-        alertDialogBuilder.setCancelable(false);
-        alertDialogBuilder.setMessage(R.string.settingsFragment_loadingDescription);
-
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        progressBar.setLayoutParams(lp);
-        progressBar.setPadding(20,0,20,0);
-        alertDialogBuilder.setView(progressBar);
+        //Alert Dialog
+        progressBar = v.findViewById(R.id.fragmentSettings_progressBar);
+        ((ViewGroup) progressBar.getParent()).removeView(progressBar);
+        final AlertDialog.Builder alertDialogBuilder = initAlertDialog(v);
+        alertDialog = alertDialogBuilder.create();
 
         //TODO
         //Refresh Database content
         buttonRefreshDatabase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                alertDialogBuilder.setTitle(R.string.settingsFragment_refreshDescription);
-                alertDialogBuilder.setIcon(R.drawable.ic_refresh);
-                alertDialog = alertDialogBuilder.create();
+
+                alertDialog.setIcon(R.drawable.ic_refresh);
+                alertDialog.setTitle(R.string.settingsFragment_refreshDescription);
+                alertDialog.setMessage("Bitte warten...");
+
+                mDatabase.execSQL("DELETE FROM " + TableLagerbestand.LagerbestandEntry.TABLE_NAME + ";");
+                updateLagerbestand();
+                setTimestampToMostRecent();
                 /////////NUR ZUM TESTEN
 
                 mDatabase.execSQL("DELETE FROM " + TableKpi.KpiEntry.TABLE_NAME + ";");
@@ -102,10 +103,13 @@ public class SettingsFragment extends Fragment {
         buttonLoadFromServer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                alertDialogBuilder.setTitle(R.string.settingsFragment_loadFromServerDescription);
-                alertDialogBuilder.setIcon(R.drawable.ic_cloud_download);
-                alertDialog = alertDialogBuilder.create();
+                alertDialog.setIcon(R.drawable.ic_cloud_download);
+                alertDialog.setTitle(R.string.settingsFragment_loadFromServerDescription);
+                alertDialog.setMessage("Bitte warten...");
+
+                deleteDatabaseContents(mDatabase);
                 startAsyncTast(true);
+                setTimestampToMostRecent();
             }
         });
 
@@ -113,9 +117,11 @@ public class SettingsFragment extends Fragment {
         buttonLoadFromMemory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                alertDialogBuilder.setTitle(R.string.settingsFragment_loadFromMemoryDescription);
-                alertDialogBuilder.setIcon(R.drawable.ic_document_download);
-                alertDialog = alertDialogBuilder.create();
+                alertDialog.setIcon(R.drawable.ic_document_download);
+                alertDialog.setTitle(R.string.settingsFragment_loadFromMemoryDescription);
+                alertDialog.setMessage("Bitte warten...");
+
+                deleteDatabaseContents(mDatabase);
                 startAsyncTast(false);
             }
         });
@@ -124,11 +130,54 @@ public class SettingsFragment extends Fragment {
         buttonDeleteDb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
+                alertDialog.setIcon(R.drawable.ic_trash);
+                alertDialog.setTitle(R.string.settingsFragment_deleteDatabaseDescription);
+                alertDialog.setMessage("Datenbestand wurde gelöscht!");
+
+                progressBar.setVisibility(View.GONE);
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE,"OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick (DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alertDialog.show();
                 deleteDatabaseContents(mDatabase);
             }
         });
 
         return v;
+    }
+
+    private AlertDialog.Builder initAlertDialog (View v) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
+        alertDialogBuilder.setCancelable(false);
+
+        //ProgressBar Setup
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        progressBar.setLayoutParams(lp);
+        progressBar.setPadding(20,0,20,0);
+        alertDialogBuilder.setView(progressBar);
+
+
+        return alertDialogBuilder;
+    }
+
+    public void updateLagerbestand (){
+
+        String[][] dataToPull = new String[1][2];
+        dataToPull[0][0] = TableLagerbestand.LagerbestandEntry.TABLE_NAME;
+        dataToPull[0][1] = Constants.SERVER_URL_LAGERBESTAND;
+        FillDatabaseAsyncTask task = new FillDatabaseAsyncTask(this, dataToPull);
+        task.execute();
+
+    }
+
+    private void setTimestampToMostRecent (){
+        mDatabase.execSQL("DELETE FROM " + TableTimestamp.TimestampEntry.TABLE_NAME + ";");
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TableTimestamp.TimestampEntry.COLUMN_TIMESTAMP, timestampServerGlobal);
+        mDatabase.insert(TableTimestamp.TimestampEntry.TABLE_NAME, null, contentValues);
     }
 
     private void fillKpis () {
@@ -181,7 +230,7 @@ public class SettingsFragment extends Fragment {
         dataToPull[1][0] = TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME;
         dataToPull[2][0] = TableLagerbestand_Summe.Lagerbestand_SummeEntry.TABLE_NAME;
         dataToPull[3][0] = TableLagerbestand.LagerbestandEntry.TABLE_NAME;
-
+        //TODO REPLACE WITH CONSTANTS
         if(getFromServer) {
             dataToPull[0][1] = "http://131.173.65.147/artikelkombinationen.php";
             dataToPull[1][1] = "http://131.173.65.147/lagerplaetze.php";

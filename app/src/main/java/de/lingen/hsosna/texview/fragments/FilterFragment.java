@@ -139,9 +139,9 @@ public class FilterFragment extends Fragment {
                 filterHeader.setText((String.valueOf(suchErgebnisse.size())).concat(" Ergebnis"));
             else
                 filterHeader.setText((String.valueOf(suchErgebnisse.size())).concat(" Ergebnisse"));
+
+
             shelvesToMarkRed = getShelvesToMarkFromFilterResults(suchErgebnisse);
-
-
             markRegale(getView()); // view missing
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_COLLAPSED);
         } else {
@@ -215,11 +215,11 @@ public class FilterFragment extends Fragment {
                 for (Lagerplatz lagerplatz : freeShelveList) {
                     boolean contains = false;
                     for (Lagerplatz shelveToMarkRed : shelvesToMarkRed) {
-                        if (shelveToMarkRed.getLocation().equals(lagerplatz.getLocation())) {
+                        if ((shelveToMarkRed.getLocation()).equals(lagerplatz.getLocation())) {
                             contains = true;
                         }
                     }
-                    if (! contains) {
+                    if (!contains) {
                         if (lagerplatz.getLagerplatz() != lastShelfLocation) { // nicht der davor
                             lastShelfLocation = lagerplatz.getLagerplatz();
                             numberOfFreeShelfCompartments = 1;

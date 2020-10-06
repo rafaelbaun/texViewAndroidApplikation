@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/toolbar_title_layout"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
     android:elevation="4dp"
     android:theme="@style/ToolbarThemeOverlay"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+    <ImageView
+        android:id="@+id/toolbar_imageConnected"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_cloud_crossed"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView"

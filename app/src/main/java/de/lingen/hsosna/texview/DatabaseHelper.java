@@ -1,5 +1,6 @@
 package de.lingen.hsosna.texview;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -11,14 +12,16 @@ import de.lingen.hsosna.texview.database.TableKpi;
 import de.lingen.hsosna.texview.database.TableLagerbestand;
 import de.lingen.hsosna.texview.database.TableLagerbestand_Summe;
 import de.lingen.hsosna.texview.database.TableLagerplaetze;
+import de.lingen.hsosna.texview.database.TableTimestamp;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "lagerverwaltung.db";
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
 
     public DatabaseHelper (@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
 
     @Override
     public void onCreate (SQLiteDatabase db) {
@@ -128,7 +131,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_LAGERBESTAND_SUMME_TABLE);
 
 
-    final String SQL_CREATE_KPI_TABLE =
+        final String SQL_CREATE_KPI_TABLE =
             "CREATE TABLE " + TableKpi.KpiEntry.TABLE_NAME + " ("
             + TableKpi.KpiEntry.COLUMN_NAME + " TEXT NOT NULL, "
             + TableKpi.KpiEntry.COLUMN_CURRENTVALUE + " INTEGER NOT NULL, "
@@ -140,6 +143,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + TableKpi.KpiEntry.COLUMN_MAXVALUE + ", "
             + TableKpi.KpiEntry.COLUMN_TIMESTAMP + "));";
         db.execSQL(SQL_CREATE_KPI_TABLE);
+
+        final String SQL_CREATE_TIMESTAMP_TABLE =
+                "CREATE TABLE " + TableTimestamp.TimestampEntry.TABLE_NAME + " ("
+                + TableTimestamp.TimestampEntry.COLUMN_TIMESTAMP + " INTEGER NOT NULL, "
+
+                + "PRIMARY KEY(" + TableTimestamp.TimestampEntry.COLUMN_TIMESTAMP + "));";
+        db.execSQL(SQL_CREATE_TIMESTAMP_TABLE);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TableTimestamp.TimestampEntry.COLUMN_TIMESTAMP, 0);
+        db.insert(TableTimestamp.TimestampEntry.TABLE_NAME, null, contentValues);
+
     }
 
     @Override
@@ -149,6 +163,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TableArtikelkombination.ArtikelkombinationenEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TableKpi.KpiEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TableTimestamp.TimestampEntry.TABLE_NAME);
         onCreate(db);
     }
 }

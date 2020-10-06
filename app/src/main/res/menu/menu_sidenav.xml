@@ -11,19 +11,19 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
-            android:title="Home" />
+            android:title="@string/menu_sidenav_home" />
         <item
             android:id="@+id/nav_filter"
             android:icon="@drawable/ic_filter"
-            android:title="Filter" />
+            android:title="@string/menu_sidenav_filter" />
         <item
             android:id="@+id/nav_search"
             android:icon="@drawable/ic_search"
-            android:title="Search" />
+            android:title="@string/menu_sidenav_search" />
         <item
             android:id="@+id/nav_kpi"
             android:icon="@drawable/ic_kpi"
-            android:title="KPI's" />
+            android:title="@string/menu_sidenav_kpis" />
     </group>
     <group
         android:id="@+id/group2"
@@ -32,11 +32,11 @@
         <item
             android:id="@+id/nav_info"
             android:icon="@drawable/ic_info"
-            android:title="Info" />
+            android:title="@string/menu_sidenav_info" />
         <item
             android:id="@+id/nav_dbcon"
             android:icon="@drawable/ic_settings"
-            android:title="Einstellungen" />
+            android:title="@string/menu_sidenav_settings" />
 
     </group>
     <group
@@ -44,15 +44,6 @@
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"
-            android:title="Log Out" />
+            android:title="@string/menu_sidenav_log_out" />
     </group>
-
-    <!--<item android:title="Settings">
-        <menu>
-            <item
-                android:id="@+id/nav_dbcon"
-                android:icon="@drawable/ic_settings"
-                android:title="Settings" />
-        </menu>
-    </item>-->
 </menu>
