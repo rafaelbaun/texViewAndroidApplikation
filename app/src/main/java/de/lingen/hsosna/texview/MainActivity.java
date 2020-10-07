@@ -76,7 +76,9 @@ import static de.lingen.hsosna.texview.fragments.RegalfrontFragment.ARG_SHELVEST
  */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        SearchFragment.SearchFragmentListener, RegalfrontFragment.ShelfFrontFragmentListener, ShelffrontTemporaryFragment.ShelfFrontFragmentListener {
+                   SearchFragment.SearchFragmentListener, RegalfrontFragment.ShelfFrontFragmentListener,
+                   ShelffrontTemporaryFragment.ShelfFrontFragmentListener {
+
     private static final String TAG = "MainActivity";
     public static boolean colorSwitchState;
     public static long timestampServerGlobal;
@@ -103,6 +105,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
+
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,21 +149,22 @@ public class MainActivity extends AppCompatActivity
                     new HomeFragment(), "HOME_FRAGMENT").commit();
             navigationView.setCheckedItem(R.id.nav_home);
 
-
             mSocket.on(Socket.EVENT_CONNECT, onConnect);
             mSocket.on(Socket.EVENT_DISCONNECT, onDisconnect);
             mSocket.on(Socket.EVENT_CONNECT_ERROR, onConnectError);
             mSocket.on(Socket.EVENT_CONNECT_TIMEOUT, onConnectError);
-            mSocket.on("timestamp", onTimestamp);
             mSocket.on("dbOperation", onOperation);
             mSocket.connect();
-
-
         }
     }
+
+
+
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //  ANDROID OVERWRITES                 /////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
+
     /**
      * Das angeklickte Menüitem in dem Navigationsdrawer wird unterschieden und das jeweilige
      * Fragment aufgerufen.
@@ -183,11 +192,11 @@ public class MainActivity extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new KPIFragment(), "KPI_FRAGMENT").addToBackStack("KPI_FRAGMENT").commit();
                 break;
-
             case R.id.nav_info:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new InfoFragment(), "INFO_FRAGMENT").addToBackStack("INFO_FRAGMENT").commit();
                 break;
+            // TODO nav_settings
             case R.id.nav_dbcon:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new SettingsFragment(), "DB_FRAGMENT").addToBackStack("DB_FRAGMENT").commit();
@@ -199,8 +208,11 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
+
+
 
     /**
      * Methode um den Fullscreen Modus beizubehalten, wenn die App minimiert oder das Gerät gedreht wird.
@@ -215,6 +227,8 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
+
     /**
      * Wenn der Zurück-Knopf gedrückt wird, soll der Navigationsdrawer einfahren, wenn er offen ist.
      * Ansonsten soll die Standardfunktion gewährleistet sein.
@@ -228,57 +242,74 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
+
+    /**
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu (Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_toolbar, menu);
-
+        // switch color
         MenuItem itemSwitch = menu.findItem(R.id.switchColor);
         itemSwitch.setActionView(R.layout.switch_color);
         Switch sw = (Switch) menu.findItem(R.id.switchColor).getActionView().findViewById(R.id.switchColorAction);
 
-        if (colorSwitchState)
+        if (colorSwitchState) {
             sw.setChecked(true);
+        }
 
-        //color switch changes
+        /* color switch changes */
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            /**
+             *
+             * @param buttonView
+             * @param isChecked
+             */
             @Override
             public void onCheckedChanged (CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     colorSwitchState = true;
-                    //HOMEFRAGMENT
-                    HomeFragment homeFragment = (HomeFragment)getSupportFragmentManager().findFragmentByTag("HOME_FRAGMENT");
-                    if(homeFragment != null && homeFragment.isVisible()){
-                        homeFragment.markFreeShelves(findViewById(android.R.id.content).getRootView());
 
+                    //HOMEFRAGMENT
+                    HomeFragment homeFragment = (HomeFragment)getSupportFragmentManager()
+                            .findFragmentByTag("HOME_FRAGMENT");
+                    if (homeFragment != null && homeFragment.isVisible()) {
+                        homeFragment.markFreeShelves(findViewById(android.R.id.content).getRootView());
                     }
                     //FILTERFRAGMENT
-                    FilterFragment filterFragment = (FilterFragment)getSupportFragmentManager().findFragmentByTag("FILTER_FRAGMENT");
-                    if(filterFragment != null && filterFragment.isVisible()){
+                    FilterFragment filterFragment = (FilterFragment)getSupportFragmentManager()
+                            .findFragmentByTag("FILTER_FRAGMENT");
+                    if (filterFragment != null && filterFragment.isVisible()) {
                         filterFragment.markFreeShelves(findViewById(android.R.id.content).getRootView());
                     }
                     //REGALFRONTFRAGMENT
-                    RegalfrontFragment regalfrontFragment = (RegalfrontFragment)getSupportFragmentManager().findFragmentByTag("REGALFRONT_FRAGMENT");
-                    if(regalfrontFragment != null && regalfrontFragment.isVisible()){
+                    RegalfrontFragment regalfrontFragment = (RegalfrontFragment)getSupportFragmentManager()
+                            .findFragmentByTag("REGALFRONT_FRAGMENT");
+                    if (regalfrontFragment != null && regalfrontFragment.isVisible()) {
                         regalfrontFragment.markFreeShelves(findViewById(android.R.id.content).getRootView());
                     }
-                }
-                else{
+                } else {
                     colorSwitchState = false;
                     //HOMEFRAGMENT
-                    HomeFragment homeFragment = (HomeFragment)getSupportFragmentManager().findFragmentByTag("HOME_FRAGMENT");
-                    if(homeFragment != null && homeFragment.isVisible()) {
-                        homeFragment.unmarkFreeShelves(
-                                findViewById(android.R.id.content).getRootView());
+                    HomeFragment homeFragment = (HomeFragment)getSupportFragmentManager()
+                            .findFragmentByTag("HOME_FRAGMENT");
+                    if (homeFragment != null && homeFragment.isVisible()) {
+                        homeFragment.unmarkFreeShelves(findViewById(android.R.id.content).getRootView());
                     }
                     //FILTERFRAGMENT
-                    FilterFragment filterFragment = (FilterFragment)getSupportFragmentManager().findFragmentByTag("FILTER_FRAGMENT");
-                    if(filterFragment != null && filterFragment.isVisible()) {
+                    FilterFragment filterFragment = (FilterFragment)getSupportFragmentManager()
+                            .findFragmentByTag("FILTER_FRAGMENT");
+                    if (filterFragment != null && filterFragment.isVisible()) {
                         filterFragment.unmarkFreeShelves(findViewById(android.R.id.content).getRootView());
                     }
                     //REGALFRONTFRAGMENT
-                    RegalfrontFragment regalfrontFragment = (RegalfrontFragment)getSupportFragmentManager().findFragmentByTag("REGALFRONT_FRAGMENT");
-                    if(regalfrontFragment != null && regalfrontFragment.isVisible()){
+                    RegalfrontFragment regalfrontFragment = (RegalfrontFragment)getSupportFragmentManager()
+                            .findFragmentByTag("REGALFRONT_FRAGMENT");
+                    if (regalfrontFragment != null && regalfrontFragment.isVisible()) {
                         regalfrontFragment.unmarkFreeShelves(findViewById(android.R.id.content).getRootView());
                     }
                 }
@@ -288,6 +319,13 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+
+
+    /**
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected (@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -302,6 +340,11 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
+
+    /**
+     *
+     */
     @Override
     protected void onDestroy () {
         super.onDestroy();
@@ -315,9 +358,15 @@ public class MainActivity extends AppCompatActivity
         mSocket.disconnect();
 
     }
+
+
+
+
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //  UI METHODS                 /////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
+
     /**
      * Methode um die Applikation in den Fullscreen zu versetzen und die Navigationsbar zu verstecken.
      *
@@ -333,20 +382,37 @@ public class MainActivity extends AppCompatActivity
                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
     }
 
+
+
+    /**
+     *
+     * @param context
+     * @param view
+     */
     public static void hideKeyboardFrom(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         assert imm != null;
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+
+
+    /**
+     *
+     * @param view
+     */
     public void returnHome (View view){
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment(), "HOME_FRAGMENT").addToBackStack("HOME_FRAGMENT").commit();
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setCheckedItem(R.id.nav_home);
-
     }
 
+
+
+    /**
+     *
+     */
     public void changeConnectedIcon(){
         if (isConnected) {
             connectedImage.setImageResource(R.drawable.ic_cloud_checkmark);
@@ -359,6 +425,9 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
+
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //  HOME FRAGMENT                 //////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -370,41 +439,46 @@ public class MainActivity extends AppCompatActivity
      * @param view Das geklickte Regal wird als Parameter der Klasse "View" übergeben.
      */
     public void getClickedRegal (View view) {
-        HomeFragment homeFragment = (HomeFragment)getSupportFragmentManager().findFragmentByTag("HOME_FRAGMENT");
-        if(homeFragment != null && homeFragment.isVisible()) {
+        HomeFragment homeFragment = (HomeFragment)getSupportFragmentManager()
+                .findFragmentByTag("HOME_FRAGMENT");
+        if (homeFragment != null && homeFragment.isVisible()) {
             Bundle b = homeFragment.getArguments();
-
             RegalfrontFragment fragment;
-            if(b!= null) {
-                fragment = RegalfrontFragment.newInstance(b.<Lagerplatz>getParcelableArrayList(ARG_SHELVESTOMARKRED), view.getContentDescription());
-            }
-            else {
-                fragment = RegalfrontFragment.newInstance(new ArrayList<Lagerplatz>(), view.getContentDescription());
+            if (b!= null) {
+                fragment = RegalfrontFragment.newInstance(
+                        b.<Lagerplatz>getParcelableArrayList(ARG_SHELVESTOMARKRED),
+                        view.getContentDescription());
+            } else {
+                fragment = RegalfrontFragment.newInstance(new ArrayList<Lagerplatz>(),
+                        view.getContentDescription());
             }
 
-            if(view.getContentDescription().equals("606200")){
+            if (view.getContentDescription().equals("606200")) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        ShelffrontTemporaryFragment.newInstance(view.getContentDescription()), "REGALFRONT_TEMP_FRAGMENT").addToBackStack("REGALFRONT_TEMP_FRAGMENT").commit();
+                        ShelffrontTemporaryFragment.newInstance(view.getContentDescription()), "REGALFRONT_TEMP_FRAGMENT")
+                        .addToBackStack("REGALFRONT_TEMP_FRAGMENT").commit();
             } else {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         fragment, "REGALFRONT_FRAGMENT").addToBackStack("REGALFRONT_FRAGMENT").commit();
             }
         }
 
-        FilterFragment filterFragment = (FilterFragment) getSupportFragmentManager().findFragmentByTag("FILTER_FRAGMENT");
-        if(filterFragment != null && filterFragment.isVisible()) {
-
+        FilterFragment filterFragment = (FilterFragment) getSupportFragmentManager()
+                .findFragmentByTag("FILTER_FRAGMENT");
+        if (filterFragment != null && filterFragment.isVisible()) {
             RegalfrontFragment fragment;
-            if(filterFragment.getShelvesToMarkRed() != null) {
-                fragment = RegalfrontFragment.newInstance(filterFragment.getShelvesToMarkRed(), view.getContentDescription());
-            }
-            else {
-                fragment = RegalfrontFragment.newInstance(new ArrayList<Lagerplatz>(), view.getContentDescription());
+            if (filterFragment.getShelvesToMarkRed() != null) {
+                fragment = RegalfrontFragment.newInstance(filterFragment.getShelvesToMarkRed(),
+                        view.getContentDescription());
+            } else {
+                fragment = RegalfrontFragment.newInstance(new ArrayList<Lagerplatz>(),
+                        view.getContentDescription());
             }
 
-            if(view.getContentDescription().equals("606200")){
+            if (view.getContentDescription().equals("606200")) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        ShelffrontTemporaryFragment.newInstance(view.getContentDescription()), "").addToBackStack("REGALFRONT_TEMP_FRAGMENT").commit();
+                        ShelffrontTemporaryFragment.newInstance(view.getContentDescription()), "")
+                        .addToBackStack("REGALFRONT_TEMP_FRAGMENT").commit();
             } else {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         fragment, "REGALFRONT_FRAGMENT").addToBackStack("REGALFRONT_FRAGMENT").commit();
@@ -412,17 +486,22 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
+    /**
+     *
+     * @return
+     */
     public ArrayList<Lagerplatz> getFreeShelves (){
         ArrayList<Lagerplatz> freeShelves = new ArrayList<>();
 
         Cursor cursor = mDatabase.rawQuery(
                 "SELECT " + TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERPLATZ + ", "
-                + TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERORT
-                + " FROM " + TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME + ""
-                + " LEFT OUTER JOIN " + TableLagerbestand.LagerbestandEntry.TABLE_NAME + ""
-                + " ON " + TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERPLATZ + " = "
-                + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ
-                + " WHERE " + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ + " IS NULL;"
+                        + TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERORT
+                        + " FROM " + TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME + ""
+                        + " LEFT OUTER JOIN " + TableLagerbestand.LagerbestandEntry.TABLE_NAME + ""
+                        + " ON " + TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERPLATZ + " = "
+                        + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ
+                        + " WHERE " + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ + " IS NULL;"
                 , null);
         try {
             while (cursor.moveToNext()) {
@@ -491,6 +570,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
+    /**
+     *
+     */
     public void hideSlideUpPanes (){
         for (View v : getSlideUpPaneArrayList()) {
             mBottomSheetBehaviour = BottomSheetBehavior.from(v);
@@ -501,6 +584,11 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
+    /**
+     *
+     * @return
+     */
     public ArrayList<View> getSlideUpPaneArrayList(){
         ArrayList<View> slideUpPanesOfCompartments = new ArrayList<>();
         slideUpPanesOfCompartments.add(findViewById(R.id.slideUpPane_shelf_compartment01));
@@ -513,6 +601,11 @@ public class MainActivity extends AppCompatActivity
         return slideUpPanesOfCompartments;
     }
 
+
+    /**
+     *
+     * @return
+     */
     public ArrayList<View> getFocusShelfCompartmentArrayList(){
         ArrayList<View> compartmentsToBeFocused = new ArrayList<>();
         compartmentsToBeFocused.add(findViewById(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment01_focused));
@@ -525,6 +618,11 @@ public class MainActivity extends AppCompatActivity
         return compartmentsToBeFocused;
     }
 
+
+    /**
+     *
+     * @param compartmentToFocus
+     */
     public void focusShelfCompartment (int compartmentToFocus){
         ImageView compartmentToBeFocused = findViewById(R.id.fragment_shelf_frontal_shelfonly_imageView_compartment07_focused);
         switch (compartmentToFocus){
@@ -552,10 +650,20 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
+    /**
+     *
+     * @param input
+     */
     @Override
     public void onShelfFrontInputSent (Lagerplatz input) {
         onSearchInputSent(input);
     }
+
+
+
+
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //  SEARCH                 /////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -568,15 +676,24 @@ public class MainActivity extends AppCompatActivity
     public void onSearchInputSent (Lagerplatz input) {
         ArrayList<Lagerplatz> shelvesToMarkRed = new ArrayList<>();
         shelvesToMarkRed.add(input);
-
         HomeFragment fragment = HomeFragment.newInstance(shelvesToMarkRed);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment, "HOME_FRAGMENT").addToBackStack("HOME_FRAGMENT")
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment, "HOME_FRAGMENT")
+                .addToBackStack("HOME_FRAGMENT")
                 .commit();
     }
+
+
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //  SOCKET IO                 //////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
     private Emitter.Listener onOperation = new Emitter.Listener() {
+        /**
+         *
+         * @param args
+         */
         @Override
         public void call (Object... args) {
             JSONObject data = (JSONObject) args[0];
@@ -588,40 +705,53 @@ public class MainActivity extends AppCompatActivity
                         data.getJSONArray("affectedColumns"),
                         data.getLong("timestamp"),
                         data.getInt("nextPosition"));
-                switch (triggerEvent.getType()){
+                switch (triggerEvent.getType()) {
                     case "UPDATE":
                         handleUpdateOperation(triggerEvent);
                         updateTimestamp(triggerEvent.getTimestamp());
-
                         break;
                     case "INSERT":
                         handleInsertOperation(triggerEvent);
                         updateTimestamp(triggerEvent.getTimestamp());
-
                         break;
                     case "DELETE":
                         handleDeleteOperation(triggerEvent);
                         updateTimestamp(triggerEvent.getTimestamp());
                         break;
                 }
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
     };
 
+
+    /**
+     *
+     */
     private Emitter.Listener onConnect = new Emitter.Listener() {
+        /**
+         *
+         * @param args
+         */
         @Override
         public void call (Object... args) {
-            if(!isConnected) {
+            if (!isConnected) {
                 isConnected = true;
                 changeConnectedIcon();
             }
         }
     };
 
+
+    /**
+     *
+     */
     private Emitter.Listener onDisconnect = new Emitter.Listener() {
+        /**
+         *
+         * @param args
+         */
         @Override
         public void call (Object... args) {
             isConnected = false;
@@ -629,7 +759,15 @@ public class MainActivity extends AppCompatActivity
         }
     };
 
+
+    /**
+     *
+     */
     private Emitter.Listener onConnectError = new Emitter.Listener() {
+        /**
+         *
+         * @param args
+         */
         @Override
         public void call(Object... args) {
             isConnected = false;
@@ -638,7 +776,15 @@ public class MainActivity extends AppCompatActivity
         }
     };
 
+
+    /**
+     *
+     */
     private Emitter.Listener onTimestamp = new Emitter.Listener() {
+        /**
+         *
+         * @param args
+         */
         @Override
         public void call (Object... args) {
             long timestampDatabase = 0;
@@ -651,17 +797,17 @@ public class MainActivity extends AppCompatActivity
                 }
             }
 
-
             String timestampString = (String) args[0].toString();
             StringBuilder str = new StringBuilder(timestampString);
             timestampString = (String) str.subSequence(0, str.length());
             final long timestampServer = Long.parseLong(timestampString);
             timestampServerGlobal = timestampServer;
-            if (timestampDatabase != timestampServer){
-                Log.d(TAG, "---------------------------run: ALERT DIALOG SOLLTE ANGEZEIGT WERDEN");
+            if (timestampDatabase != timestampServer) {
+                Log.d(TAG, "-----------------------run: ALERT DIALOG SOLLTE ANGEZEIGT WERDEN");
                 //BITTE DB UPDATE
-                final HomeFragment homeFragment = (HomeFragment)getSupportFragmentManager().findFragmentByTag("HOME_FRAGMENT");
-                    if(homeFragment != null && homeFragment.isVisible()) {
+                final HomeFragment homeFragment = (HomeFragment)getSupportFragmentManager()
+                        .findFragmentByTag("HOME_FRAGMENT");
+                    if (homeFragment != null && homeFragment.isVisible()) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run () {
@@ -670,124 +816,152 @@ public class MainActivity extends AppCompatActivity
                         });
                     }
             }
-            Log.d(TAG, "-------------------------------------------OnConnect: TIMESTAMP " + args[0]);
+            Log.d(TAG, "-------------------------------------OnConnect: TIMESTAMP " + args[0]);
         }
     };
 
-    public void handleUpdateOperation(TriggerEvent triggerEvent) throws JSONException {
+
+    /**
+     *
+     * @param triggerEvent
+     * @throws JSONException
+     */
+    public void handleUpdateOperation (TriggerEvent triggerEvent) throws JSONException {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         JSONObject afterObject = triggerEvent.getAfterObject();
         JSONObject beforeObject = triggerEvent.getBeforeObject();
 
-        switch (triggerEvent.getTable()){
+        switch (triggerEvent.getTable()) {
+            // ARTIKELKOMBINATIONEN
             case TableArtikelkombination.ArtikelkombinationenEntry.TABLE_NAME:
-                for (int i=0 ; i < triggerEvent.getAffectedColumns().length(); i++)
-                {
+                for (int i = 0 ; i < triggerEvent.getAffectedColumns().length(); i++) {
                     if (!afterObject.isNull(triggerEvent.getAffectedColumns().getString(i))) {
-
-                        if(triggerEvent.getAffectedColumns().getString(i).equals(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_ID)
-                           || triggerEvent.getAffectedColumns().getString(i).equals(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSEN_ID)
-                           || triggerEvent.getAffectedColumns().getString(i).equals(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_ID)
-                           || triggerEvent.getAffectedColumns().getString(i).equals(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_VARIANTEN_ID)
+                        if (triggerEvent.getAffectedColumns().getString(i).equals(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_ID)
+                            || triggerEvent.getAffectedColumns().getString(i).equals(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSEN_ID)
+                            || triggerEvent.getAffectedColumns().getString(i).equals(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_ID)
+                            || triggerEvent.getAffectedColumns().getString(i).equals(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_VARIANTEN_ID)
                         ) {
-                            values.put(triggerEvent.getAffectedColumns().getString(i), afterObject
-                                    .getInt(triggerEvent.getAffectedColumns().getString(i)));
+                            values.put(triggerEvent.getAffectedColumns().getString(i),
+                                    afterObject.getInt(triggerEvent.getAffectedColumns().getString(i)));
                         } else {
-                            values.put(triggerEvent.getAffectedColumns().getString(i), afterObject
-                                    .getString(triggerEvent.getAffectedColumns().getString(i)));
+                            values.put(triggerEvent.getAffectedColumns().getString(i),
+                                    afterObject.getString(triggerEvent.getAffectedColumns().getString(i)));
                         }
                     }
                 }
 
                 db.update(triggerEvent.getTable(),
                         values,
-                        "" + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_ID +  " = '" + beforeObject.getInt(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_ID)
-                        + "' AND " + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG + " = '" + beforeObject.getString(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG)
-                        + "' AND " + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSEN_ID + " = '" + beforeObject.getInt(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSEN_ID)
-                        + "' AND " + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_ID + " = '" + beforeObject.getInt(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_ID) + "'",
+                        "" + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_ID      +  " = '"
+                                + beforeObject.getInt(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_ID)
+                        + "' AND " + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG + " = '"
+                                + beforeObject.getString(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG)
+                        + "' AND " + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSEN_ID         + " = '"
+                                + beforeObject.getInt(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSEN_ID)
+                        + "' AND " + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_ID            + " = '"
+                                + beforeObject.getInt(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_ID) + "'",
                         null);
                 break;
+
+            // KPI
             case "kpi":
                 break;
-            case TableLagerbestand.LagerbestandEntry.TABLE_NAME:
-                for (int i=0 ; i < triggerEvent.getAffectedColumns().length(); i++)
-                {
-                    if (!afterObject.isNull(triggerEvent.getAffectedColumns().getString(i))) {
 
-                        if(triggerEvent.getAffectedColumns().getString(i).equals(TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND)
+            // LAGERBESTAND
+            case TableLagerbestand.LagerbestandEntry.TABLE_NAME:
+                for (int i=0 ; i < triggerEvent.getAffectedColumns().length(); i++) {
+                    if (!afterObject.isNull(triggerEvent.getAffectedColumns().getString(i))) {
+                        if (triggerEvent.getAffectedColumns().getString(i).equals(TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND)
                            || triggerEvent.getAffectedColumns().getString(i).equals(TableLagerbestand.LagerbestandEntry.COLUMN_MENGE)
                            || triggerEvent.getAffectedColumns().getString(i).equals(TableLagerbestand.LagerbestandEntry.COLUMN_MENGENEINHEIT)
                         ) {
-                            values.put(triggerEvent.getAffectedColumns().getString(i), afterObject
-                                    .getString(triggerEvent.getAffectedColumns().getString(i)));
+                            values.put(triggerEvent.getAffectedColumns().getString(i),
+                                    afterObject.getString(triggerEvent.getAffectedColumns().getString(i)));
                         } else {
-                            values.put(triggerEvent.getAffectedColumns().getString(i), afterObject
-                                    .getInt(triggerEvent.getAffectedColumns().getString(i)));
+                            values.put(triggerEvent.getAffectedColumns().getString(i),
+                                    afterObject.getInt(triggerEvent.getAffectedColumns().getString(i)));
                         }
                     }
                 }
 
                 db.update(triggerEvent.getTable(),
                         values,
-                        "" + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ +  " = '" + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ)
-                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER + " = '" + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER)
-                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG + " = '" + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG)
-                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID + " = '" + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID)
-                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID + " = '" + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID)
-                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID + " = '" + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID) + "'",
+                        "" + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ +  " = '"
+                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ)
+                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER   + " = '"
+                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER)
+                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG  + " = '"
+                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG)
+                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID     + " = '"
+                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID)
+                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID    + " = '"
+                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID)
+                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID       + " = '"
+                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID) + "'",
                         null);
                 break;
+
+            // LAGERBESTAND_SUMME
             case TableLagerbestand_Summe.Lagerbestand_SummeEntry.TABLE_NAME:
-                for (int i=0 ; i < triggerEvent.getAffectedColumns().length(); i++)
-                {
+                for (int i = 0 ; i < triggerEvent.getAffectedColumns().length(); i++) {
                     if (!afterObject.isNull(triggerEvent.getAffectedColumns().getString(i))) {
-
-                        if(triggerEvent.getAffectedColumns().getString(i).equals(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_FERTIGUNGSZUSTAND)
-                           || triggerEvent.getAffectedColumns().getString(i).equals(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_MENGE)
-                           || triggerEvent.getAffectedColumns().getString(i).equals(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_MENGENEINHEIT)
+                        if (triggerEvent.getAffectedColumns().getString(i).equals(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_FERTIGUNGSZUSTAND)
+                            || triggerEvent.getAffectedColumns().getString(i).equals(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_MENGE)
+                            || triggerEvent.getAffectedColumns().getString(i).equals(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_MENGENEINHEIT)
                         ) {
-                            values.put(triggerEvent.getAffectedColumns().getString(i), afterObject
-                                    .getString(triggerEvent.getAffectedColumns().getString(i)));
+                            values.put(triggerEvent.getAffectedColumns().getString(i),
+                                    afterObject.getString(triggerEvent.getAffectedColumns().getString(i)));
                         } else {
-                            values.put(triggerEvent.getAffectedColumns().getString(i), afterObject
-                                    .getInt(triggerEvent.getAffectedColumns().getString(i)));
+                            values.put(triggerEvent.getAffectedColumns().getString(i),
+                                    afterObject.getInt(triggerEvent.getAffectedColumns().getString(i)));
                         }
                     }
                 }
 
                 db.update(triggerEvent.getTable(),
                         values,
-                        "" + TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_LAGERPLATZ +  " = '" + beforeObject.getInt(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_LAGERPLATZ)
-                        + "' AND " + TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_ARTIKEL_ID + " = '" + beforeObject.getInt(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_ARTIKEL_ID)
-                        + "' AND " + TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_GROESSEN_ID + " = '" + beforeObject.getInt(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_GROESSEN_ID)
-                        + "' AND " + TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_FARBE_ID + " = '" + beforeObject.getInt(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_FARBE_ID) + "'",
+                        "" + TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_LAGERPLATZ +  " = '"
+                                + beforeObject.getInt(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_LAGERPLATZ)
+                        + "' AND " + TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_ARTIKEL_ID     + " = '"
+                                + beforeObject.getInt(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_ARTIKEL_ID)
+                        + "' AND " + TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_GROESSEN_ID    + " = '"
+                                + beforeObject.getInt(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_GROESSEN_ID)
+                        + "' AND " + TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_FARBE_ID       + " = '"
+                                + beforeObject.getInt(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_FARBE_ID) + "'",
                         null);
                 break;
-            case TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME:
-                for (int i=0 ; i < triggerEvent.getAffectedColumns().length(); i++)
-                {
-                    if (!afterObject.isNull(triggerEvent.getAffectedColumns().getString(i))) {
 
-                        if(triggerEvent.getAffectedColumns().getString(i).equals(TableLagerplaetze.LagerplaetzeEntry.COLUMN_BESCHREIBUNG)) {
-                            values.put(triggerEvent.getAffectedColumns().getString(i), afterObject
-                                    .getString(triggerEvent.getAffectedColumns().getString(i)));
+            // LAGERPLAETZE
+            case TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME:
+                for (int i = 0 ; i < triggerEvent.getAffectedColumns().length(); i++) {
+                    if (!afterObject.isNull(triggerEvent.getAffectedColumns().getString(i))) {
+                        if (triggerEvent.getAffectedColumns().getString(i).equals(TableLagerplaetze.LagerplaetzeEntry.COLUMN_BESCHREIBUNG)) {
+                            values.put(triggerEvent.getAffectedColumns().getString(i),
+                                    afterObject.getString(triggerEvent.getAffectedColumns().getString(i)));
                         } else {
-                            values.put(triggerEvent.getAffectedColumns().getString(i), afterObject
-                                    .getInt(triggerEvent.getAffectedColumns().getString(i)));
+                            values.put(triggerEvent.getAffectedColumns().getString(i),
+                                    afterObject.getInt(triggerEvent.getAffectedColumns().getString(i)));
                         }
                     }
                 }
 
                 db.update(triggerEvent.getTable(),
                         values,
-                        "" + TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERPLATZ +  " = '" + beforeObject.getInt(TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERPLATZ) + "'",
+                        "" + TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERPLATZ +  " = '"
+                                + beforeObject.getInt(TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERPLATZ) + "'",
                         null);
                 break;
         }
     }
 
+
+    /**
+     *
+     * @param triggerEvent
+     * @throws JSONException
+     */
     public void handleInsertOperation(TriggerEvent triggerEvent) throws JSONException {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -795,15 +969,13 @@ public class MainActivity extends AppCompatActivity
 
         Iterator<String> keys = afterObject.keys();
 
-        while(keys.hasNext())
-        {
+        while (keys.hasNext()) {
             String key = keys.next();
-            if(!afterObject.isNull(key)) {
+            if (!afterObject.isNull(key)) {
                 Object aObj = afterObject.get(key);
                 if (aObj instanceof Integer) {
                     values.put(key, afterObject.getInt(key));
-                }
-                else if (aObj instanceof String) {
+                } else if (aObj instanceof String) {
                     values.put(key, afterObject.getString(key));
                 }
             }
@@ -812,53 +984,93 @@ public class MainActivity extends AppCompatActivity
         db.insert(triggerEvent.getTable(), null, values);
     }
 
+
+    /**
+     *
+     * @param triggerEvent
+     * @throws JSONException
+     */
     public void handleDeleteOperation(TriggerEvent triggerEvent) throws JSONException {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         JSONObject beforeObject = triggerEvent.getBeforeObject();
 
-        switch (triggerEvent.getTable()){
+        switch (triggerEvent.getTable()) {
+            // ARTIKELKOMBINATIONEN
             case TableArtikelkombination.ArtikelkombinationenEntry.TABLE_NAME:
                 db.delete(triggerEvent.getTable(),
-                        "" + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_ID +  " = '" + beforeObject.getInt(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_ID)
-                        + "' AND " + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG + " = '" + beforeObject.getString(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG)
-                        + "' AND " + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSEN_ID + " = '" + beforeObject.getInt(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSEN_ID)
-                        + "' AND " + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_ID + " = '" + beforeObject.getInt(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_ID) + "'",
+                        "" + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_ID      +  " = '"
+                                + beforeObject.getInt(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_ID)
+                        + "' AND " + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG + " = '"
+                                + beforeObject.getString(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG)
+                        + "' AND " + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSEN_ID         + " = '"
+                                + beforeObject.getInt(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_GROESSEN_ID)
+                        + "' AND " + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_ID            + " = '"
+                                + beforeObject.getInt(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_ID) + "'",
                         null);
                 break;
+
+            // KPI
             case "kpi":
                 break;
+
+            // LAGERBESTAND
             case TableLagerbestand.LagerbestandEntry.TABLE_NAME:
                 db.delete(triggerEvent.getTable(),
-                        "" + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ +  " = '" + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ)
-                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER + " = '" + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER)
-                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG + " = '" + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG)
-                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID + " = '" + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID)
-                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID + " = '" + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID)
-                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID + " = '" + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID) + "'",
+                        "" + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ +  " = '"
+                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ)
+                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER   + " = '"
+                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER)
+                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG  + " = '"
+                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG)
+                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID     + " = '"
+                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID)
+                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID    + " = '"
+                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID)
+                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID       + " = '"
+                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID) + "'",
                         null);
                 break;
+
+            // LAGERBESTAND_SUMME
             case TableLagerbestand_Summe.Lagerbestand_SummeEntry.TABLE_NAME:
                 db.delete(triggerEvent.getTable(),
-                        "" + TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_LAGERPLATZ +  " = '" + beforeObject.getInt(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_LAGERPLATZ)
-                        + "' AND " + TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_ARTIKEL_ID + " = '" + beforeObject.getInt(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_ARTIKEL_ID)
-                        + "' AND " + TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_GROESSEN_ID + " = '" + beforeObject.getInt(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_GROESSEN_ID)
-                        + "' AND " + TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_FARBE_ID + " = '" + beforeObject.getInt(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_FARBE_ID) + "'",
+                        "" + TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_LAGERPLATZ +  " = '"
+                                + beforeObject.getInt(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_LAGERPLATZ)
+                        + "' AND " + TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_ARTIKEL_ID     + " = '"
+                                + beforeObject.getInt(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_ARTIKEL_ID)
+                        + "' AND " + TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_GROESSEN_ID    + " = '"
+                                + beforeObject.getInt(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_GROESSEN_ID)
+                        + "' AND " + TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_FARBE_ID       + " = '"
+                                + beforeObject.getInt(TableLagerbestand_Summe.Lagerbestand_SummeEntry.COLUMN_FARBE_ID) + "'",
                         null);
                 break;
+
+            // LAGERPLAETZE
             case TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME:
                 db.delete(triggerEvent.getTable(),
-                        "" + TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERPLATZ +  " = '" + beforeObject.getInt(TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERPLATZ) + "'",
+                        "" + TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERPLATZ +  " = '"
+                                + beforeObject.getInt(TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERPLATZ) + "'",
                         null);
                 break;
         }
     }
+
+
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //  DATABASE                  //////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    private void updateTimestamp(long timestampServer){
+
+    /**
+     *
+     * @param timestampServer
+     */
+    private void updateTimestamp (long timestampServer) {
         mDatabase.execSQL("DELETE FROM " + TableTimestamp.TimestampEntry.TABLE_NAME + ";");
+
         ContentValues contentValues = new ContentValues();
         contentValues.put(TableTimestamp.TimestampEntry.COLUMN_TIMESTAMP, timestampServer);
+
         mDatabase.insert(TableTimestamp.TimestampEntry.TABLE_NAME, null, contentValues);
         timestampServerGlobal = timestampServer;
     }

@@ -12,24 +12,36 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 /**
- * Um den Recyclerview zu füllen, wird der Adapter mit den TextView's des Layouts gefüllt und diesen
- * die zugehörigen Daten zugeordnet.
+ * Um die RecyclerView zu füllen, wird der Adapter mit den TextView's des Layouts gefüllt und diesen
+ * den zugehörigen Daten zugeordnet.
  */
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ExampleViewHolder> {
+
     private ArrayList<Article> mExampleList;
     private OnItemClickListener mListener;
 
-    public interface OnItemClickListener{
-        void onItemClick(int position);
+    /**
+     *
+     */
+    public interface OnItemClickListener {
+        void onItemClick (int position);
         void onLocationMarkerClick (int position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener){
+
+    /**
+     *
+     * @param listener
+     */
+    public void setOnItemClickListener (OnItemClickListener listener) {
         mListener = listener;
     }
+
+
+
     /**
      * In der ViewHolder Klasse werden die TextView's als Attribute gesetzt und mittels des Konstruktors
-     * werden die TextViews aus dem Layout den Attributen zugeordnet.
+     * werden die TextView's aus dem Layout den Attributen zugeordnet.
      */
     public static class ExampleViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextArtikelNr;
@@ -41,45 +53,49 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ExampleV
         public TextView mTextFertZust;
         public TextView mTextMenge;
         public TextView mTextMengenEinheit;
+
         public ImageView mLocationMarkerImage;
 
         /**
-         * Die Klassenparameter werden mit den TextViews des Layouts initialisiert.
+         * Die Klassenparameter werden mit den TextView's des Layouts initialisiert.
          *
-         * @param itemView Layout eines einzelnen Artikels, das mittels des RecyclerView wiederverwendet wird.
+         * @param itemView Layout eines einzelnen Artikels, das mittels der RecyclerView
+         *                 wiederverwendet wird.
          */
         public ExampleViewHolder (@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
-            mTextArtikelNr = itemView.findViewById(R.id.itemArticle_placeholder_articleId);
-            mTextArtikelBez = itemView.findViewById(R.id.itemArticle_placeholder_articleDescription);
-            mTextStuecknummer = itemView.findViewById(R.id.itemArticle_placeholder_pieceId);
-            mTextFarbeID = itemView.findViewById(R.id.itemArticle_placeholder_colorId);
-            mTextFarbeBez = itemView.findViewById(R.id.itemArticle_placeholder_colorDescription);
-            mTextGroessenID = itemView.findViewById(R.id.itemArticle_placeholder_size);
-            mTextFertZust = itemView.findViewById(R.id.itemArticle_placeholder_manufacturingState);
-            mTextMenge = itemView.findViewById(R.id.itemArticle_placeholder_amount);
-            mTextMengenEinheit = itemView.findViewById(R.id.itemArticle_placeholder_amountUnit);
+            mTextArtikelNr       = itemView.findViewById(R.id.itemArticle_placeholder_articleId);
+            mTextArtikelBez      = itemView.findViewById(R.id.itemArticle_placeholder_articleDescription);
+            mTextStuecknummer    = itemView.findViewById(R.id.itemArticle_placeholder_pieceId);
+            mTextFarbeID         = itemView.findViewById(R.id.itemArticle_placeholder_colorId);
+            mTextFarbeBez        = itemView.findViewById(R.id.itemArticle_placeholder_colorDescription);
+            mTextGroessenID      = itemView.findViewById(R.id.itemArticle_placeholder_size);
+            mTextFertZust        = itemView.findViewById(R.id.itemArticle_placeholder_manufacturingState);
+            mTextMenge           = itemView.findViewById(R.id.itemArticle_placeholder_amount);
+            mTextMengenEinheit   = itemView.findViewById(R.id.itemArticle_placeholder_amountUnit);
             mLocationMarkerImage = itemView.findViewById(R.id.itemArticle_icon_location);
 
+            // item
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick (View v) {
-                    if (listener != null){
+                    if (listener != null) {
                         int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
+                        if (position != RecyclerView.NO_POSITION) {
                             listener.onItemClick(position);
                         }
                     }
                 }
             });
 
+            // location marker
             mLocationMarkerImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick (View v) {
-                    if (listener != null){
+                    if (listener != null) {
                         int position = getAdapterPosition();
                         //int test = mExampleList.get(position).getArtikelID();
-                        if (position != RecyclerView.NO_POSITION){
+                        if (position != RecyclerView.NO_POSITION) {
                             listener.onLocationMarkerClick(position);
                         }
                     }
@@ -88,31 +104,52 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ExampleV
         }
     }
 
+
+
     public ArticleAdapter (ArrayList<Article> exampleList) {
         mExampleList = exampleList;
     }
+
 
     public ArticleAdapter(){
         mExampleList = new ArrayList<>();
     }
 
+
+
+    /**
+     * Ein ViewHolder wird durch das item_article erstellt.
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public ExampleViewHolder onCreateViewHolder (@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_article, parent,
                 false);
         ExampleViewHolder evh = new ExampleViewHolder(v, mListener);
+
         return evh;
     }
 
+
+    /**
+     * Das aktuelle Item wird herangezogen und den TextView's zugeordnet.
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder (@NonNull ExampleViewHolder holder, int position) {
         Article currentItem = mExampleList.get(position);
+
         holder.mTextArtikelNr.setText(String.valueOf(currentItem.getArtikelID()));
         holder.mTextArtikelBez.setText(currentItem.getArtikel_Bezeichnung());
-
-        if(currentItem.getStueckteilung() == 0)
+        // STUECKNUMMER
+        if (currentItem.getStueckteilung() == 0) {
             holder.mTextStuecknummer.setText(String.valueOf(currentItem.getStuecknummer()));
-        else {
+        } else {
             String stuecknummer = currentItem.getStuecknummer() + "/" + currentItem.getStueckteilung();
             holder.mTextStuecknummer.setText(stuecknummer);
         }
@@ -124,6 +161,11 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ExampleV
         holder.mTextMengenEinheit.setText(currentItem.getMengenEinheit());
     }
 
+
+    /**
+     *
+     * @return
+     */
     @Override
     public int getItemCount () {
         return mExampleList.size();

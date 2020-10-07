@@ -17,11 +17,18 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import java.util.ArrayList;
 
+
+/**
+ *
+ */
 public class KpiAdapter extends RecyclerView.Adapter<KpiAdapter.KpiViewHolder> {
 
     private ArrayList<Kpi> kpis;
     private Context context;
 
+    /**
+     * View Holder durch RecyclerView
+     */
     public static class KpiViewHolder extends RecyclerView.ViewHolder {
         public TextView kpiName;
         public TextView kpiPercentageValue;
@@ -34,37 +41,52 @@ public class KpiAdapter extends RecyclerView.Adapter<KpiAdapter.KpiViewHolder> {
 
         public KpiViewHolder (@NonNull View itemView) {
             super(itemView);
-            kpiName = itemView.findViewById(R.id.viewpager_item_kpi_name);
+            kpiName            = itemView.findViewById(R.id.viewpager_item_kpi_name);
             kpiPercentageValue = itemView.findViewById(R.id.viewpager_item_kpi_currentvalueinpercent);
-            kpiCurrentValue = itemView.findViewById(R.id.viewpager_item_kpi_currentvalue);
-            kpiMaximumValue = itemView.findViewById(R.id.viewpager_item_kpi_maxvalue);
-            kpiTimestamp = itemView.findViewById(R.id.viewpager_item_kpi_currentTimestamp);
-            percentageDetails = itemView.findViewById(R.id.viewpager_item_kpi_percentDetails);
-            progressBar = itemView.findViewById(R.id.viewpager_item_kpi_progressBar);
+            kpiCurrentValue    = itemView.findViewById(R.id.viewpager_item_kpi_currentvalue);
+            kpiMaximumValue    = itemView.findViewById(R.id.viewpager_item_kpi_maxvalue);
+            kpiTimestamp       = itemView.findViewById(R.id.viewpager_item_kpi_currentTimestamp);
+            percentageDetails  = itemView.findViewById(R.id.viewpager_item_kpi_percentDetails);
+            progressBar        = itemView.findViewById(R.id.viewpager_item_kpi_progressBar);
         }
     }
 
 
     public KpiAdapter (ArrayList<Kpi> kpis, Context context) {
-        this.kpis = kpis;
+        this.kpis    = kpis;
         this.context = context;
     }
 
 
+    /**
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public KpiViewHolder onCreateViewHolder (@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewpager_item_kpi, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewpager_item_kpi,
+                parent, false);
         KpiViewHolder kpiViewHolder = new KpiViewHolder(v);
+
         return kpiViewHolder;
     }
 
+
+    /**
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder (@NonNull KpiViewHolder holder, int position) {
         Kpi currentKpi = kpis.get(position);
         holder.kpiName.setText(currentKpi.getName());
         holder.kpiCurrentValue.setText(String.valueOf(currentKpi.getCurrentValue()));
         holder.kpiMaximumValue.setText(String.valueOf(currentKpi.getMaxValue()));
+
         if (currentKpi.getMaxValue() != 0) {
             int percent = (currentKpi.getCurrentValue()*100) / currentKpi.getMaxValue();
             String percentAsString = String.valueOf(percent) + " %";
@@ -77,8 +99,8 @@ public class KpiAdapter extends RecyclerView.Adapter<KpiAdapter.KpiViewHolder> {
             holder.progressBar.setProgress(100);
             holder.percentageDetails.setVisibility(LinearLayout.GONE);
         }
-        holder.kpiTimestamp.setText(currentKpi.getTimestamp());
 
+        holder.kpiTimestamp.setText(currentKpi.getTimestamp());
     }
 
     @Override

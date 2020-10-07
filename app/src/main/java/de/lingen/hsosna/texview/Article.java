@@ -21,6 +21,7 @@ public class Article {
     private int lagerplatz;
     private int regalfach;
 
+
     /**
      * @param artikelID           Artikel ID des Artikels
      * @param artikel_Bezeichnung Artikelkurzbezeichnung des Artikels
@@ -31,22 +32,22 @@ public class Article {
      * @param menge               Menge des Artikels
      * @param mengenEinheit       zugehörige Einheit zu der Menge
      */
-    public Article (int artikelID, int stuecknummer, int stueckteilung, String artikel_Bezeichnung, int farbe_ID,
-                    String farbe_Bezeichnung, int groessen_ID, String fertigungszustand,
+    public Article (int artikelID, int stuecknummer, int stueckteilung, String artikel_Bezeichnung,
+                    int farbe_ID, String farbe_Bezeichnung, int groessen_ID, String fertigungszustand,
                     String menge, String mengenEinheit, int lagerplatz) {
-        this.artikelID = artikelID;
-        this.stuecknummer = stuecknummer;
-        this.stueckteilung = stueckteilung;
+        this.artikelID           = artikelID;
+        this.stuecknummer        = stuecknummer;
+        this.stueckteilung       = stueckteilung;
         this.artikel_Bezeichnung = artikel_Bezeichnung;
-        this.farbe_ID = farbe_ID;
-        this.farbe_Bezeichnung = farbe_Bezeichnung;
-        this.groessen_ID = groessen_ID;
-        this.fertigungszustand = fertigungszustand;
-        this.menge = menge;
-        this.mengenEinheit = mengenEinheit;
-        this.regalfach = getRegalfachFromLagerplatz(lagerplatz);
-        this.lagerplatz = formatLagerplatz(lagerplatz);
-        this.lagerort = 60;
+        this.farbe_ID            = farbe_ID;
+        this.farbe_Bezeichnung   = farbe_Bezeichnung;
+        this.groessen_ID         = groessen_ID;
+        this.fertigungszustand   = fertigungszustand;
+        this.menge               = menge;
+        this.mengenEinheit       = mengenEinheit;
+        this.regalfach           = getRegalfachFromLagerplatz(lagerplatz);
+        this.lagerplatz          = formatLagerplatz(lagerplatz);
+        this.lagerort            = 60;
 
         // TODO LAGERORT
     }
@@ -127,6 +128,12 @@ public class Article {
         return stueckteilung;
     }
 
+
+    /**
+     *
+     * @param lagerplatz
+     * @return
+     */
     private int formatLagerplatz(int lagerplatz){
         String lagerplatzString = String.valueOf(lagerplatz);
         String finalString = lagerplatzString.substring(0,2) + "0" + lagerplatzString.charAt(2);
@@ -134,12 +141,24 @@ public class Article {
         return Integer.parseInt(finalString);
     }
 
+
+    /**
+     *
+     * @param lagerplatz
+     * @return
+     */
     private int getRegalfachFromLagerplatz (int lagerplatz) {
         String lagerplatzString = String.valueOf(lagerplatz);
         String finalString = "" + lagerplatzString.charAt(3);
+
         return Integer.parseInt(finalString);
     }
 
+
+    /**
+     *
+     * @return Lagerplatz-Objekt
+     */
     public Lagerplatz getLagerplatzObject(){
         return new Lagerplatz(lagerort, lagerplatz, regalfach);
     }

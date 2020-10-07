@@ -3,16 +3,17 @@ package de.lingen.hsosna.texview;
 import java.util.Date;
 
 public class Kpi {
+
     private String name;
     private int currentValue;
     private int maxValue;
     private String timestamp;
 
     public Kpi (String name, int currentValue, int maxValue, String timestamp) {
-        this.name = name;
+        this.name         = name;
         this.currentValue = currentValue;
-        this.maxValue = maxValue;
-        this.timestamp = timestamp;
+        this.maxValue     = maxValue;
+        this.timestamp    = timestamp;
     }
 
     public String getName () {

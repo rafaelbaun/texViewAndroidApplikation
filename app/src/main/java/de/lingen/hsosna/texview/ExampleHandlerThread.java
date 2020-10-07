@@ -4,7 +4,11 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Process;
 
+/**
+ * Der HandlerThread setzt die angesprochene Aktivität in den Hintergrund.
+ */
 public class ExampleHandlerThread extends HandlerThread {
+
     private static final String TAG = "ExampleHandlerThread";
 
     private Handler handler;

@@ -11,13 +11,23 @@ import androidx.fragment.app.Fragment;
 
 import de.lingen.hsosna.texview.R;
 
+/**
+ * Info-Fragment
+ */
 public class InfoFragment extends Fragment {
 
+
+    /**
+     *
+     *
+     * @return view des InfoFragments
+     */
     @Nullable
     @Override
     public View onCreateView (@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                               @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_info, container, false);
+
         return v;
     }
 

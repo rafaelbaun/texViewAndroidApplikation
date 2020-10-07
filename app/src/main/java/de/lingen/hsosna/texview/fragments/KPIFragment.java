@@ -29,6 +29,10 @@ import de.lingen.hsosna.texview.R;
 import de.lingen.hsosna.texview.database.TableKpi;
 import de.lingen.hsosna.texview.database.TableLagerbestand;
 
+
+/**
+ * KPI-Fragment
+ */
 public class KPIFragment extends Fragment {
 
     ViewPager2 viewPager2;
@@ -38,6 +42,12 @@ public class KPIFragment extends Fragment {
     private DatabaseHelper dbHelper;
     private SQLiteDatabase database;
 
+
+    /**
+     *
+     *
+     * @return view des KPIFragments
+     */
     @Nullable
     @Override
     public View onCreateView (@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -53,6 +63,7 @@ public class KPIFragment extends Fragment {
 
         kpiAdapter = new KpiAdapter(kpis, context);
 
+        // view pager
         viewPager2 = v.findViewById(R.id.fragment_kpi_viewPager);
         viewPager2.setAdapter(kpiAdapter);
         viewPager2.setClipChildren(false);
@@ -60,9 +71,15 @@ public class KPIFragment extends Fragment {
         viewPager2.setOffscreenPageLimit(3);
         viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
         viewPager2.setPadding(200,0,200, 0);
+        // page transformer
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
         compositePageTransformer.addTransformer(new MarginPageTransformer(40));
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+            /**
+             * Page Transformer
+             * @param page
+             * @param position
+             */
             @Override
             public void transformPage (@NonNull View page, float position) {
                 float r = 1 - Math.abs(position);
@@ -74,26 +91,44 @@ public class KPIFragment extends Fragment {
         return v;
     }
 
+
+    /**
+     * Es wird eine Datenbankabfrage in der Tabelle "Kpi" durchgeführt. Die Abfrage und die
+     * Zuordnung zu den Attributen wird durch einen Cursor realisiert.
+     *
+     * @return kpi-Liste
+     */
     private ArrayList<Kpi> getKpiArrayList () {
         ArrayList<Kpi> kpiArrayList = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT " + TableKpi.KpiEntry.COLUMN_NAME + ", "
-                                          + TableKpi.KpiEntry.COLUMN_CURRENTVALUE + ", "
-                                          + TableKpi.KpiEntry.COLUMN_MAXVALUE + ", "
-                                          + TableKpi.KpiEntry.COLUMN_TIMESTAMP + ""
-                                          + " FROM " + TableKpi.KpiEntry.TABLE_NAME + ";", null);
-        try{
-            while (cursor.moveToNext())
-            {
-                String kpiName = cursor.getString(cursor.getColumnIndex(TableKpi.KpiEntry.COLUMN_NAME));
-                int kpiCurrentValue = cursor.getInt(cursor.getColumnIndex(TableKpi.KpiEntry.COLUMN_CURRENTVALUE));
-                int kpiMaxValue = cursor.getInt(cursor.getColumnIndex(TableKpi.KpiEntry.COLUMN_MAXVALUE));
-                String kpiTimestamp = cursor.getString(cursor.getColumnIndex(TableKpi.KpiEntry.COLUMN_TIMESTAMP));
-                Kpi kpi = new Kpi(kpiName,kpiCurrentValue,kpiMaxValue,kpiTimestamp);
+        // rawQuery durch Cursor
+        Cursor cursor = database.rawQuery("SELECT "
+                + TableKpi.KpiEntry.COLUMN_NAME         + ", "
+                + TableKpi.KpiEntry.COLUMN_CURRENTVALUE + ", "
+                + TableKpi.KpiEntry.COLUMN_MAXVALUE     + ", "
+                + TableKpi.KpiEntry.COLUMN_TIMESTAMP    + ""
+                + " FROM " + TableKpi.KpiEntry.TABLE_NAME + ";",
+                null);
+
+        try {
+            // Zuordnung der Attribute durch cursor
+            while (cursor.moveToNext()) {
+                String kpiName = cursor.getString(cursor.getColumnIndex(
+                        TableKpi.KpiEntry.COLUMN_NAME));
+                int kpiCurrentValue = cursor.getInt(cursor.getColumnIndex(
+                        TableKpi.KpiEntry.COLUMN_CURRENTVALUE));
+                int kpiMaxValue = cursor.getInt(cursor.getColumnIndex(
+                        TableKpi.KpiEntry.COLUMN_MAXVALUE));
+                String kpiTimestamp = cursor.getString(cursor.getColumnIndex(
+                        TableKpi.KpiEntry.COLUMN_TIMESTAMP));
+
+                // kpi-Liste
+                Kpi kpi = new Kpi(kpiName, kpiCurrentValue, kpiMaxValue, kpiTimestamp);
                 kpiArrayList.add(kpi);
             }
         } finally {
             cursor.close();
         }
+
         return kpiArrayList;
     }
 }

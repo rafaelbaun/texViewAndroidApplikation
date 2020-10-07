@@ -4,6 +4,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ *
+ */
 public class TriggerEvent {
 
     private String type;
@@ -14,15 +17,16 @@ public class TriggerEvent {
     private long timestamp;
     private int nextPosition;
 
+
     public TriggerEvent (String type, String schema, String table, JSONArray affectedRows,
                          JSONArray affectedColumns, long timestamp, int nextPosition) {
-        this.type = type;
-        this.schema = schema;
-        this.table = table;
-        this.affectedRows = affectedRows;
+        this.type            = type;
+        this.schema          = schema;
+        this.table           = table;
+        this.affectedRows    = affectedRows;
         this.affectedColumns = affectedColumns;
-        this.timestamp = timestamp;
-        this.nextPosition = nextPosition;
+        this.timestamp       = timestamp;
+        this.nextPosition    = nextPosition;
     }
 
     public String getType () {

@@ -9,27 +9,32 @@ public class Lagerplatz implements Parcelable {
     private int regalfach;
 
     public Lagerplatz (int lagerort, int lagerplatz) {
-        this.lagerort = lagerort;
+        this.lagerort   = lagerort;
         this.lagerplatz = formatLagerplatz(lagerplatz);
-        this.regalfach = getRegalfachFromLagerplatz(lagerplatz);
+        this.regalfach  = getRegalfachFromLagerplatz(lagerplatz);
     }
 
     public Lagerplatz (int lagerort, int lagerplatz, int regalfach) {
-        this.lagerort = lagerort;
+        this.lagerort   = lagerort;
         this.lagerplatz = lagerplatz;
-        this.regalfach = regalfach;
+        this.regalfach  = regalfach;
     }
 
+    /**
+     *
+     * @param in Lagerplatz
+     */
     protected Lagerplatz (Parcel in) {
         int[] data = new int[3];
-
         in.readIntArray(data);
-
-        lagerort = data[0];
+        lagerort   = data[0];
         lagerplatz = data[1];
-        regalfach = data[2];
+        regalfach  = data[2];
     }
 
+    /**
+     *
+     */
     public static final Creator<Lagerplatz> CREATOR = new Creator<Lagerplatz>() {
         @Override
         public Lagerplatz createFromParcel (Parcel in) {
@@ -42,18 +47,32 @@ public class Lagerplatz implements Parcelable {
         }
     };
 
+
+    /**
+     *
+     * @param lagerplatz
+     * @return
+     */
     private int getRegalfachFromLagerplatz (int lagerplatz) {
         String lagerplatzString = String.valueOf(lagerplatz);
-        String finalString = "" + lagerplatzString.charAt(3);
+        String finalString      = "" + lagerplatzString.charAt(3);
+
         return Integer.parseInt(finalString);
     }
 
+
+    /**
+     * Formatiert den Bezeichnung des Lagerplatz
+     * @param lagerplatz
+     * @return formatierter Lagerplatz
+     */
     private int formatLagerplatz (int lagerplatz) {
         String lagerplatzString = String.valueOf(lagerplatz);
-        String finalString = lagerplatzString.substring(0,2) + "0" + lagerplatzString.charAt(2);
+        String finalString      = lagerplatzString.substring(0,2) + "0" + lagerplatzString.charAt(2);
 
         return Integer.parseInt(finalString);
     }
+
 
     public int getLagerort () {
         return lagerort;
@@ -88,6 +107,11 @@ public class Lagerplatz implements Parcelable {
         return 0;
     }
 
+    /**
+     *
+     * @param dest
+     * @param flags
+     */
     @Override
     public void writeToParcel (Parcel dest, int flags) {
         dest.writeInt(lagerort);
