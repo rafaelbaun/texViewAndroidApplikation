@@ -50,13 +50,8 @@ public class KPIFragment extends Fragment {
 
         kpis = new ArrayList<>();
         kpis = getKpiArrayList();
-        /*kpis.add(new Kpi("Freie Lagerplätze", 100, 840, "April 2020"));
-        kpis.add(new Kpi("Freie Lagerplätze", 188, 840, "Mai 2020"));
-        kpis.add(new Kpi("Kommissionierte Artikel", 1246, 0, "Mai 2020"));
-        kpis.add(new Kpi("Kommissionierte Artikel", 1300, 0, "Juni 2020"));
-        kpis.add(new Kpi("Belegte Lagerplätze", 812, 840, "September 2020"));
-*/
-        kpiAdapter = new KpiAdapter(kpis);
+
+        kpiAdapter = new KpiAdapter(kpis, context);
 
         viewPager2 = v.findViewById(R.id.fragment_kpi_viewPager);
         viewPager2.setAdapter(kpiAdapter);
@@ -76,13 +71,6 @@ public class KPIFragment extends Fragment {
         });
         viewPager2.setPageTransformer(compositePageTransformer);
 
-        /*viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected (int position) {
-                super.onPageSelected(position);
-                sliderRunnable
-            }
-        });*/
         return v;
     }
 

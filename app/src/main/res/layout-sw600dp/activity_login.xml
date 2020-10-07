@@ -32,7 +32,7 @@
 
 
     <LinearLayout
-        android:layout_margin="20dp"
+        android:layout_margin="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -42,7 +42,7 @@
 
         <EditText
             android:id="@+id/username"
-            android:layout_width="match_parent"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_user"
             android:ems="10"
@@ -54,7 +54,7 @@
 
         <EditText
             android:id="@+id/password"
-            android:layout_width="match_parent"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_password"
             android:ems="10"

@@ -1,0 +1,38 @@
+[
+  {
+    "name_kpi": "Belegte Lagerplätze",
+    "currentvalue_kpi": "602",
+    "maxvalue_kpi": "840",
+    "timestamp_kpi": "Oktober 2020"
+  },
+  {
+    "name_kpi": "Belegte Lagerplätze",
+    "currentvalue_kpi": "812",
+    "maxvalue_kpi": "840",
+    "timestamp_kpi": "September 2020"
+  },
+  {
+    "name_kpi": "Freie Lagerplätze",
+    "currentvalue_kpi": "100",
+    "maxvalue_kpi": "840",
+    "timestamp_kpi": "April 2020"
+  },
+  {
+    "name_kpi": "Freie Lagerplätze",
+    "currentvalue_kpi": "188",
+    "maxvalue_kpi": "840",
+    "timestamp_kpi": "Mai 2020"
+  },
+  {
+    "name_kpi": "Kommissionierte Artikel",
+    "currentvalue_kpi": "1246",
+    "maxvalue_kpi": "0",
+    "timestamp_kpi": "Mai 2020"
+  },
+  {
+    "name_kpi": "Kommissionierte Artikel",
+    "currentvalue_kpi": "1578",
+    "maxvalue_kpi": "0",
+    "timestamp_kpi": "Juni 2020"
+  }
+]

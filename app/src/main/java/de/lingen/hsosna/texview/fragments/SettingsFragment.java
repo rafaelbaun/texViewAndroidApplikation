@@ -2,6 +2,7 @@ package de.lingen.hsosna.texview.fragments;
 
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.tabs.TabLayout;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,9 +31,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 import de.lingen.hsosna.texview.Constants;
 import de.lingen.hsosna.texview.DatabaseHelper;
+import de.lingen.hsosna.texview.Lagerplatz;
 import de.lingen.hsosna.texview.R;
 import de.lingen.hsosna.texview.database.TableArtikelkombination;
 import de.lingen.hsosna.texview.database.TableKpi;
@@ -42,6 +47,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import static de.lingen.hsosna.texview.MainActivity.freeShelveList;
 import static de.lingen.hsosna.texview.MainActivity.timestampServerGlobal;
 
 /**
@@ -78,12 +84,10 @@ public class SettingsFragment extends Fragment {
         final AlertDialog.Builder alertDialogBuilder = initAlertDialog(v);
         alertDialog = alertDialogBuilder.create();
 
-        //TODO
         //Refresh Database content
         buttonRefreshDatabase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-
                 alertDialog.setIcon(R.drawable.ic_refresh);
                 alertDialog.setTitle(R.string.settingsFragment_refreshDescription);
                 alertDialog.setMessage("Bitte warten...");
@@ -91,12 +95,6 @@ public class SettingsFragment extends Fragment {
                 mDatabase.execSQL("DELETE FROM " + TableLagerbestand.LagerbestandEntry.TABLE_NAME + ";");
                 updateLagerbestand();
                 setTimestampToMostRecent();
-                /////////NUR ZUM TESTEN
-
-                mDatabase.execSQL("DELETE FROM " + TableKpi.KpiEntry.TABLE_NAME + ";");
-                fillKpis();
-
-                //////
             }
         });
         //Fill Database from Server
@@ -164,7 +162,6 @@ public class SettingsFragment extends Fragment {
     }
 
     public void updateLagerbestand (){
-
         String[][] dataToPull = new String[1][2];
         dataToPull[0][0] = TableLagerbestand.LagerbestandEntry.TABLE_NAME;
         dataToPull[0][1] = Constants.SERVER_URL_LAGERBESTAND;
@@ -198,14 +195,14 @@ public class SettingsFragment extends Fragment {
         cv = new ContentValues();
         cv.put(TableKpi.KpiEntry.COLUMN_NAME, "Komissionierte Artikel");
         cv.put(TableKpi.KpiEntry.COLUMN_CURRENTVALUE, 1246);
-        //cv.put(TableKpi.KpiEntry.COLUMN_MAXVALUE, null);
+        cv.put(TableKpi.KpiEntry.COLUMN_MAXVALUE, 0);
         cv.put(TableKpi.KpiEntry.COLUMN_TIMESTAMP, "Mai 2020");
         mDatabase.insert(TableKpi.KpiEntry.TABLE_NAME, null, cv);
 
         cv = new ContentValues();
         cv.put(TableKpi.KpiEntry.COLUMN_NAME, "Komissionierte Artikel");
         cv.put(TableKpi.KpiEntry.COLUMN_CURRENTVALUE, 1300);
-        //cv.put(TableKpi.KpiEntry.COLUMN_MAXVALUE, null);
+        cv.put(TableKpi.KpiEntry.COLUMN_MAXVALUE, 0);
         cv.put(TableKpi.KpiEntry.COLUMN_TIMESTAMP, "Juni 2020");
         mDatabase.insert(TableKpi.KpiEntry.TABLE_NAME, null, cv);
 
@@ -225,23 +222,25 @@ public class SettingsFragment extends Fragment {
     }
 
     public void startAsyncTast(boolean getFromServer){
-        String[][] dataToPull = new String[4][2];
+        String[][] dataToPull = new String[5][2];
         dataToPull[0][0] = TableArtikelkombination.ArtikelkombinationenEntry.TABLE_NAME;
         dataToPull[1][0] = TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME;
         dataToPull[2][0] = TableLagerbestand_Summe.Lagerbestand_SummeEntry.TABLE_NAME;
         dataToPull[3][0] = TableLagerbestand.LagerbestandEntry.TABLE_NAME;
-        //TODO REPLACE WITH CONSTANTS
+        dataToPull[4][0] = TableKpi.KpiEntry.TABLE_NAME;
         if(getFromServer) {
-            dataToPull[0][1] = "http://131.173.65.147/artikelkombinationen.php";
-            dataToPull[1][1] = "http://131.173.65.147/lagerplaetze.php";
-            dataToPull[2][1] = "http://131.173.65.147/lagerbestand_summe.php";
-            dataToPull[3][1] = "http://131.173.65.147/lagerbestand.php";
+            dataToPull[0][1] = Constants.SERVER_URL_ARTIKELKOMBINATIONEN;
+            dataToPull[1][1] = Constants.SERVER_URL_LAGERPLAETZE;
+            dataToPull[2][1] = Constants.SERVER_URL_LAGERBESTAND_SUMME;
+            dataToPull[3][1] = Constants.SERVER_URL_LAGERBESTAND;
+            dataToPull[4][1] = Constants.SERVER_URL_KPI;
         }
         else{
             dataToPull[0][1] = null;
             dataToPull[1][1] = null;
             dataToPull[2][1] = null;
             dataToPull[3][1] = null;
+            dataToPull[4][1] = null;
         }
         FillDatabaseAsyncTask task = new FillDatabaseAsyncTask(this, dataToPull);
         task.execute();
@@ -261,6 +260,10 @@ public class SettingsFragment extends Fragment {
 
         deleteString =
                 "DELETE FROM " + TableLagerbestand_Summe.Lagerbestand_SummeEntry.TABLE_NAME + ";";
+        db.execSQL(deleteString);
+
+        deleteString =
+                "DELETE FROM " + TableKpi.KpiEntry.TABLE_NAME + ";";
         db.execSQL(deleteString);
     }
 
@@ -425,10 +428,6 @@ public class SettingsFragment extends Fragment {
         }
     }
 
-    public void showToast (String abc){
-        Toast.makeText(getActivity().getApplicationContext(), abc, Toast.LENGTH_SHORT).show();
-    }
-
     private void readDataToDbLagerbestandSumme (JSONArray array)
             throws IOException, JSONException {
         //names of columns in json file
@@ -560,6 +559,47 @@ public class SettingsFragment extends Fragment {
         }
     }
 
+    private void readDataToDbKpi (JSONArray array)
+            throws IOException, JSONException {
+        //names of columns in json file
+        final String MNU_NAME = "name_kpi";
+        final String MNU_CURRENTVALUE = "currentvalue_kpi";
+        final String MNU_MAXVALUE = "maxvalue_kpi";
+        final String MNU_TIMESTAMP = "timestamp_kpi";
+        try {
+            JSONArray kpiJsonArray;
+            if(array == null) {
+                String jsonDataString = readJsonDataFromFile(
+                        getActivity().getResources().openRawResource(R.raw.kpi));
+                kpiJsonArray = new JSONArray(jsonDataString);
+            } else {
+                kpiJsonArray = array;
+            }
+            for (int i = 0; i < kpiJsonArray.length(); ++ i) {
+                String name;
+                int currentvalue;
+                int maxValue;
+                String timestamp;
+
+                JSONObject kpiObject = kpiJsonArray.getJSONObject(i);
+                name = kpiObject.getString(MNU_NAME);
+                currentvalue = Integer.parseInt(kpiObject.getString(MNU_CURRENTVALUE));
+                maxValue = Integer.parseInt(kpiObject.getString(MNU_MAXVALUE));
+                timestamp = kpiObject.getString(MNU_TIMESTAMP);
+
+                ContentValues kpiValues = new ContentValues();
+                kpiValues.put(TableKpi.KpiEntry.COLUMN_NAME, name);
+                kpiValues.put(TableKpi.KpiEntry.COLUMN_CURRENTVALUE, currentvalue);
+                kpiValues.put(TableKpi.KpiEntry.COLUMN_MAXVALUE, maxValue);
+                kpiValues.put(TableKpi.KpiEntry.COLUMN_TIMESTAMP, timestamp);
+
+                mDatabase.insert(TableKpi.KpiEntry.TABLE_NAME, null, kpiValues);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     private String readJsonDataFromFile (InputStream is) throws IOException {
         InputStream inputStream = null;
         StringBuilder builder = new StringBuilder();
@@ -577,6 +617,29 @@ public class SettingsFragment extends Fragment {
             }
         }
         return new String(builder);
+    }
+
+    private void updateFreeShelvesList (){
+        ArrayList<Lagerplatz> newFreeShelvesList = new ArrayList<>();
+        try (Cursor cursor = mDatabase.rawQuery(
+                "SELECT " + TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERPLATZ + ", "
+                + TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERORT
+                + " FROM " + TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME + ""
+                + " LEFT OUTER JOIN " + TableLagerbestand.LagerbestandEntry.TABLE_NAME + ""
+                + " ON " + TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERPLATZ + " = "
+                + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ
+                + " WHERE " + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ + " IS NULL;"
+                , null)) {
+            while (cursor.moveToNext()) {
+                int lagerplatz = cursor.getInt(cursor.getColumnIndex(
+                        TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERPLATZ));
+                int lagerort = cursor.getInt(
+                        cursor.getColumnIndex(TableLagerplaetze.LagerplaetzeEntry.COLUMN_LAGERORT));
+                Lagerplatz lagerplatzObject = new Lagerplatz(lagerort, lagerplatz);
+                newFreeShelvesList.add(lagerplatzObject);
+            }
+        }
+        freeShelveList = newFreeShelvesList;
     }
 
     private static class FillDatabaseAsyncTask extends AsyncTask<Integer, Integer, String>{
@@ -630,6 +693,9 @@ public class SettingsFragment extends Fragment {
                         case TableLagerbestand_Summe.Lagerbestand_SummeEntry.TABLE_NAME:
                             fragment.readDataToDbLagerbestandSumme(array);
                             break;
+                        case TableKpi.KpiEntry.TABLE_NAME:
+                            fragment.readDataToDbKpi(array);
+                            break;
                     }
                 } catch (IOException | JSONException e) {
                     e.printStackTrace();
@@ -659,6 +725,7 @@ public class SettingsFragment extends Fragment {
             fragment.alertDialog.dismiss();
             fragment.progressBar.setProgress(0);
             fragment.progressBar.setVisibility(View.INVISIBLE);
+            fragment.updateFreeShelvesList();
         }
     }
 

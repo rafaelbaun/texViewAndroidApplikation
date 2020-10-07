@@ -135,7 +135,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + TableKpi.KpiEntry.TABLE_NAME + " ("
             + TableKpi.KpiEntry.COLUMN_NAME + " TEXT NOT NULL, "
             + TableKpi.KpiEntry.COLUMN_CURRENTVALUE + " INTEGER NOT NULL, "
-            + TableKpi.KpiEntry.COLUMN_MAXVALUE + " INTEGER, "
+            + TableKpi.KpiEntry.COLUMN_MAXVALUE + " INTEGER NOT NULL, "
             + TableKpi.KpiEntry.COLUMN_TIMESTAMP + " TEXT NOT NULL, "
 
             + "PRIMARY KEY(" + TableKpi.KpiEntry.COLUMN_NAME + ", "

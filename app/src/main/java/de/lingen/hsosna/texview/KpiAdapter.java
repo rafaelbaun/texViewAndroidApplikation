@@ -1,6 +1,7 @@
 package de.lingen.hsosna.texview;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 
@@ -17,6 +20,7 @@ import java.util.ArrayList;
 public class KpiAdapter extends RecyclerView.Adapter<KpiAdapter.KpiViewHolder> {
 
     private ArrayList<Kpi> kpis;
+    private Context context;
 
     public static class KpiViewHolder extends RecyclerView.ViewHolder {
         public TextView kpiName;
@@ -41,8 +45,9 @@ public class KpiAdapter extends RecyclerView.Adapter<KpiAdapter.KpiViewHolder> {
     }
 
 
-    public KpiAdapter (ArrayList<Kpi> kpis) {
+    public KpiAdapter (ArrayList<Kpi> kpis, Context context) {
         this.kpis = kpis;
+        this.context = context;
     }
 
 
@@ -67,6 +72,8 @@ public class KpiAdapter extends RecyclerView.Adapter<KpiAdapter.KpiViewHolder> {
             holder.progressBar.setProgress(percent);
         } else {
             holder.kpiPercentageValue.setText(String.valueOf(currentKpi.getCurrentValue()));
+            Drawable circularProgressSolid = ContextCompat.getDrawable(context ,R.drawable.circularprogress_solid);
+            holder.progressBar.setProgressDrawable(circularProgressSolid);
             holder.progressBar.setProgress(100);
             holder.percentageDetails.setVisibility(LinearLayout.GONE);
         }

@@ -13,8 +13,6 @@ public class Kpi {
         this.currentValue = currentValue;
         this.maxValue = maxValue;
         this.timestamp = timestamp;
-
-
     }
 
     public String getName () {
