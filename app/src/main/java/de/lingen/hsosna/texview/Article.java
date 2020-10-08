@@ -48,8 +48,6 @@ public class Article {
         this.regalfach           = getRegalfachFromLagerplatz(lagerplatz);
         this.lagerplatz          = formatLagerplatz(lagerplatz);
         this.lagerort            = 60;
-
-        // TODO LAGERORT
     }
 
 

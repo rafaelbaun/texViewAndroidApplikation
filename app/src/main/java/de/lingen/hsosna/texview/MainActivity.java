@@ -23,6 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.annotation.LongDef;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -153,6 +154,7 @@ public class MainActivity extends AppCompatActivity
             mSocket.on(Socket.EVENT_DISCONNECT, onDisconnect);
             mSocket.on(Socket.EVENT_CONNECT_ERROR, onConnectError);
             mSocket.on(Socket.EVENT_CONNECT_TIMEOUT, onConnectError);
+            mSocket.on("timestamp", onTimestamp);
             mSocket.on("dbOperation", onOperation);
             mSocket.connect();
         }
@@ -740,6 +742,7 @@ public class MainActivity extends AppCompatActivity
                 isConnected = true;
                 changeConnectedIcon();
             }
+            Log.d(TAG, "---------------------------------------------SOCKET.IO IS CONNECTED");
         }
     };
 
@@ -756,6 +759,7 @@ public class MainActivity extends AppCompatActivity
         public void call (Object... args) {
             isConnected = false;
             changeConnectedIcon();
+            Log.d(TAG, "---------------------------------------------SOCKET.IO IS DISCONNECTED");
         }
     };
 
@@ -772,7 +776,7 @@ public class MainActivity extends AppCompatActivity
         public void call(Object... args) {
             isConnected = false;
             changeConnectedIcon();
-            Log.d(TAG, "Error connecting!");
+            Log.d(TAG, "---------------------------------------------ERROR CONNECTINGSOCKET.IO");
         }
     };
 
@@ -888,18 +892,10 @@ public class MainActivity extends AppCompatActivity
 
                 db.update(triggerEvent.getTable(),
                         values,
-                        "" + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ +  " = '"
-                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ)
-                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER   + " = '"
+                        "" + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER   + " = '"
                                 + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER)
                         + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG  + " = '"
-                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG)
-                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID     + " = '"
-                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID)
-                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID    + " = '"
-                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID)
-                        + "' AND " + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID       + " = '"
-                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID) + "'",
+                                + beforeObject.getInt(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG) + "'",
                         null);
                 break;
 

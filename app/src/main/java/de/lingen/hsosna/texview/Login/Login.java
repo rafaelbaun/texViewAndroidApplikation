@@ -95,7 +95,11 @@ public class Login extends AppCompatActivity {
          */
         @Override
         public boolean onEditorAction (TextView v, int actionId, KeyEvent event) {
-            if (event.getKeyCode() == KEYCODE_ENTER) { //actionId == EditorInfo.IME_ACTION_DONE ||
+            if (actionId == EditorInfo.IME_ACTION_DONE  || event != null) { //
+                if(event != null){
+                    if (event.getKeyCode() == KEYCODE_ENTER)
+                        performLogin();
+                }
                 performLogin();
                 return true;
             }

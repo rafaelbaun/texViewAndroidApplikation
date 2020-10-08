@@ -20,7 +20,7 @@ import de.lingen.hsosna.texview.database.TableTimestamp;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "lagerverwaltung.db";
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
 
     public DatabaseHelper (@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -90,13 +90,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + TableLagerbestand.LagerbestandEntry.COLUMN_MENGE             + " TEXT, "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_MENGENEINHEIT     + " TEXT, "
                 + "PRIMARY KEY("
-                + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ    + ", "
                 + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER  + ", "
-                + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG + ", "
-                + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID    + ", "
-                + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID   + ", "
-                + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID      + "), "
-                //TODO MIT HENNING FREMDSCHLUESSEL
+                + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG + "), "
                 + "FOREIGN KEY("
                 + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ + ") REFERENCES "
                 + TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME + "("

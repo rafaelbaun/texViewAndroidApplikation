@@ -3,7 +3,6 @@ package de.lingen.hsosna.texview.fragments;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +49,7 @@ public class FilterFragment extends Fragment {
     private EditText editGroesse;
     private EditText editFertigungszustand;
 
-    private Button button; // TODO umbenenn: button_filter oder button_submit
+    private Button button_filter;
     private AlertDialog alertDialog;
 
     private DatabaseHelper dbHelper;
@@ -61,13 +60,6 @@ public class FilterFragment extends Fragment {
     private TextView filterHeader;
 
     private ArrayList<Lagerplatz> shelvesToMarkRed = new ArrayList<>();
-
-
-     /**
-     * Um Daten an die MainActivity zu senden wird ein Interface implementiert, was auch in der
-     * MainActivity implemnentiert werden muss.
-     */
-    // TODO wo ist das Interface
 
 
     /**
@@ -119,7 +111,7 @@ public class FilterFragment extends Fragment {
         editFertigungszustand.setOnEditorActionListener(onEditorActionListener);
 
         filterHeader = v.findViewById(R.id.filterFragment_filterHeader);
-        button       = v.findViewById(R.id.filterFragment_button_submit);
+        button_filter = v.findViewById(R.id.filterFragment_button_submit);
         dbHelper     = new DatabaseHelper(getActivity());
         mDatabase    = dbHelper.getReadableDatabase();
 
@@ -129,7 +121,7 @@ public class FilterFragment extends Fragment {
         mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
 
         // button perform filter
-        button.setOnClickListener(new View.OnClickListener() {
+        button_filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
                 performFilter();
