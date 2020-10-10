@@ -34,7 +34,7 @@ public class InfoFragment extends Fragment {
 
 
         pdfViewer = v.findViewById(R.id.pdfView);
-        pdfViewer.fromAsset("Benutzerhandbuch_SEP.pdf").load();
+        pdfViewer.fromAsset("Benutzerdokumentation_TexView_FinaleAbgabe.pdf").load();
         return v;
     }
 
