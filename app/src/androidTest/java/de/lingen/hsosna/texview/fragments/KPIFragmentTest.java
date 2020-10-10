@@ -1,9 +1,11 @@
 package de.lingen.hsosna.texview.fragments;
 
 import android.content.Context;
+import android.view.Gravity;
 
 import androidx.test.annotation.UiThreadTest;
 import androidx.test.espresso.contrib.DrawerActions;
+import androidx.test.espresso.intent.Intents;
 import androidx.test.rule.ActivityTestRule;
 
 import org.junit.After;
@@ -15,29 +17,32 @@ import de.lingen.hsosna.texview.MainActivity;
 import de.lingen.hsosna.texview.R;
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
+import static androidx.test.espresso.contrib.DrawerMatchers.isOpen;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
-import static org.hamcrest.Matchers.allOf;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+/**
+ * Für das KPI-Fragment werden Tests durchgeführt.
+ */
 public class KPIFragmentTest {
+
+    private MainActivity mainActivity = null;
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<MainActivity>(MainActivity.class);
 
-    private MainActivity mainActivity = null;
 
 
     /**
-     * Es wird ein neues KPIFragment erstellt, um darauf zu testen.
+     * Es wird ein Intent initialisiert, um den Test vorzubereiten.
      */
     @Before
     public void setUp() throws Exception {
-        mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new KPIFragment()).commit();
+        Intents.init();
     }
 
 
@@ -48,21 +53,25 @@ public class KPIFragmentTest {
     @Test
     @UiThreadTest
     public void useAppContext() {
-        // Context of the app under test.
         Context appContext = getInstrumentation().getTargetContext();
         assertEquals("de.lingen.hsosna.texview", appContext.getPackageName());
     }
 
 
     /**
-     * Das KPIFragment wird aufgerufen.
+     * Das KPI-Fragment wird über das Menü aufgerufen
      */
     @Test
-    public void open_settings () throws Exception {
-        //onView(withContentDescription(R.string.app_description)).perform(DrawerActions.open());
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
-        onView(allOf(withId(R.id.nav_kpi))).perform(DrawerActions.open());
-        //assertTrue(mActivityTestRule.getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof KPIFragment);
+    public void open_kpi () throws Exception {
+        Thread.sleep(500);
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT)))
+                .perform(DrawerActions.open())
+                .check(matches(isOpen()));
+        Thread.sleep(500);
+        onView(withId(R.id.nav_kpi))
+                .perform(click());
+        Thread.sleep(500);
     }
 
 
@@ -73,5 +82,6 @@ public class KPIFragmentTest {
     @After
     public void tearDown() throws Exception {
         mainActivity = null;
+        Intents.release();
     }
 }
