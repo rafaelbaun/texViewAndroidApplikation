@@ -1,7 +1,6 @@
 package de.lingen.hsosna.texview.fragments;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -12,23 +11,18 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import de.lingen.hsosna.texview.Article;
 import de.lingen.hsosna.texview.ArticleAdapter;
@@ -47,7 +41,7 @@ import static de.lingen.hsosna.texview.MainActivity.hideKeyboardFrom;
 public class SearchFragment extends Fragment {
 
     private SearchFragmentListener listener;
-    private Button button;
+    private Button buttonSubmit;
     // EditText's
     private EditText editArtikelNr;
     private EditText editArtikelBez;
@@ -118,8 +112,7 @@ public class SearchFragment extends Fragment {
         editFarbBez.setOnEditorActionListener(onEditorActionListener);
         editGroesse.setOnEditorActionListener(onEditorActionListener);
         editFertigungszustand.setOnEditorActionListener(onEditorActionListener);
-        // TODO umbenennen button_submit
-        button = v.findViewById(R.id.searchFragment_button_submit);
+        buttonSubmit = v.findViewById(R.id.searchFragment_button_submit);
         // DB CON
         Context context = getActivity();
         dbHelper = new DatabaseHelper(context);
@@ -139,7 +132,7 @@ public class SearchFragment extends Fragment {
         mSuchergebnisse = v.findViewById(R.id.searchFragment_searchResultHeader);
 
         // Suchbutton
-        button.setOnClickListener(new View.OnClickListener() {
+        buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
                 performSearch();
@@ -193,7 +186,7 @@ public class SearchFragment extends Fragment {
                     break;
             }
             // ArticleAdapter
-            mAdapter = new ArticleAdapter(suchErgebnisse);// LIST WITH CONTENTS
+            mAdapter = new ArticleAdapter(suchErgebnisse);
             mAdapter.setOnItemClickListener(new ArticleAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick (int position) {
@@ -252,16 +245,18 @@ public class SearchFragment extends Fragment {
     public ArrayList<Article> getListWithSearchResults (String SqlWhereQuery) {
         ArrayList<Article> articleList = new ArrayList<Article>();
         // rawQuery mit Cursor
+
+
         Cursor cursor = mDatabase.rawQuery("SELECT "
-            + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ                        + ", "
-            + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID                        + ", "
-            + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER                      + ", "
-            + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG                     + ", "
-            + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID                       + ", "
-            + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID                          + ", "
-            + TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND                 + ", "
-            + TableLagerbestand.LagerbestandEntry.COLUMN_MENGE                             + ", "
-            + TableLagerbestand.LagerbestandEntry.COLUMN_MENGENEINHEIT                     + ", "
+            + TableLagerbestand.LagerbestandEntry.COLUMN_LAGERPLATZ + ", "
+            + TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID + ", "
+            + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER + ", "
+            + TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG + ", "
+            + TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID + ", "
+            + TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID + ", "
+            + TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND + ", "
+            + TableLagerbestand.LagerbestandEntry.COLUMN_MENGE + ", "
+            + TableLagerbestand.LagerbestandEntry.COLUMN_MENGENEINHEIT + ", "
             + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG + ", "
             + TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_BEZEICHNUNGEN + ""
             + " FROM " + TableLagerbestand.LagerbestandEntry.TABLE_NAME + ""
@@ -320,6 +315,7 @@ public class SearchFragment extends Fragment {
      *
      * @return String zur SQL-WHERE-Abfrage
      */
+
     public String getSqlWhereQuery () {
         boolean hasQuery = false;
         StringBuilder SqlQuery = new StringBuilder();
@@ -434,6 +430,7 @@ public class SearchFragment extends Fragment {
             hasQuery = true;
         }
         // sql-String erstellen
+
         if (hasQuery) {
             return new String(SqlQuery);
         } else {

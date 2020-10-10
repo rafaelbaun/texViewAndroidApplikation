@@ -100,7 +100,7 @@ public class SettingsFragmentTest {
     public void open_settings () throws Exception {
         onView(withContentDescription(R.string.app_description))
                 .perform(DrawerActions.open());
-        onView(allOf(withId(R.id.nav_dbcon))) //TODO nav_settings
+        onView(allOf(withId(R.id.nav_settings)))
                 .perform(click());
         assertTrue(mActivityTestRule.getActivity().getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_container) instanceof SettingsFragment);

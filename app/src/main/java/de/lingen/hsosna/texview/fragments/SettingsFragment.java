@@ -12,14 +12,11 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-
-import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -115,7 +112,7 @@ public class SettingsFragment extends Fragment {
                 alertDialog.setMessage("Bitte warten...");
 
                 deleteDatabaseContents(mDatabase);
-                startAsyncTast(true);
+                startAsyncTask(true);
                 setTimestampToMostRecent();
             }
         });
@@ -129,7 +126,7 @@ public class SettingsFragment extends Fragment {
                 alertDialog.setMessage("Bitte warten...");
 
                 deleteDatabaseContents(mDatabase);
-                startAsyncTast(false);
+                startAsyncTask(false);
             }
         });
 
@@ -248,8 +245,7 @@ public class SettingsFragment extends Fragment {
      *
      * @param getFromServer boolean, ob Daten von Server geladen werden sollen
      */
-    // TODO startAsyncTas
-    public void startAsyncTast(boolean getFromServer) {
+    public void startAsyncTask (boolean getFromServer) {
         String[][] dataToPull = new String[5][2];
         dataToPull[0][0] = TableArtikelkombination.ArtikelkombinationenEntry.TABLE_NAME;
         dataToPull[1][0] = TableLagerplaetze.LagerplaetzeEntry.TABLE_NAME;
@@ -406,7 +402,6 @@ public class SettingsFragment extends Fragment {
      *
      * @param array aus lagerbestand.json
      */
-    //TODO
     private void readDataToDbLagerbestand (JSONArray array)
             throws IOException, JSONException {
         // Spaltenbezeichnungen in json-Datei

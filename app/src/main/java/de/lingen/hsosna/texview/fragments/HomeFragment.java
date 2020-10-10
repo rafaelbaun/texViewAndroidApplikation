@@ -8,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -58,6 +56,7 @@ public class HomeFragment extends Fragment {
      * @param shelvesToMarkRed Liste von tor zu markierenden Regalen
      * @return HomeFragment wird zurückgegeben mit den übergebenen Werten als Argumente gesetzt.
      */
+
      public static HomeFragment newInstance (ArrayList<Lagerplatz> shelvesToMarkRed) {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
@@ -66,7 +65,7 @@ public class HomeFragment extends Fragment {
         fragment.setArguments(args);
 
         return fragment;
-    }
+     }
 
     /**
      *
@@ -88,7 +87,7 @@ public class HomeFragment extends Fragment {
         } else {
             unmarkFreeShelves(v);
         }
-        markRegale(v);
+        markShelves(v);
 
         return v;
     }
@@ -101,8 +100,7 @@ public class HomeFragment extends Fragment {
      *
      * @param v
      */
-    //TODO markShelfs
-    public void markRegale (View v) {
+    public void markShelves (View v) {
         if (shelvesToMarkRed != null && shelvesToMarkRed.size() != 0) {
             ArrayList<View> imageViewsOfShelvesToMark = new ArrayList<>();
             // Lagerplätze lokalisieren
@@ -221,7 +219,7 @@ public class HomeFragment extends Fragment {
                             contains = true;
                         }
                     }
-                    if (!contains) {// TODO for schleife
+                    if (!contains) {
                         v.findViewsWithText(imageViewsOfShelvesToMarkAsFree,
                                 lagerplatz.getLocation(),
                                 View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
@@ -239,7 +237,6 @@ public class HomeFragment extends Fragment {
     /**
      * Es wird ein AlertDialog erstellt
      */
-    // TODO AlertDialog
     public void showDBUpdate () {
         AlertDialog.Builder alertDialogBuilder
                 = new AlertDialog.Builder(this.requireContext(), R.style.AlertDialogTheme);

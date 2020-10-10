@@ -40,9 +40,8 @@ import static de.lingen.hsosna.texview.MainActivity.freeShelveList;
 /**
  * RegalfrontFragment
  */
-// TODO umbennen: ShelfFrontFragment
-public class RegalfrontFragment extends Fragment {
-    private static final String TAG = "RegalfrontFragment";
+public class ShelfFrontFragment extends Fragment {
+    private static final String TAG = "ShelfFrontFragment";
 
     public static final String ARG_SHELVESTOMARKRED = "argShelvesToMarkRed";
     public static final String ARG_CLICKEDSHELF     = "argClickedShelf";
@@ -86,9 +85,10 @@ public class RegalfrontFragment extends Fragment {
      *
      * @return RegalfrontFragment wird zurückgegeben mit den übergebenen Werten als Argumente gesetzt.
      */
-    public static RegalfrontFragment newInstance (ArrayList<Lagerplatz> shelvesToMarkRed,
+
+    public static ShelfFrontFragment newInstance (ArrayList<Lagerplatz> shelvesToMarkRed,
                                                   CharSequence clickedShelf) {
-        RegalfrontFragment fragment = new RegalfrontFragment();
+        ShelfFrontFragment fragment = new ShelfFrontFragment();
         Bundle args = new Bundle();
         args.putParcelableArrayList(ARG_SHELVESTOMARKRED,
                 (ArrayList<? extends Parcelable>) shelvesToMarkRed);
@@ -146,11 +146,11 @@ public class RegalfrontFragment extends Fragment {
             clickedShelf     = getArguments().getCharSequence(ARG_CLICKEDSHELF);
         }
         if (colorSwitchState) {
-            markFreeShelves(v);
+            markFreeCompartments(v);
         } else {
-            unmarkFreeShelves(v);
+            unmarkFreeCompartments(v);
         }
-        markFaecher(v);
+        markCompartments(v);
 
         // slide up pane header mit RegalNr: versehen
         String regalPrefix = "RegalNr: ";
@@ -236,9 +236,9 @@ public class RegalfrontFragment extends Fragment {
     @SuppressLint ("StaticFieldLeak")
     private class FillRecyclerViewsAsyncTask extends AsyncTask<Integer, Integer, Void> {
 
-        private WeakReference<RegalfrontFragment> activityWeakReference;
+        private WeakReference<ShelfFrontFragment> activityWeakReference;
 
-        FillRecyclerViewsAsyncTask (RegalfrontFragment fragment) {
+        FillRecyclerViewsAsyncTask (ShelfFrontFragment fragment) {
             activityWeakReference = new WeakReference<>(fragment);
         }
 
@@ -250,7 +250,7 @@ public class RegalfrontFragment extends Fragment {
          */
         @Override
         protected void onPreExecute () {
-            RegalfrontFragment fragment = activityWeakReference.get();
+            ShelfFrontFragment fragment = activityWeakReference.get();
             if (fragment == null || fragment.getActivity().isFinishing()) {
                 return;
             }
@@ -269,10 +269,9 @@ public class RegalfrontFragment extends Fragment {
          * @param integers
          * @return
          */
-        //TODO was passiert hier genau
         @Override
         protected Void doInBackground (Integer... integers) {
-            RegalfrontFragment fragment = activityWeakReference.get();
+            ShelfFrontFragment fragment = activityWeakReference.get();
             Log.d(TAG, "doInBackground: ---------------------------------- doInBackground: ");
             for (int i = 1; i <= integers[0]; i++) {
                 switch (i) {
@@ -472,7 +471,7 @@ public class RegalfrontFragment extends Fragment {
         @Override
         protected void onPostExecute (Void aVoid) {
             super.onPostExecute(aVoid);
-            RegalfrontFragment fragment = activityWeakReference.get();
+            ShelfFrontFragment fragment = activityWeakReference.get();
             if (fragment == null || fragment.getActivity().isFinishing()) {
                 return;
             }
@@ -604,8 +603,7 @@ public class RegalfrontFragment extends Fragment {
      *
      * @param v
      */
-    // TODO umbenennen markCompartments
-    public void markFaecher (View v) {
+    public void markCompartments (View v) {
         if (shelvesToMarkRed != null && shelvesToMarkRed.size() != 0) {
             ArrayList<View> imageViewsOfShelvesToMark = new ArrayList<>();
             for (Lagerplatz lagerplatz : shelvesToMarkRed) {
@@ -631,8 +629,7 @@ public class RegalfrontFragment extends Fragment {
      *
      * @param v
      */
-    // TODO umbenennen markFreeCompartments
-    public void markFreeShelves (View v) {
+    public void markFreeCompartments (View v) {
         if (colorSwitchState && v != null) {
             if (freeShelveList != null && freeShelveList.size() != 0) {
                 ArrayList<View> imageViewsOfShelvesToMarkAsFree = new ArrayList<>();
@@ -658,8 +655,7 @@ public class RegalfrontFragment extends Fragment {
      *
      * @param v
      */
-    // TODO unmarkFreeCompartments
-    public void unmarkFreeShelves (View v) {
+    public void unmarkFreeCompartments (View v) {
         if (v != null) {
             if (freeShelveList != null && freeShelveList.size() != 0) {
                 ArrayList<View> imageViewsOfShelvesToMarkAsFree = new ArrayList<>();
@@ -688,8 +684,8 @@ public class RegalfrontFragment extends Fragment {
     @Override
     public void onAttach (@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof RegalfrontFragment.ShelfFrontFragmentListener) {
-            listener = (RegalfrontFragment.ShelfFrontFragmentListener) context;
+        if (context instanceof ShelfFrontFragment.ShelfFrontFragmentListener) {
+            listener = (ShelfFrontFragment.ShelfFrontFragmentListener) context;
         } else {
             throw new RuntimeException(context.toString()
                                        + " must implement Shelffront Fragment Listener");

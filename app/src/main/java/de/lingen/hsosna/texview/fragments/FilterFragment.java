@@ -88,7 +88,7 @@ public class FilterFragment extends Fragment {
         } else {
             unmarkFreeShelves(v);
         }
-        markRegale(v);
+        markShelves(v);
 
         // editText
         editArtikelNr         = v.findViewById(R.id.filterFragment_editText_articleId);
@@ -146,7 +146,6 @@ public class FilterFragment extends Fragment {
         // Filterergebnisse durch SQL-Abfrage
         String SqlWhereQuery = getSqlWhereQuery();
         if (SqlWhereQuery.length() != 0) {
-            // TODO filterergebnisse
             final ArrayList<Article> suchErgebnisse = getListWithSearchResults(SqlWhereQuery);
             if (suchErgebnisse.size() == 1) {
                 filterHeader.setText((String.valueOf(suchErgebnisse.size())).concat(" Ergebnis"));
@@ -155,7 +154,7 @@ public class FilterFragment extends Fragment {
             }
             // Regale markieren
             shelvesToMarkRed = getShelvesToMarkFromFilterResults(suchErgebnisse);
-            markRegale(getView()); // view missing
+            markShelves(getView()); // view missing
             mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
         } else {
@@ -178,7 +177,6 @@ public class FilterFragment extends Fragment {
      * @param suchErgebnisse
      * @return
      */
-    // TODO filterergebnisse
     public ArrayList<Lagerplatz> getShelvesToMarkFromFilterResults (ArrayList<Article> suchErgebnisse) {
         ArrayList<Lagerplatz> shelvestoMark = new ArrayList<>();
         for (Article article : suchErgebnisse) {
@@ -221,8 +219,7 @@ public class FilterFragment extends Fragment {
      *
      * @param v
      */
-    // TODO markShelves
-    public void markRegale (View v) {
+    public void markShelves (View v) {
         if (shelvesToMarkRed != null && shelvesToMarkRed.size() != 0) {
             ArrayList<View> imageViewsOfShelvesToMark = new ArrayList<>();
             // Lagerplätze lokalisieren
@@ -247,12 +244,12 @@ public class FilterFragment extends Fragment {
      */
     public void unmarkShelves (View v) {
         if (shelvesToMarkRed != null && shelvesToMarkRed.size() != 0) {
-            ArrayList<View> imageViewsOfShelvesToMark = new ArrayList<>(); // TODO imageViewOfShelvesToUnmark
+            ArrayList<View> imageViewsOfShelvesToUnmark = new ArrayList<>();
             for (Lagerplatz lagerplatz : shelvesToMarkRed) {
-                v.findViewsWithText(imageViewsOfShelvesToMark, lagerplatz.getLocation(),
+                v.findViewsWithText(imageViewsOfShelvesToUnmark, lagerplatz.getLocation(),
                         View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
             }
-            for (View singleShelf : imageViewsOfShelvesToMark) {
+            for (View singleShelf : imageViewsOfShelvesToUnmark) {
                 ImageView oneShelf = (ImageView) singleShelf;
                 oneShelf.setImageResource(R.drawable.ic_shelf_normal);
             }
@@ -366,7 +363,7 @@ public class FilterFragment extends Fragment {
                             contains = true;
                         }
                     }
-                    if (!contains) { // TODO for schleife
+                    if (!contains) {
                         v.findViewsWithText(imageViewsOfShelvesToMarkAsFree,
                                 lagerplatz.getLocation(),
                                 View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
@@ -388,7 +385,6 @@ public class FilterFragment extends Fragment {
      * @param SqlWhereQuery
      * @return Artikelliste
      */
-    // TODO getListWithFilterResults
     public ArrayList<Article> getListWithSearchResults (String SqlWhereQuery) {
         ArrayList<Article> articleList = new ArrayList<Article>();
         // rawQuery durch Cursor
@@ -464,14 +460,14 @@ public class FilterFragment extends Fragment {
      */
     public String getSqlWhereQuery () {
         boolean hasQuery = false;
-        StringBuilder SqlQuery = new StringBuilder(); // TODO sqlQuery
-        SqlQuery.append(" WHERE ");
+        StringBuilder sqlQuery = new StringBuilder();
+        sqlQuery.append(" WHERE ");
 
         //-------ARTIKEL NR
         if (editArtikelNr.getText().toString().trim().length() != 0
                 && editArtikelNr.getText().toString().trim().matches("[0-9]+")) {
             int artikelNr = Integer.parseInt(editArtikelNr.getText().toString().trim());
-            SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID)
+            sqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_ARTIKEL_ID)
                     .append(" LIKE '")
                     .append(artikelNr)
                     .append("%'");
@@ -482,10 +478,10 @@ public class FilterFragment extends Fragment {
         if (editArtikelBez.getText().toString().trim().length() != 0
                 && editArtikelBez.getText().toString().trim().matches("[a-zA-ZäöüÄÖÜ0-9 /*-]+")) {
             if (hasQuery) {
-                SqlQuery.append(" AND ");
+                sqlQuery.append(" AND ");
             }
             String artikelBez = editArtikelBez.getText().toString().trim();
-            SqlQuery.append(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG)
+            sqlQuery.append(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_ARTIKEL_BEZEICHNUNG)
                     .append(" LIKE '%")
                     .append(artikelBez)
                     .append("%'");
@@ -496,10 +492,10 @@ public class FilterFragment extends Fragment {
         if (editStuecknummer.getText().toString().trim().length() != 0
                 && editStuecknummer.getText().toString().trim().matches("[0-9]+")) {
             if (hasQuery) {
-                SqlQuery.append(" AND ");
+                sqlQuery.append(" AND ");
             }
             int stuecknummer = Integer.parseInt(editStuecknummer.getText().toString().trim());
-            SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER)
+            sqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKNUMMER)
                     .append(" LIKE '")
                     .append(stuecknummer)
                     .append("%'");
@@ -510,10 +506,10 @@ public class FilterFragment extends Fragment {
         if (editStueckteilung.getText().toString().trim().length() != 0
                 && editStueckteilung.getText().toString().trim().matches("[0-9]+")) {
             if (hasQuery) {
-                SqlQuery.append(" AND ");
+                sqlQuery.append(" AND ");
             }
             int stueckteilung = Integer.parseInt(editStueckteilung.getText().toString().trim());
-            SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG)
+            sqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_STUECKTEILUNG)
                     .append(" LIKE '")
                     .append(stueckteilung)
                     .append("%'");
@@ -524,10 +520,10 @@ public class FilterFragment extends Fragment {
         if (editFardId.getText().toString().trim().length() != 0
                 && editFardId.getText().toString().trim().matches("[0-9]+")) {
             if (hasQuery) {
-                SqlQuery.append(" AND ");
+                sqlQuery.append(" AND ");
             }
             int farbId = Integer.parseInt(editFardId.getText().toString().trim());
-            SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID)
+            sqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_FARBE_ID)
                     .append(" LIKE '")
                     .append(farbId)
                     .append("%'");
@@ -538,10 +534,10 @@ public class FilterFragment extends Fragment {
         if (editFarbBez.getText().toString().trim().length() != 0
                 && editFarbBez.getText().toString().trim().matches("[a-zA-ZäöüÄÖÜ0-9 *-,]+")) {
             if (hasQuery) {
-                SqlQuery.append(" AND ");
+                sqlQuery.append(" AND ");
             }
             String farbBez = editFarbBez.getText().toString().trim();
-            SqlQuery.append(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_BEZEICHNUNGEN)
+            sqlQuery.append(TableArtikelkombination.ArtikelkombinationenEntry.COLUMN_FARBE_BEZEICHNUNGEN)
                     .append(" LIKE '%")
                     .append(farbBez)
                     .append("%'");
@@ -552,10 +548,10 @@ public class FilterFragment extends Fragment {
         if (editGroesse.getText().toString().trim().length() != 0
                 && editGroesse.getText().toString().trim().matches("[0-9]+")) {
             if (hasQuery) {
-                SqlQuery.append(" AND ");
+                sqlQuery.append(" AND ");
             }
             int groesse = Integer.parseInt(editGroesse.getText().toString().trim());
-            SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID)
+            sqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_GROESSEN_ID)
                     .append(" LIKE '")
                     .append(groesse)
                     .append("%'");
@@ -566,10 +562,10 @@ public class FilterFragment extends Fragment {
         if (editFertigungszustand.getText().toString().trim().length() != 0
                 && editFertigungszustand.getText().toString().matches("[a-zA-Z]+")) {
             if (hasQuery) {
-                SqlQuery.append(" AND ");
+                sqlQuery.append(" AND ");
             }
             String fertZstd = editFertigungszustand.getText().toString().trim();
-            SqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND)
+            sqlQuery.append(TableLagerbestand.LagerbestandEntry.COLUMN_FERTIGUNGSZUSTAND)
                     .append(" LIKE '")
                     .append(fertZstd)
                     .append("%'");
@@ -578,7 +574,7 @@ public class FilterFragment extends Fragment {
 
         // SQL-String generieren
         if (hasQuery) {
-            return new String(SqlQuery);
+            return new String(sqlQuery);
         } else {
             return "";
         }

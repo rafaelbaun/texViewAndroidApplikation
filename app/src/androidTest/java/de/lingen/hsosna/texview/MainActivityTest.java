@@ -14,7 +14,6 @@ import androidx.test.rule.ActivityTestRule;
 
 import org.hamcrest.Matcher;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -315,7 +314,7 @@ public class MainActivityTest {
         Thread.sleep(500);
 
         //onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
-        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_dbcon));
+        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_settings));
         Thread.sleep(500);
 
         //onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
