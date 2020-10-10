@@ -1,10 +1,12 @@
 package de.lingen.hsosna.texview.fragments;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
+import android.view.Gravity;
 import android.view.KeyEvent;
 
 import androidx.test.annotation.UiThreadTest;
+import androidx.test.espresso.contrib.DrawerActions;
+import androidx.test.espresso.intent.Intents;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
@@ -18,7 +20,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import de.lingen.hsosna.texview.DatabaseHelper;
 import de.lingen.hsosna.texview.MainActivity;
 import de.lingen.hsosna.texview.R;
 
@@ -28,64 +29,37 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.pressKey;
-import static androidx.test.espresso.action.ViewActions.pressMenuKey;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
+import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
+import static androidx.test.espresso.contrib.DrawerMatchers.isOpen;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
-import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * In dem SearchFragment werden UI-Tests durchgeführt.
+ */
 @RunWith(AndroidJUnit4.class)
 public class SearchFragmentTest {
 
-    private SQLiteDatabase mDatabase;
-    private DatabaseHelper mDbHelper;
+    public MainActivity mainActivity = null;
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule =
             new ActivityTestRule<>(MainActivity.class, true, true);
 
-    public MainActivity mainActivity = null;
-    //Instrumentation.ActivityMonitor activityMonitor = getInstrumentation().addMonitor(SearchFragment.class.getName(), null, false);
-
-
-    //@Rule
-    //public UiThreadTestRule uiThreadTestRule = new UiThreadTestRule();
-
-    /*
-    @Rule
-    public IdlingResource idlingResource = new IdlingResource() {
-        @Override
-        public String getName() {
-            return null;
-        }
-
-        @Override
-        public boolean isIdleNow() {
-            return false;
-        }
-
-        @Override
-        public void registerIdleTransitionCallback(ResourceCallback callback) {
-
-        }
-    };
-    */
 
 
     /**
-     * Es wird ein neues SearchFragment erstellt, um darauf zu testen.
+     * Es wird ein Intent initialisiert, um den Test vorzubereiten.
      */
     @Before
-    public void setUp() throws Exception {
-        mActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new SearchFragment()).commit();
+    public void setUp () throws Exception {
+        Intents.init();
     }
-
 
 
     /**
@@ -94,26 +68,21 @@ public class SearchFragmentTest {
     @Test
     @UiThreadTest
     public void useAppContext() {
-        // Context of the app under test.
         Context appContext = getInstrumentation().getTargetContext();
         assertEquals("de.lingen.hsosna.texview", appContext.getPackageName());
     }
 
 
     /**
-     * Die Suche wid über das Such-Icon in der Toolbar aufgerufen
+     * Die Suche wid über das Such-Icon in der Toolbar aufgerufen.
      */
     @Test
-    public void open_search_toolbar () throws Exception{
+    public void open_search_toolbar () throws Exception {
+        Thread.sleep(500);
         onView(withId(R.id.searchButton))
                 .perform(click())
                 .check(matches(isDisplayed()));
-
-        try {
-            Thread.sleep(500);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(1000);
     }
 
 
@@ -122,110 +91,206 @@ public class SearchFragmentTest {
      */
     @Test
     public void open_search_menu () throws Exception {
-        onView(withId(R.id.mainActivity))
-                .perform(pressKey(KeyEvent.KEYCODE_ENTER), pressMenuKey());
+        Thread.sleep(500);
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT)))
+                .perform(DrawerActions.open())
+                .check(matches(isOpen()));
+        Thread.sleep(1000);
         onView(withId(R.id.nav_search))
-                .perform(click())
-                .check(matches(not(isDisplayed())));
-
-        try {
-            Thread.sleep(1000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+                .perform(click());
+        Thread.sleep(1000);
     }
 
 
     /**
-     * Ein Text wird in  die Artikel-Kurzbeschreibung eingegeben. Im Anschluss wird wiederum in
-     * das Textfeld hineingegangen und der Inhalt gelöscht.
+     * Ein Text wird in die Artikel-Kurzbeschreibung eingegeben. Im Anschluss wird wiederum in das
+     * Textfeld hineingegangen und der Inhalt gelöscht.
      */
     @Test
     public void edit_articleDesc_clearText () throws Exception {
         Thread.sleep(500);
 
-        onView(withId(R.id.searchButton)).perform(click());
+        onView(withId(R.id.searchButton))
+                .perform(click());
         Thread.sleep(1000);
         onView(withId(R.id.searchFragment_editText_articleShortDesc))
-                .perform(replaceText("Conny"), closeSoftKeyboard(), scrollTo());
+                .perform(replaceText("Conny"))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
 
         Thread.sleep(1000);
         onView(withId(R.id.searchFragment_editText_articleShortDesc))
-                .perform(clearText(), closeSoftKeyboard(), scrollTo())
-                .check(matches(isDisplayed()));
+                .perform(clearText())
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
         Thread.sleep(1000);
     }
 
 
     /**
-     * Das gesamte Suchformular wird examplarisch mit Werten gefüllt.
+     * Die Suche wird über das Menü aufgerufen. Das gesamte Suchformular wird exemplarisch mit
+     * Werten gefüllt und die Suche wird gestartet.
      */
     @Test
     public void fill_complete_searchForm () throws Exception {
+        Thread.sleep(500);
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT)))
+                .perform(DrawerActions.open())
+                .check(matches(isOpen()));
         Thread.sleep(1000);
-        onView(withId(R.id.searchButton)).perform(click());
+        onView(withId(R.id.nav_search))
+                .perform(click());
         Thread.sleep(1000);
 
         // Artikel Nr.
         onView(withId(R.id.searchFragment_editText_articleId))
-                .perform(replaceText(String.valueOf(79992)), closeSoftKeyboard(), scrollTo())
-                .check(matches(isDisplayed()));
+                .perform(replaceText(String.valueOf(79992)))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
         Thread.sleep(500);
 
         // Artikel Kurzbez.
         onView(withId(R.id.searchFragment_editText_articleShortDesc))
-                .perform(replaceText("Marvin"), closeSoftKeyboard(), scrollTo())
-                .check(matches(isDisplayed()));
+                .perform(replaceText("Marvin"))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
         Thread.sleep(500);
 
         // Stücknummer
         onView(withId(R.id.searchFragment_editText_pieceId))
-                .perform(replaceText(String.valueOf(34345118)), closeSoftKeyboard(), scrollTo())
-                .check(matches(isDisplayed()));
+                .perform(replaceText(String.valueOf(34345118)))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
         Thread.sleep(500);
 
         // Stückteilung
         onView(withId(R.id.searchFragment_editText_pieceDivision))
-                .perform(replaceText(String.valueOf(0)), closeSoftKeyboard(), scrollTo())
-                .check(matches(isDisplayed()));
+                .perform(replaceText(String.valueOf(0)))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
         Thread.sleep(500);
 
         // Farb ID
         onView(withId(R.id.searchFragment_editText_colorId))
-                .perform(replaceText(String.valueOf(1842)), closeSoftKeyboard(), scrollTo())
-                .check(matches(isDisplayed()));
+                .perform(replaceText(String.valueOf(1842)))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
         Thread.sleep(500);
 
         // Farbbezeichnung
         onView(withId(R.id.searchFragment_editText_colorDescription))
-                .perform(replaceText("meliert, türkis"), closeSoftKeyboard(), scrollTo())
-                .check(matches(isDisplayed()));
+                .perform(replaceText("meliert, türkis"))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
         Thread.sleep(500);
 
         // Größe
         onView(withId(R.id.searchFragment_editText_size))
-                .perform(replaceText("51,3"), closeSoftKeyboard(), scrollTo())
-                .check(matches(isDisplayed()));
+                .perform(replaceText("51,3"))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
         Thread.sleep(500);
 
         // Fertzstd
         onView(withId(R.id.searchFragment_editText_manufacturingState))
-                .perform(replaceText("FW"), closeSoftKeyboard(), scrollTo())
-                .check(matches(isDisplayed()));
-        Thread.sleep(500);
+                .perform(replaceText("FW"))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
+        Thread.sleep(1000);
 
         // button submit
         onView(withId(R.id.searchFragment_button_submit))
-                .perform(click())
-                .check(matches(isCompletelyDisplayed()));
+                .perform(click());
         Thread.sleep(1000);
     }
 
 
     /**
-     * Die Suche wird aufgerufen. Das Formular wird nicht mit Werten gefüllt.
-     * Es wird lediglich der Such-Button zur Ausführung der Suche gedrückt.
-     * Im Anschluss wird der AlertDialog durch Klicken auf "OK" bestätigt
+     * Die Suche wird über das Menü aufgerufen. Alle Input-Textfelder des Suchformulares werden
+     * exemplarisch mit Werten gefüllt. Es erfolgt jedoch keine Suche, sondern es wird auf den
+     * Hauptbildschirm durch Klicken auf die Titelfläche gewechselt.
+     */
+    @Test
+    public void fill_searchForm_show_home () throws Exception {
+        Thread.sleep(500);
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT)))
+                .perform(DrawerActions.open())
+                .check(matches(isOpen()));
+        Thread.sleep(1000);
+        onView(withId(R.id.nav_search))
+                .perform(click());
+        Thread.sleep(1000);
+
+        // Artikel Nr.
+        onView(withId(R.id.searchFragment_editText_articleId))
+                .perform(replaceText(String.valueOf(79992)))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
+        Thread.sleep(500);
+
+        // Artikel Kurzbez.
+        onView(withId(R.id.searchFragment_editText_articleShortDesc))
+                .perform(replaceText("Marvin"))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
+        Thread.sleep(500);
+
+        // Stücknummer
+        onView(withId(R.id.searchFragment_editText_pieceId))
+                .perform(replaceText(String.valueOf(34345118)))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
+        Thread.sleep(500);
+
+        // Stückteilung
+        onView(withId(R.id.searchFragment_editText_pieceDivision))
+                .perform(replaceText(String.valueOf(0)))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
+        Thread.sleep(500);
+
+        // Farb ID
+        onView(withId(R.id.searchFragment_editText_colorId))
+                .perform(replaceText(String.valueOf(1842)))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
+        Thread.sleep(500);
+
+        // Farbbezeichnung
+        onView(withId(R.id.searchFragment_editText_colorDescription))
+                .perform(replaceText("meliert, türkis"))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
+        Thread.sleep(500);
+
+        // Größe
+        onView(withId(R.id.searchFragment_editText_size))
+                .perform(replaceText("51,3"))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
+        Thread.sleep(500);
+
+        // Fertzstd
+        onView(withId(R.id.searchFragment_editText_manufacturingState))
+                .perform(replaceText("FW"))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
+        Thread.sleep(1000);
+
+        // show home
+        onView(withId(R.id.textView))
+                .perform(click());
+        Thread.sleep(2000);
+    }
+
+
+    /**
+     * Das Suchformular wird nicht mit Werten gefüllt. Es wird lediglich auf den Button "Suche" zur
+     * Ausführung gedrückt. Die Suche schlägt fehl. Im Anschluss wird der AlertDialog durch Klicken
+     * auf "OK" bestätigt.
      */
     @Test
     public void emptySearchForm_should_alert () throws Exception {
@@ -235,6 +300,7 @@ public class SearchFragmentTest {
         Thread.sleep(500);
         onView(withId(R.id.searchFragment_button_submit))
                 .perform(click());
+        Thread.sleep(1000);
 
         // AlertDialog bestätigen
         UiDevice mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
@@ -242,22 +308,33 @@ public class SearchFragmentTest {
         if (uiObject.exists()) {
             uiObject.click();
         }
-
     }
 
 
     /**
-     * Das Textfeld "Artikel-Id" wird mit einer Rechenoperation gefüllt.
-     * Im Anschluss wird der AlertDialog durch Klicken auf "OK" bestätigt.
+     * Die Suche wird über das Menü aufgerufen. Das Textfeld "Artikel-Id" wird mit einer
+     * Rechenoperation gefüllt. Die Suche schlägt fehl. Im Anschluss wird der AlertDialog durch
+     * Klicken auf "OK" bestätigt.
      */
     @Test
     public void edit_articleId_addition_should_alert () throws Exception {
-        onView(withId(R.id.searchButton))
+        Thread.sleep(500);
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT)))
+                .perform(DrawerActions.open())
+                .check(matches(isOpen()));
+        Thread.sleep(1000);
+        onView(withId(R.id.nav_search))
                 .perform(click());
-        Thread.sleep(500);
+        Thread.sleep(2000);
+
         onView(withId(R.id.searchFragment_editText_articleId))
-                .perform(replaceText("12 + 15"), pressImeActionButton());
+                .perform(replaceText("12 + 15"))
+                .perform(closeSoftKeyboard());
         Thread.sleep(500);
+        onView(withId(R.id.searchFragment_button_submit))
+                .perform(click());
+        Thread.sleep(1000);
 
         // AlertDialog
         UiDevice mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
@@ -269,21 +346,22 @@ public class SearchFragmentTest {
 
 
     /**
-     * Bei dem Textfeld "Artikel-Id" wird eine negative Zahl eingetragen.
-     * Es erscheint ein AlertDialog, welcher durch die Zurück-Taste bestätigt wird.
+     * Bei dem Textfeld "Artikel-Id" wird anstatt einer positven Zahl eine negative Zahl eingetragen.
+     * Die Suche schlägt fehl. Es erscheint ein AlertDialog, welcher durch die Zurück-Taste
+     * bestätigt wird.
      */
     @Test
     public void edit_articleId_isNegative_should_alert () throws Exception {
         onView(withId(R.id.searchButton))
                 .perform(click());
-        Thread.sleep(500);
+        Thread.sleep(1000);
         onView(withId(R.id.searchFragment_editText_articleId))
                 .perform(replaceText(String.valueOf(-61000)))
                 .perform(closeSoftKeyboard());
         Thread.sleep(500);
         onView(withId(R.id.searchFragment_button_submit))
                 .perform(click());
-        Thread.sleep(500);
+        Thread.sleep(100);
 
         // AlertDialog
         UiDevice mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
@@ -296,45 +374,46 @@ public class SearchFragmentTest {
 
     /**
      * Es wird eine Eingabe der Artikel-Kurzbeschreibung vorgenommen. Anstatt der korrekten
-     * Kurzbeschreibung wird nicht auf die Groß- bzw. Kleinschreibung geachtet ("coNny")
+     * Kurzbeschreibung wird nicht auf die Groß- bzw. Kleinschreibung geachtet ("coNny"). Die Suche
+     * wird über die Enter-Taste (Suche) gestartet
      */
     @Test
     public void edit_articleDesc_coNny () throws Exception {
         Thread.sleep(500);
         onView(withId(R.id.searchButton))
                 .perform(click());
+        Thread.sleep(1000);
         onView(withId(R.id.searchFragment_editText_articleShortDesc))
                 .perform(replaceText("coNny"))
-                .perform(closeSoftKeyboard())
-                .check(matches(isDisplayed()));
-        Thread.sleep(500);
-        onView(withId(R.id.searchFragment_button_submit))
-                .perform(click());
+                .perform(pressImeActionButton());
+        Thread.sleep(1000);
     }
 
 
     /**
      * Es wird bei der Suche eine Artikel-Kurzbeschreibung eingegeben, welche auch Leerzeichen
-     * enthält.
+     * enthält ("   Conny   ").
      */
     @Test
     public void edit_articleDesc_with_whitespaces () throws Exception {
         Thread.sleep(500);
         onView(withId(R.id.searchButton))
-                .perform(click())
-                .check(matches(isDisplayed()));
-        Thread.sleep(500);
+                .perform(click());
+        Thread.sleep(1000);
         onView(withId(R.id.searchFragment_editText_articleShortDesc))
-                .perform(replaceText("   Conny   "), closeSoftKeyboard() , scrollTo())
-                .check(matches(isDisplayed()));
+                .perform(replaceText("   Conny   "))
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
         Thread.sleep(500);
         onView(withId(R.id.searchFragment_button_submit))
-                        .perform(click());
+                .perform(click());
+        Thread.sleep(1000);
     }
 
 
     /**
-     * Bei der Suche wird im Textfeld Farbbezeichnung ", beige" eingetragen.
+     * Es wird nach der Farbbezeichnung ", beige" gesucht. Die Bestätigung erfolgt durch die
+     * Enter-Taste (Suche).
      */
     @Test
     public void edit_colorDesc_beige () throws Exception {
@@ -345,45 +424,55 @@ public class SearchFragmentTest {
         onView(withId(R.id.searchFragment_editText_colorDescription))
                 .perform(replaceText(", beige"))
                 .perform(pressImeActionButton());
-        Thread.sleep(500);
+        Thread.sleep(100);
     }
 
 
     /**
-     * Bei der Suche wird bei dem Textfeld Farb-ID 179 eingegeben. Diese Farb-ID ist nicht
-     * vollständig. Dementsprechend werden alle Artikel angezeigt, deren Farb-ID mit 179 beginnt.
+     * Bei der Suche wird bei dem Textfeld Farb-ID der Wert 179 eingegeben. Diese Farb-ID ist nicht
+     * vollständig. Die Bestätigung erfolgt durch die Enter-Taste. Es werden alle Artikel angezeigt,
+     * deren Farb-ID mit 179 beginnt.
      */
     @Test
     public void edit_colorId_withUnfinishedNumber () throws Exception {
         Thread.sleep(500);
         onView(withId(R.id.searchButton))
                 .perform(click());
-        Thread.sleep(500);
+        Thread.sleep(1000);
         onView(withId(R.id.searchFragment_editText_colorId))
                 .perform(replaceText(String.valueOf(179)))
                 .perform(pressImeActionButton());
+        Thread.sleep(1000);
     }
 
 
     /**
-     * Bei der Eingabe der Farb-Id wird anstatt einer Zahl ein Text eingegeben. Es erscheit ein
-     * AlertDialog, welcher durch Klicken auf "OK" bestätigt wird.
+     * Die Suche wird über das Menü aufgerufen. Bei der Eingabe der Farb-Id wird anstatt einer Zahl
+     * ein Text eingegeben. Die Suche schlägt fehl. Es erscheit ein AlertDialog, welcher durch
+     * Klicken auf "OK" bestätigt wird.
      */
     @Test
     public void edit_colorId_isText_should_alert () throws Exception {
         Thread.sleep(500);
-        onView(withId(R.id.searchButton))
-                .perform(click())
-                .check(matches(isDisplayed()));
-        Thread.sleep(500);
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT)))
+                .perform(DrawerActions.open())
+                .check(matches(isOpen()));
+        Thread.sleep(1000);
+        onView(withId(R.id.nav_search))
+                .perform(click());
+        Thread.sleep(1000);
+
         onView(withId(R.id.searchFragment_editText_size))
                 .perform(replaceText("Text"))
-                .perform(closeSoftKeyboard());
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
         Thread.sleep(500);
         onView(withId(R.id.searchFragment_button_submit))
                 .perform(click());
+
         // AlertDialog bestätigen
-        Thread.sleep(500);
+        Thread.sleep(1000);
         UiDevice mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         UiObject uiObject = mDevice.findObject(new UiSelector().text("OK"));
         if (uiObject.exists()) {
@@ -393,22 +482,21 @@ public class SearchFragmentTest {
 
 
     /**
-     * Das Textfeld "Größe" wird anstatt einer Zahl mit einem Text gefüllt. Es erscheint ein
-     * AlertDialog, welcher durch Klicken auf "OK" bestätigt wird.
+     * Das Textfeld "Größe" wird anstatt einer Zahl mit einem Text gefüllt. Die Bestätigung erfolgt
+     * über die Enter-Taste. Die Suche schlägt fehl. Es erscheint ein AlertDialog, welcher durch
+     * Klicken auf "OK" bestätigt wird.
      */
     @Test
     public void edit_size_isText_should_alert () throws Exception {
         onView(withId(R.id.searchButton))
                 .perform(click());
-        Thread.sleep(500);
+        Thread.sleep(1000);
         onView(withId(R.id.searchFragment_editText_size))
                 .perform(replaceText("Text"))
-                .perform(closeSoftKeyboard());
-        Thread.sleep(500);
-        onView(withId(R.id.searchFragment_button_submit))
-                .perform(click());
-        // AlertDialog
-        Thread.sleep(500);
+                .perform(pressKey(KeyEvent.KEYCODE_SEARCH));
+
+        // AlertDialog bestätigen
+        Thread.sleep(1000);
         UiDevice mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         UiObject uiObject = mDevice.findObject(new UiSelector().text("OK"));
         if (uiObject.exists()) {
@@ -418,28 +506,31 @@ public class SearchFragmentTest {
 
 
     /**
-     * Es wird nach dem Fertigungszustand gesucht. Hierbei wird anstatt eines Textes eine Zahl
-     * eingegeben.vEs erscheint ein AlertDialog, welcher durch die Zurück-Taste bestätigt wird.
+     * Es wird nach dem Fertigungszustand gefilter. Hierbei wird eine Zahl eingegeben. Die Suche
+     * schlägt fehl. Es erscheint ein AlertDialog, welcher durch Klicken auf "OK" bestätigt wird.
      */
     @Test
     public void edit_manufacturingState_isNumber_should_alert () throws Exception {
         Thread.sleep(500);
         onView(withId(R.id.searchButton))
                 .perform(click());
+        Thread.sleep(1000);
         onView(withId(R.id.searchFragment_editText_manufacturingState))
                 .perform(replaceText(String.valueOf(0)))
-                .perform(closeSoftKeyboard());
+                .perform(closeSoftKeyboard())
+                .perform(scrollTo());
         Thread.sleep(500);
         onView(withId(R.id.searchFragment_button_submit))
                 .perform(click());
+        Thread.sleep(1000);
+
         // AlertDialog bestätigen
         UiDevice mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         UiObject uiObject = mDevice.findObject(new UiSelector().text("OK"));
         if (uiObject.exists()) {
-            mDevice.pressBack();
+            uiObject.click();
         }
     }
-
 
 
     /**
@@ -448,6 +539,7 @@ public class SearchFragmentTest {
     @After
     public void tearDown() throws Exception {
         this.mainActivity = null;
+        Intents.release();
     }
 
 }

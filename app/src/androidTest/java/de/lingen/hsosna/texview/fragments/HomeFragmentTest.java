@@ -18,10 +18,11 @@ import static org.junit.Assert.assertEquals;
 
 public class HomeFragmentTest {
 
-    @Rule
-    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
-
     public MainActivity mainActivity = null;
+
+    @Rule
+    public ActivityTestRule<MainActivity> mActivityTestRule
+            = new ActivityTestRule<MainActivity>(MainActivity.class, true, true);
 
 
     /**

@@ -12,16 +12,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner" // oder JUnitRunner
-        //testInstrumentationRunner "android.test.InstrumentationTestRunner"
-        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        //testHandleProfiling true
-        //testFunctionalTest true
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            //shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
@@ -29,9 +24,6 @@ android {
         }
     }
 
-    //usesLibrary 'android.test.runner'
-    //usesLibrary 'android.test.base'
-    //usesLibrary 'android.test.mock'
 
     testOptions {
         unitTests.includeAndroidResources = true
@@ -88,5 +80,3 @@ dependencies {
 repositories {
     mavenCentral()
 }
-
-//apply plugin: 'com.google.gms.google-services'
